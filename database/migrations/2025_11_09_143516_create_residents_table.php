@@ -12,8 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('residents', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id(); // Primary Key
+            $table->string('name'); // Nama peternak
+            $table->string('email')->unique(); // Email login
+            $table->string('phone')->nullable(); // Nomor telepon
+            $table->string('address')->nullable(); // Alamat tempat budidaya
+            $table->string('farm_location')->nullable(); // Lokasi kolam / tambak
+            $table->string('profile_photo')->nullable(); // Foto profil
+            $table->enum('status', ['active', 'inactive']) ->default('active'); // Status akun
+            $table->timestamp('last_login')->nullable(); // Waktu terakhir login
+            $table->timestamps(); // created_at & updated_at
         });
     }
 
@@ -25,3 +33,4 @@ return new class extends Migration
         Schema::dropIfExists('residents');
     }
 };
+ 

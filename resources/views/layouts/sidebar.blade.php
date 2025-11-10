@@ -23,14 +23,14 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Memulai Pencatatan
+                Data Pengguna
             </div>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="/resident">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Pencatatan</span></a>
+                    <span>Data Peternak</span></a>
             </li>
 
             <!-- Divider -->
