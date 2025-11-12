@@ -23,7 +23,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Data Pengguna
+                Manajemen Pengguna
             </div>
 
             <!-- Nav Item - Tables -->
