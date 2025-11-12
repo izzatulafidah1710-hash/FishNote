@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Site Metas -->
-    <title>FishNote - Pencatatan dan Promosi</title>
+    <title>Freshshop - Ecommerce Bootstrap 4 HTML Template</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -41,64 +41,36 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-					<div class="custom-select-box">
-                        <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
-							<option>¥ JPY</option>
-							<option>$ USD</option>
-							<option>€ EUR</option>
-						</select>
-                    </div>
-                    <div class="right-phone-box">
-                        <p>Call US :- <a href="#"> +11 900 800 100</a></p>
-                    </div>
-                    <div class="our-link">
-                        <ul>
-                            <li><a href="#"><i class="fa fa-user s_color"></i> My Account</a></li>
-                            <li><a href="#"><i class="fas fa-location-arrow"></i> Our location</a></li>
-                            <li><a href="#"><i class="fas fa-headset"></i> Contact Us</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-					<div class="login-box">
-						<select id="basic" class="selectpicker show-tick form-control" data-placeholder="Sign In">
-							<option>Register Here</option>
-							<option>Sign In</option>
-						</select>
-					</div>
-                    <div class="text-slid-box">
-                        <div id="offer-box" class="carouselTicker">
-                            <ul class="offer-box">
-                                <li>
-                                    <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT80
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> 50% - 80% off on Vegetables
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Off 10%! Shop Vegetables
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Off 50%! Shop Now
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Off 10%! Shop Vegetables
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> 50% - 80% off on Vegetables
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT30
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> Off 50%! Shop Now 
-                                </li>
-                            </ul>
-                        </div>
+                    <style>
+                        .login-box {
+                            display: flex;
+                            align-items: center;
+                            justify-content: flex-end;
+                            gap: 10px;
+                            width: 100%;
+                        }
+
+                        .login-info {
+                            font-size: 13px;
+                            color: #555;
+                            white-space: nowrap;
+                        }
+                    </style>
+                    <div class="login-box">
+                        <select id="basic2" class="selectpicker show-tick form-control" data-placeholder="English">
+                            <option>English</option>
+                            <option>French</option>
+                            <option>German</option>
+                            <option>Spanish</option>
+                        </select>
+                        <span class="login-info">Hanya peternak yang bisa login</span>
+                        <a href="login.html" class="btn btn-primary btn-sm">Login</a>
+                        <a href="register.html" class="btn btn-success btn-sm">Register</a>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <!-- End Main Top -->
 
@@ -112,7 +84,7 @@
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                    <a class="navbar-brand" href="index.html"><img src="{{ asset ('template_tampilan/images/logo.png') }}" class="logo" alt=""></a>
+                    <a class="navbar-brand" href="index.html"><img src="template tampilan/images/logo.png" class="logo" alt=""></a>
                 </div>
                 <!-- End Header Navigation -->
 
@@ -124,8 +96,8 @@
                         <li class="dropdown">
                             <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
                             <ul class="dropdown-menu">
-								<li><a href="shop.html">Sidebar Shop</a></li>
-								<li><a href="shop-detail.html">Shop Detail</a></li>
+                                <li><a href="shop.html">Sidebar Shop</a></li>
+                                <li><a href="shop-detail.html">Shop Detail</a></li>
                                 <li><a href="cart.html">Cart</a></li>
                                 <li><a href="checkout.html">Checkout</a></li>
                                 <li><a href="my-account.html">My Account</a></li>
@@ -143,12 +115,12 @@
                     <ul>
                         <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
                         <li class="side-menu">
-							<a href="#">
-								<i class="fa fa-shopping-bag"></i>
-								<span class="badge">3</span>
-								<p>My Cart</p>
-							</a>
-						</li>
+                            <a href="#">
+                                <i class="fa fa-shopping-bag"></i>
+                                <span class="badge">3</span>
+                                <p>My Cart</p>
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <!-- End Atribute Navigation -->
@@ -159,17 +131,20 @@
                 <li class="cart-box">
                     <ul class="cart-list">
                         <li>
-                            <a href="#" class="photo"><img src="template tampilan/images/img-pro-01.jpg" class="cart-thumb" alt="" /></a>
+                            <a href="#" class="photo"><img src="template tampilan/images/img-pro-01.jpg"
+                                    class="cart-thumb" alt="" /></a>
                             <h6><a href="#">Delica omtantur </a></h6>
                             <p>1x - <span class="price">$80.00</span></p>
                         </li>
                         <li>
-                            <a href="#" class="photo"><img src="template tampilan/images/img-pro-02.jpg" class="cart-thumb" alt="" /></a>
+                            <a href="#" class="photo"><img src="template tampilan/images/img-pro-02.jpg"
+                                    class="cart-thumb" alt="" /></a>
                             <h6><a href="#">Omnes ocurreret</a></h6>
                             <p>1x - <span class="price">$60.00</span></p>
                         </li>
                         <li>
-                            <a href="#" class="photo"><img src="template tampilan/images/img-pro-03.jpg" class="cart-thumb" alt="" /></a>
+                            <a href="#" class="photo"><img src="template tampilan/images/img-pro-03.jpg"
+                                    class="cart-thumb" alt="" /></a>
                             <h6><a href="#">Agam facilisis</a></h6>
                             <p>1x - <span class="price">$40.00</span></p>
                         </li>
@@ -207,7 +182,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <h1 class="m-b-20"><strong>Welcome To <br> Freshshop</strong></h1>
-                            <p class="m-b-40">See how your users experience your website in realtime or view <br> trends to see any changes in performance over time.</p>
+                            <p class="m-b-40">See how your users experience your website in realtime or view <br>
+                                trends to see any changes in performance over time.</p>
                             <p><a class="btn hvr-hover" href="#">Shop New</a></p>
                         </div>
                     </div>
@@ -219,7 +195,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <h1 class="m-b-20"><strong>Welcome To <br> Freshshop</strong></h1>
-                            <p class="m-b-40">See how your users experience your website in realtime or view <br> trends to see any changes in performance over time.</p>
+                            <p class="m-b-40">See how your users experience your website in realtime or view <br>
+                                trends to see any changes in performance over time.</p>
                             <p><a class="btn hvr-hover" href="#">Shop New</a></p>
                         </div>
                     </div>
@@ -231,7 +208,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <h1 class="m-b-20"><strong>Welcome To <br> Freshshop</strong></h1>
-                            <p class="m-b-40">See how your users experience your website in realtime or view <br> trends to see any changes in performance over time.</p>
+                            <p class="m-b-40">See how your users experience your website in realtime or view <br>
+                                trends to see any changes in performance over time.</p>
                             <p><a class="btn hvr-hover" href="#">Shop New</a></p>
                         </div>
                     </div>
@@ -271,23 +249,23 @@
         </div>
     </div>
     <!-- End Categories -->
-	
-	<div class="box-add-products">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6 col-md-6 col-sm-12">
-					<div class="offer-box-products">
-						<img class="img-fluid" src="template tampilan/images/add-img-01.jpg" alt="" />
-					</div>
-				</div>
-				<div class="col-lg-6 col-md-6 col-sm-12">
-					<div class="offer-box-products">
-						<img class="img-fluid" src="template tampilan/images/add-img-02.jpg" alt="" />
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+
+    <div class="box-add-products">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="offer-box-products">
+                        <img class="img-fluid" src="template tampilan/images/add-img-01.jpg" alt="" />
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="offer-box-products">
+                        <img class="img-fluid" src="template tampilan/images/add-img-02.jpg" alt="" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Start Products  -->
     <div class="products-box">
@@ -322,9 +300,12 @@
                             <img src="template tampilan/images/img-pro-01.jpg" class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right"
+                                            title="View"><i class="fas fa-eye"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right"
+                                            title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right"
+                                            title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                 </ul>
                                 <a class="cart" href="#">Add to Cart</a>
                             </div>
@@ -345,9 +326,12 @@
                             <img src="template tampilan/images/img-pro-02.jpg" class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right"
+                                            title="View"><i class="fas fa-eye"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right"
+                                            title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right"
+                                            title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                 </ul>
                                 <a class="cart" href="#">Add to Cart</a>
                             </div>
@@ -368,9 +352,12 @@
                             <img src="template tampilan/images/img-pro-03.jpg" class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right"
+                                            title="View"><i class="fas fa-eye"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right"
+                                            title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right"
+                                            title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                 </ul>
                                 <a class="cart" href="#">Add to Cart</a>
                             </div>
@@ -391,9 +378,12 @@
                             <img src="template tampilan/images/img-pro-04.jpg" class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right"
+                                            title="View"><i class="fas fa-eye"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right"
+                                            title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right"
+                                            title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                 </ul>
                                 <a class="cart" href="#">Add to Cart</a>
                             </div>
@@ -429,7 +419,9 @@
                         <div class="blog-content">
                             <div class="title-blog">
                                 <h3>Fusce in augue non nisi fringilla</h3>
-                                <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>
+                                <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet
+                                    urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed
+                                    mollis. Praesent laoreet lacinia elit id lobortis.</p>
                             </div>
                             <ul class="option-blog">
                                 <li><a href="#"><i class="far fa-heart"></i></a></li>
@@ -447,7 +439,9 @@
                         <div class="blog-content">
                             <div class="title-blog">
                                 <h3>Fusce in augue non nisi fringilla</h3>
-                                <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>
+                                <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet
+                                    urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed
+                                    mollis. Praesent laoreet lacinia elit id lobortis.</p>
                             </div>
                             <ul class="option-blog">
                                 <li><a href="#"><i class="far fa-heart"></i></a></li>
@@ -465,7 +459,9 @@
                         <div class="blog-content">
                             <div class="title-blog">
                                 <h3>Fusce in augue non nisi fringilla</h3>
-                                <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>
+                                <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet
+                                    urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed
+                                    mollis. Praesent laoreet lacinia elit id lobortis.</p>
                             </div>
                             <ul class="option-blog">
                                 <li><a href="#"><i class="far fa-heart"></i></a></li>
@@ -573,32 +569,35 @@
     <footer>
         <div class="footer-main">
             <div class="container">
-				<div class="row">
-					<div class="col-lg-4 col-md-12 col-sm-12">
-						<div class="footer-top-box">
-							<h3>Business Time</h3>
-							<ul class="list-time">
-								<li>Monday - Friday: 08.00am to 05.00pm</li> <li>Saturday: 10.00am to 08.00pm</li> <li>Sunday: <span>Closed</span></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-12 col-sm-12">
-						<div class="footer-top-box">
-							<h3>Newsletter</h3>
-							<form class="newsletter-box">
-								<div class="form-group">
-									<input class="" type="email" name="Email" placeholder="Email Address*" />
-									<i class="fa fa-envelope"></i>
-								</div>
-								<button class="btn hvr-hover" type="submit">Submit</button>
-							</form>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-12 col-sm-12">
-						<div class="footer-top-box">
-							<h3>Social Media</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-							<ul>
+                <div class="row">
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-top-box">
+                            <h3>Business Time</h3>
+                            <ul class="list-time">
+                                <li>Monday - Friday: 08.00am to 05.00pm</li>
+                                <li>Saturday: 10.00am to 08.00pm</li>
+                                <li>Sunday: <span>Closed</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-top-box">
+                            <h3>Newsletter</h3>
+                            <form class="newsletter-box">
+                                <div class="form-group">
+                                    <input class="" type="email" name="Email"
+                                        placeholder="Email Address*" />
+                                    <i class="fa fa-envelope"></i>
+                                </div>
+                                <button class="btn hvr-hover" type="submit">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-top-box">
+                            <h3>Social Media</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <ul>
                                 <li><a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
                                 <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
                                 <li><a href="#"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
@@ -607,16 +606,19 @@
                                 <li><a href="#"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a></li>
                                 <li><a href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
                             </ul>
-						</div>
-					</div>
-				</div>
-				<hr>
+                        </div>
+                    </div>
+                </div>
+                <hr>
                 <div class="row">
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="footer-widget">
                             <h4>About Freshshop</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> 
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p> 							
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                ut labore et dolore magna aliqua. </p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-12 col-sm-12">
@@ -637,13 +639,16 @@
                             <h4>Contact Us</h4>
                             <ul>
                                 <li>
-                                    <p><i class="fas fa-map-marker-alt"></i>Address: Michael I. Days 3756 <br>Preston Street Wichita,<br> KS 67213 </p>
+                                    <p><i class="fas fa-map-marker-alt"></i>Address: Michael I. Days 3756 <br>Preston
+                                        Street Wichita,<br> KS 67213 </p>
                                 </li>
                                 <li>
-                                    <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+1-888705770">+1-888 705 770</a></p>
+                                    <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+1-888705770">+1-888 705
+                                            770</a></p>
                                 </li>
                                 <li>
-                                    <p><i class="fas fa-envelope"></i>Email: <a href="mailto:contactinfo@gmail.com">contactinfo@gmail.com</a></p>
+                                    <p><i class="fas fa-envelope"></i>Email: <a
+                                            href="mailto:contactinfo@gmail.com">contactinfo@gmail.com</a></p>
                                 </li>
                             </ul>
                         </div>
@@ -657,7 +662,8 @@
     <!-- Start copyright  -->
     <div class="footer-copyright">
         <p class="footer-company">All Rights Reserved. &copy; 2018 <a href="#">ThewayShop</a> Design By :
-            <a href="https://html.design/">html design</a></p>
+            <a href="https://html.design/">html design</a>
+        </p>
     </div>
     <!-- End copyright  -->
 
