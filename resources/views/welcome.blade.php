@@ -10,23 +10,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Site Metas -->
-    <title>Freshshop - Ecommerce Bootstrap 4 HTML Template</title>
+    <title>FishNote - Pencatatan dan Promosi</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
 
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="{{ asset ('template_tampilan/images/favicon.ico') }}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{{ asset ('template_tampilan/images/apple-touch-icon.png') }}">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="template tampilan/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset ('template_tampilan/css/bootstrap.min.css') }}">
     <!-- Site CSS -->
-    <link rel="stylesheet" href="template tampilan/css/style.css">
+    <link rel="stylesheet" href="{{ asset  ('template_tampilan/css/style.css') }}">
     <!-- Responsive CSS -->
-    <link rel="stylesheet" href="template tampilan/css/responsive.css">
+    <link rel="stylesheet" href="{{ asset ('template_tampilan/css/responsive.css') }}">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="template tampilan/css/custom.css">
+    <link rel="stylesheet" href="{{ asset ('template_tampilan/css/custom.css') }}">
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -112,7 +112,7 @@
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                    <a class="navbar-brand" href="index.html"><img src="template tampilan/images/logo.png" class="logo" alt=""></a>
+                    <a class="navbar-brand" href="index.html"><img src="{{ asset ('template_tampilan/images/logo.png') }}" class="logo" alt=""></a>
                 </div>
                 <!-- End Header Navigation -->
 
@@ -664,21 +664,21 @@
     <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
     <!-- ALL JS FILES -->
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="{{ asset ('template_tampilan/js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset ('template_tampilan/js/popper.min.js') }}"></script>
+    <script src="{{ asset ('template_tampilan/js/bootstrap.min.js') }}"></script>
     <!-- ALL PLUGINS -->
-    <script src="js/jquery.superslides.min.js"></script>
-    <script src="js/bootstrap-select.js"></script>
-    <script src="js/inewsticker.js"></script>
-    <script src="js/bootsnav.js."></script>
-    <script src="js/images-loded.min.js"></script>
-    <script src="js/isotope.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/baguetteBox.min.js"></script>
-    <script src="js/form-validator.min.js"></script>
-    <script src="js/contact-form-script.js"></script>
-    <script src="js/custom.js"></script>
+    <script src="{{ asset ('template_tampilan/js/jquery.superslides.min.js') }}"></script>
+    <script src="{{ asset ('template_tampilan/js/bootstrap-select.js') }}"></script>
+    <script src="{{ asset ('template_tampilan/js/inewsticker.js') }}"></script>
+    <script src="template_tampilan/js/bootsnav.js"></script>
+    <script src="template_tampilan/js/images-loded.min.js"></script>
+    <script src="template_tampilan/js/isotope.min.js"></script>
+    <script src="template_tampilan/js/owl.carousel.min.js"></script>
+    <script src="template_tampilan/js/baguetteBox.min.js"></script>
+    <script src="template_tampilan/js/form-validator.min.js"></script>
+    <script src="template_tampilan/js/contact-form-script.js"></script>
+    <script src="template_tampilan/js/custom.js"></script>
 </body>
 
 </html>
