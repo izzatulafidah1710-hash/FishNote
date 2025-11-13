@@ -222,7 +222,7 @@
                                         <div class="progress mb-4">
                                             <div class="progress-bar bg-primary" role="progressbar"
                                                 style="width: 40%" aria-valuenow="40" aria-valuemin="0"
-                                                aria-valuemax="100"></div>
+                                                 aria-valuemax="100"></div>
                                         </div>
 
                                         <!-- Item 5 -->
@@ -317,13 +317,11 @@
                                     <div class="card-body">
                                         <div class="text-center">
                                             <img class="{{ asset('template/img-fluid px-3 px-sm-4 mt-3 mb-4') }}"
-                                                style="width: 25rem;"
-                                                src="{{ asset('template/img/undraw_posting_photo.svg') }}"
+                                                style="width: 15rem;"
+                                                src="{{ asset('template/img/logofishnote.png') }}"
                                                 alt="...">
                                         </div>
-                                        <p>Add some quality, svg illustrations to your project courtesy of <a
-                                                target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>,
-                                            a
+                                        <p>Add some quality, svg illustrations to your project courtesy of 
                                             constantly updated collection of beautiful svg images that you can use
                                             completely free and without attribution!</p>
                                         <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse
@@ -343,8 +341,7 @@
                                             CSS bloat and poor page performance. Custom CSS classes are used to create
                                             custom components and custom utility classes.</p>
                                         <p class="mb-0">Before working with this theme, you should become familiar
-                                            with the
-                                            Bootstrap framework, especially the utility classes.</p>
+                                            with the Bootstrap framework, especially the utility classes.</p>
                                     </div>
                                 </div>
 
