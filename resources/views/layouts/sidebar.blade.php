@@ -3,7 +3,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    {{--<i class="fas fa-laugh-wink"></i>--}}
+                    <i class="fas fa-laugh-wink"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">FishNote </div>
             </a>
@@ -26,11 +26,47 @@
                 Manajemen Pengguna
             </div>
 
-            <!-- Nav Item - Tables -->
+            <!-- Nav Item - data peternak -->
             <li class="nav-item {{ request()->is('resident*') ? 'active' : '' }}">
                 <a class="nav-link" href="/resident">
-                    <i class="fas fa-fw fa-table"></i>
+                    <i class="fas fa-fw fa-folder"></i>
                     <span>Data Peternak</span></a>
+            </li>
+
+             <!-- Nav Item - data promosi -->
+            <li class="nav-item">
+                <a class="nav-link" href="chart.html">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Data Promosi</span></a>
+            </li>
+
+             <!-- Nav Item - permintaan akun -->
+            <li class="nav-item">
+                <a class="nav-link" href="chart.html">
+                    <i class="fas fa-fw fa-bars"></i>
+                    <span>Permintaan Akun</span></a>
+            </li>
+
+            <!-- Nav Item - aktivitas peternak -->
+            <li class="nav-item">
+                <a class="nav-link" href="chart.html">
+                    <i class="fas fa-fw fa-search"></i>
+                    <span>Aktivitas</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Kelola Akun
+            </div>
+
+            <!-- Nav Item - keluar akun -->
+            <li class="nav-item">
+                <a class="nav-link" href="chart.html">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Keluar</span></a>
             </li>
 
             <!-- Divider -->
