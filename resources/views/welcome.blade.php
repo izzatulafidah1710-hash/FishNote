@@ -199,7 +199,7 @@
     <header class="main-header">
 
         <!-- Start Navigation -->
-        @include('views.navigasi')
+        @include('navigasi')
         <!-- End Navigation -->
 
     </header>
