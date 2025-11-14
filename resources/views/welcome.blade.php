@@ -201,7 +201,7 @@
         <!-- Start Navigation -->
         @include('views.navigasi')
         <!-- End Navigation -->
-        
+
     </header>
     <!-- End Main Top -->
 
