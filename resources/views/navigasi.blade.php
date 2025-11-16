@@ -1,4 +1,4 @@
-        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav py-1">
             <div class="container">
                 <!-- Start Header Navigation -->
                 <div class="navbar-header">
@@ -6,18 +6,17 @@
                         aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fa fa-bars"></i>
                     </button>
-                    <a class="navbar-brand" href="index.html"><img src="images/logo.png" class="logo"
-                            alt=""></a>
+                    <a class="navbar-brand" href="index.html"><img src="{{ asset ('images/logofishnote.png') }}" alt="logofishnote" width="150" height="150"></a>
                 </div>
                 <!-- End Header Navigation -->
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-                        <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-                        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-                        <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="index.html">Beranda</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">Tentang Kami</a></li>
+                        <li class="nav-item"><a class="nav-link" href="gallery.html">Promosi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact-us.html">Kontak Kami</a></li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -29,17 +28,7 @@
                         <li class="search">
                             <a href="#"><i class="fa fa-search"></i></a>
                         </li>
-
-                        <!-- Cart -->
-                        <li class="side-menu">
-                            <a href="#" class="cart-icon">
-                                <i class="fa fa-shopping-cart"></i>
-                                <span class="badge" id="cart-count">3</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- End Atribute Navigation -->
+                        
             </div>
             <!-- Start Side Menu -->
             <div class="side">
