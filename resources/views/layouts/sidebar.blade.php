@@ -34,22 +34,23 @@
             </li>
 
              <!-- Nav Item - data promosi -->
-            <li class="nav-item">
-                <a class="nav-link" href="chart.html">
+            <li class="nav-item {{ request()->is('promotions*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('promotions.index') }}">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Data Promosi</span></a>
+                    <span>Data promosi</span>
+                </a>
             </li>
 
              <!-- Nav Item - permintaan akun -->
             <li class="nav-item">
-                <a class="nav-link" href="chart.html">
+                <a class="nav-link" href="">
                     <i class="fas fa-fw fa-bars"></i>
-                    <span>Permintaan Akun</span></a>
+                    <span>Info Akun Peternak</span></a>
             </li>
 
             <!-- Nav Item - aktivitas peternak -->
             <li class="nav-item">
-                <a class="nav-link" href="chart.html">
+                <a class="nav-link" href="">
                     <i class="fas fa-fw fa-search"></i>
                     <span>Aktivitas</span></a>
             </li>
@@ -64,7 +65,7 @@
 
             <!-- Nav Item - keluar akun -->
             <li class="nav-item">
-                <a class="nav-link" href="chart.html">
+                <a class="nav-link" href="">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Keluar</span></a>
             </li>

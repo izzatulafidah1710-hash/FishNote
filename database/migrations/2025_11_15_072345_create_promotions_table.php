@@ -12,14 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('promotions', function (Blueprint $table) {
-        $table->id();
-        $table->string('judul');
-        $table->text('deskripsi');
-        $table->decimal('harga', 10, 2);
-        $table->integer('stok');
-        $table->string('gambar')->nullable();
-        $table->timestamps();
-
+            $table->id();
+            $table->string('judul');
+            $table->text('deskripsi')->nullable();
+            $table->decimal('harga', 12, 2)->default(0);
+            $table->integer('stok')->default(0);
+            $table->string('gambar')->nullable(); // path gambar
+            $table->timestamps(); // created_at & updated_at
         });
     }
 

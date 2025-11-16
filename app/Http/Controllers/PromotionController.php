@@ -4,43 +4,38 @@ namespace App\Http\Controllers;
 
 use App\Models\Promotion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PromotionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // TAMPILKAN SEMUA PROMOSI
     public function index()
     {
-        $promotions = Promotion::latest()->get();
-        return view('admin.promotion.index', compact('promotion'));
+        $promotions = Promotion::all();
+        return view('admin.promotion.index', compact('promotions'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    // FORM TAMBAH
     public function create()
     {
-        return view('admin.promotions.create');
+        return view('admin.promotion.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // SIMPAN DATA PROMOSI
     public function store(Request $request)
     {
         $request->validate([
-            'judul' => 'required|string|max:255',
-            'deskripsi' => 'required|string',
+            'judul' => 'required',
+            'deskripsi' => 'nullable',
             'harga' => 'required|numeric',
             'stok' => 'required|integer',
-            'gambar' => 'nullable|image|mimes:jpg,png,jpeg|max:2048'
+            'gambar' => 'image|mimes:jpg,jpeg,png|max:2048'
         ]);
 
-        // Upload gambar jika ada
-        $path = null;
+        $filePath = null;
+
         if ($request->hasFile('gambar')) {
-            $path = $request->file('gambar')->store('promotions', 'public');
+            $filePath = $request->file('gambar')->store('promotions', 'public');
         }
 
         Promotion::create([
@@ -48,36 +43,40 @@ class PromotionController extends Controller
             'deskripsi' => $request->deskripsi,
             'harga' => $request->harga,
             'stok' => $request->stok,
-            'gambar' => $path,
+            'gambar' => $filePath
         ]);
 
-        return redirect()->route('promotions.index')->with('success', 'Promosi berhasil ditambahkan!');
+        return redirect()->route('promotions.index')->with('success', 'Data berhasil ditambahkan!');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Promotion $promotion)
+    // FORM EDIT
+    public function edit($id)
     {
-        return view('admin.promotions.edit', compact('promotion'));
+        $promotion = Promotion::findOrFail($id);
+        return view('admin.promotion.edit', compact('promotion'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Promotion $promotion)
+    // UPDATE DATA PROMOSI
+    public function update(Request $request, $id)
     {
         $request->validate([
-            'judul' => 'required|string|max:255',
-            'deskripsi' => 'required|string',
+            'judul' => 'required',
+            'deskripsi' => 'nullable',
             'harga' => 'required|numeric',
             'stok' => 'required|integer',
-            'gambar' => 'nullable|image|mimes:jpg,png,jpeg|max:2048'
+            'gambar' => 'image|mimes:jpg,jpeg,png|max:2048'
         ]);
 
-        $path = $promotion->gambar;
+        $promotion = Promotion::findOrFail($id);
+
+        $filePath = $promotion->gambar;
+
+        // jika upload gambar baru, hapus gambar lama
         if ($request->hasFile('gambar')) {
-            $path = $request->file('gambar')->store('promotions', 'public');
+            if ($promotion->gambar && Storage::disk('public')->exists($promotion->gambar)) {
+                Storage::disk('public')->delete($promotion->gambar);
+            }
+            $filePath = $request->file('gambar')->store('promotions', 'public');
         }
 
         $promotion->update([
@@ -85,19 +84,23 @@ class PromotionController extends Controller
             'deskripsi' => $request->deskripsi,
             'harga' => $request->harga,
             'stok' => $request->stok,
-            'gambar' => $path,
+            'gambar' => $filePath
         ]);
 
-        return redirect()->route('promotions.index')->with('success', 'Promosi berhasil diperbarui!');
+        return redirect()->route('promotions.index')->with('success', 'Data berhasil diperbarui!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Promotion $promotion)
+    // HAPUS DATA
+    public function destroy($id)
     {
+        $promotion = Promotion::findOrFail($id);
+
+        if ($promotion->gambar && Storage::disk('public')->exists($promotion->gambar)) {
+            Storage::disk('public')->delete($promotion->gambar);
+        }
+
         $promotion->delete();
 
-        return redirect()->route('promotions.index')->with('success', 'Promosi berhasil dihapus!');
+        return redirect()->route('promotions.index')->with('success', 'Data berhasil dihapus!');
     }
 }
