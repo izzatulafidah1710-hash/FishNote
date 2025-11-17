@@ -11,14 +11,14 @@ class ResidentController extends Controller
     {
         $residents = Resident::all();
 
-        return view('pages.resident.index', [
+        return view('admin.resident.index', [
             'residents' => $residents,
         ]);
     }
 
     public function create()
     {
-        return view('pages.resident.create');
+        return view('admin.resident.create');
     }
 
     public function store(Request $request)
@@ -42,7 +42,7 @@ class ResidentController extends Controller
     {
         $resident = Resident::findOrFail($id);
 
-        return view('pages.resident.edit', [ // sebaiknya pakai file view "edit.blade.php"
+        return view('admin.resident.edit', [ // sebaiknya pakai file view "edit.blade.php"
             'resident' => $resident,
         ]);
     }
