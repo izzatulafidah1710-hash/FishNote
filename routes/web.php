@@ -3,11 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ResidentController;
 use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\InfoAkunController;
 
 Route::get('/', function (){
     return view('welcome');
 });
-
 
 Route::get('/dashboard', function (){
     return view('admin.dashboard');
@@ -27,3 +27,7 @@ Route::delete('/resident/{$id}', [ResidentController::class, 'delete']);
 
 // data promosi-admin
 Route::resource('promotions', PromotionController::class);
+
+// info akun peternak
+Route::get('/info-akun-peternak', [InfoAkunController::class, 'index'])
+    ->name('infoakun.index');

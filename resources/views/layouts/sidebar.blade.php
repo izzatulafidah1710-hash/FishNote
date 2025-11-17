@@ -41,9 +41,9 @@
                 </a>
             </li>
 
-             <!-- Nav Item - permintaan akun -->
-            <li class="nav-item">
-                <a class="nav-link" href="">
+             <!-- Nav Item - info akun peternak -->
+            <li class="nav-item"></li>
+                <a clas s="nav-link" href="{{ route('infoakun.index') }}">
                     <i class="fas fa-fw fa-bars"></i>
                     <span>Info Akun Peternak</span></a>
             </li>
