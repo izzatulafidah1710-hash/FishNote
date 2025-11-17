@@ -90,14 +90,9 @@
 
     <!-- Start Main Top -->
     <header class="main-header">
-<<<<<<< HEAD
 
         <!-- Start Navigation -->  
     @include('navigasi')
-=======
-        <!-- Start Navigation -->
-        @include('navigasi')
->>>>>>> 9de62524f5fca188b3c94c3741e2b33dbac94176
         <!-- End Navigation -->
     </header>
     <!-- End Main Top -->
@@ -111,11 +106,7 @@
     <!-- End Slider -->
 
     <!-- Start Categories  -->
-<<<<<<< HEAD
      @include('categoris')
-=======
-    @include('categories')
->>>>>>> 9de62524f5fca188b3c94c3741e2b33dbac94176
     <!-- End Categories -->
 	
 	<div class="box-add-products">
@@ -144,11 +135,7 @@
     <!-- End Blog  -->
 
     <!-- Start Instagram Feed  -->
-<<<<<<< HEAD
     @include('feed')
-=======
-    @include('instagramfeed')
->>>>>>> 9de62524f5fca188b3c94c3741e2b33dbac94176
     <!-- End Instagram Feed  -->
 
     <!-- Start Footer  -->
@@ -156,14 +143,7 @@
     <!-- End Footer  -->
 
     <!-- Start copyright  -->
-<<<<<<< HEAD
     @include('copyright')
-=======
-    <div class="footer-copyright">
-        <p class="footer-company">All Rights Reserved. &copy; 2018 <a href="#">ThewayShop</a> Design By :
-            <a href="https://html.design/">html design</a></p>
-    </div>
->>>>>>> 9de62524f5fca188b3c94c3741e2b33dbac94176
     <!-- End copyright  -->
 
     <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
