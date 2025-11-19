@@ -4,24 +4,24 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="footer-top-box">
-                            <h3>Business Time</h3>
+                            <h3>Waktu Operasional</h3>
                             <ul class="list-time">
-                                <li>Monday - Friday: 08.00am to 05.00pm</li>
-                                <li>Saturday: 10.00am to 08.00pm</li>
-                                <li>Sunday: <span>Closed</span></li>
+                                <li>Senin - Jum'at: 08.00 WIB s/d 16.00 WIB</li>
+                                <li>Sabtu: 10.00 WIB S/d 16.00 WIB</li>
+                                <li>Minggu: <span>Tutup</span></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="footer-top-box">
-                            <h3>Newsletter</h3>
+                            <h3>Laporan Kegiatan</h3>
                             <form class="newsletter-box">
                                 <div class="form-group">
                                     <input class="" type="email" name="Email"
-                                        placeholder="Email Address*" />
+                                        placeholder="Alamat Email*" />
                                     <i class="fa fa-envelope"></i>
                                 </div>
-                                <button class="btn hvr-hover" type="submit">Submit</button>
+                                <button class="btn hvr-hover" type="Kirim">Kirim</button>
                             </form>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="footer-widget">
-                            <h4>About Freshshop</h4>
+                            <h4>About FishNote</h4>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
                                 ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
                                 ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>

@@ -6,7 +6,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <h1 class="m-b-20"><strong>Welcome To <br> FishNote</strong></h1>
-                            <p class="m-b-40">Selamat datang di FishNote! Kami menyediakan ikan segar pilihan langsung dari sumbernya, berkualitas tinggi dan siap memenuhi kebutuhan dapur Anda. <br>
+                            <p class="m-b-70">Selamat datang di FishNote! Kami menyediakan ikan segar pilihan langsung dari sumbernya dan berkualitas tinggi.<br>
                                Yuk, pilih ikan segar favorit Anda. Kesegaran terjamin, rasa lebih nikmat untuk hidangan keluarga.</p>
                         </div>
                     </div>
@@ -18,8 +18,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <h1 class="m-b-20"><strong>Welcome To <br> FishNote</strong></h1>
-                            <p class="m-b-40">Selamat datang di FishNote! Kami menyediakan ikan segar pilihan langsung dari sumbernya, berkualitas tinggi dan siap memenuhi kebutuhan dapur Anda. <br>
-                                Yuk, pilih ikan segar favorit Anda. Kesegaran terjamin, rasa lebih nikmat untuk hidangan keluarga.</p>
+                            <p class="m-b-70">Selamat datang di FishNote! Kami menyediakan ikan segar pilihan langsung dari sumbernya dan berkualitas tinggi.<br>
+                               Yuk, pilih ikan segar favorit Anda. Kesegaran terjamin, rasa lebih nikmat untuk hidangan keluarga.</p>
                         </div>
                     </div>
                 </div>
@@ -30,8 +30,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <h1 class="m-b-20"><strong>Welcome To <br> FishNote</strong></h1>
-                            <p class="m-b-40">Selamat datang di FishNote! Kami menyediakan ikan segar pilihan langsung dari sumbernya, berkualitas tinggi dan siap memenuhi kebutuhan dapur Anda. <br>
-                                Yuk, pilih ikan segar favorit Anda. Kesegaran terjamin, rasa lebih nikmat untuk hidangan keluarga.</p>
+                           <p class="m-b-40"><strong>Selamat datang di FishNote! Kami menyediakan ikan segar pilihan langsung dari sumbernya dan berkualitas tinggi.<br>
+                               Yuk, pilih ikan segar favorit Anda. Kesegaran terjamin, rasa lebih nikmat untuk hidangan keluarga.</p>
                         </div>
                     </div>
                 </div>

@@ -24,12 +24,10 @@
                 <!-- Start Atribute Navigation -->
                 <div class="attr-nav">
                     <ul>
-                        <!-- Search -->
-                        <li class="search">
-                            <a href="#"><i class="fa fa-search"></i></a>
-                        </li>
-                        
-            </div>
+                        <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
+                        <li class="side-menu"><a href="#">
+                    </ul>
+                </div>
             <!-- Start Side Menu -->
             <div class="side">
                 <a href="#" class="close-side"><i class="fa fa-times"></i></a>
