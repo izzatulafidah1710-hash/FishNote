@@ -1,11 +1,10 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
+                <div class="sidebar-brand-icon">
+                    <img src="{{ asset('template/img/logofishnote.png') }}" width="80" class="img-fluid">
                 </div>
-                <div class="sidebar-brand-text mx-3">FishNote </div>
+                <div class="sidebar-brand-text">FishNote</div>
             </a>
 
             <!-- Divider -->
@@ -14,7 +13,7 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item {{ request()->is('dashboard') ? 'active' : '' }}">
                 <a class="nav-link" href="/dashboard">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <i class="fas fa-fw fa-table"></i>
                     <span>Dashboard</span></a>
             </li>
 
@@ -27,26 +26,28 @@
             </div>
 
             <!-- Nav Item - data peternak -->
-            <li class="nav-item {{ request()->is('resident*') ? 'active' : '' }}">
-                <a class="nav-link" href="/resident">
+            <li class="nav-item {{ request()->is('datapeternak*') ? 'active' : '' }}">
+                <a class="nav-link" href="/datapeternak">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Peternak</span></a>
             </li>
 
              <!-- Nav Item - data promosi -->
-            <li class="nav-item {{ request()->is('promotions*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('promotions.index') }}">
+            <li class="nav-item {{ request()->is('datapromosi*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('datapromosi.index') }}">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Data promosi</span>
+                    <span>Data Promosi</span>
                 </a>
             </li>
 
-             <!-- Nav Item - permintaan akun -->
-            <li class="nav-item">
-                <a class="nav-link" href="">
+             <!-- Nav Item - info akun peternak -->
+           <li class="nav-item {{ request()->is('infoakunpeternak') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('infoakun.index') }}">
                     <i class="fas fa-fw fa-bars"></i>
-                    <span>Info Akun Peternak</span></a>
+                     <span>Info Akun Peternak</span>
+                </a>
             </li>
+
 
             <!-- Nav Item - aktivitas peternak -->
             <li class="nav-item">

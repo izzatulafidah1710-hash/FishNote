@@ -3,11 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ResidentController;
 use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\InfoAkunController;
 
 Route::get('/', function (){
     return view('welcome');
 });
-
 
 Route::get('/dashboard', function (){
     return view('admin.dashboard');
@@ -18,12 +18,31 @@ Route::get('/admin', function () {
 })->name('admin.dashboard');
 
 // data peternak-admin
-Route::get('/resident', [ResidentController::class, 'index']);
-Route::get('/resident/create', [ResidentController::class, 'create']);
-Route::get('/resident/{$id}', [ResidentController::class, 'edit']);
-Route::post('/resident', [ResidentController::class, 'store']);
-Route::post('/resident/{$id}', [ResidentController::class, 'update']);
-Route::delete('/resident/{$id}', [ResidentController::class, 'delete']);
+Route::get('/datapeternak', [ResidentController::class, 'index']);
+Route::get('/datapeternak/create', [ResidentController::class, 'create']);
+Route::get('/datapeternak/{$id}', [ResidentController::class, 'edit']);
+Route::post('/datapeternak', [ResidentController::class, 'store']);
+Route::post('/datapeternak/{$id}', [ResidentController::class, 'update']);
+Route::delete('/datapeternak/{$id}', [ResidentController::class, 'delete']);
 
 // data promosi-admin
-Route::resource('promotions', PromotionController::class);
+Route::resource('datapromosi', PromotionController::class);
+
+// info akun peternak
+Route::get('/infoakunpeternak', [InfoAkunController::class, 'index'])
+    ->name('infoakun.index');
+
+Route::get('/infoakunpeternak/create', [InfoAkunController::class, 'create'])
+    ->name('infoakun.create');
+
+Route::post('/infoakunpeternak', [InfoAkunController::class, 'store'])
+    ->name('infoakun.store');
+
+Route::get('/infoakunpeternak/{id}/edit', [InfoAkunController::class, 'edit'])
+    ->name('infoakun.edit');
+
+Route::put('/infoakunpeternak/{id}', [InfoAkunController::class, 'update'])
+    ->name('infoakun.update');
+
+Route::delete('/infoakunpeternak/{id}', [InfoAkunController::class, 'destroy'])
+    ->name('infoakun.destroy');

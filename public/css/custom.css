@@ -1,2 +1,12 @@
+/* custom css */
+.custom-sidebar {
+    background-color: #0B1E39 !important; /* NAVY */
+}
 
-/** ADD YOUR AWESOME CODES HERE **/
+.sidebar .nav-item .nav-link {
+    color: #ffffff !important;
+}
+
+.sidebar .nav-item .nav-link i {
+    color: #ffffff !important;
+}
