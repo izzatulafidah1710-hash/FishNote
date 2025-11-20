@@ -4,8 +4,6 @@
 <div class="container-fluid px-4 py-3">
     <!-- Page Heading -->
     <div class="d-flex align-items-center mb-1">
-       <img src="{{ asset('template/img/logofishnote.png') }}" width="120" class="img-fluid">
-       <h1 class="h3 mb-0 text-gray-800">Pencatatan dan promosi hasil budidaya perikanan</h1>
         {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
             class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> --}}
     </div>

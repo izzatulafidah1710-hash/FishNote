@@ -4,13 +4,19 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ResidentController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\InfoAkunController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 
 Route::get('/', function (){
     return view('welcome');
 });
 
-Route::get('/dashboard', function (){
+Route::get('/dashboardadmin', function (){
     return view('admin.dashboard');
+});
+
+Route::get('/dashboarduser', function (){
+    return view('user.dashboard');
 });
 
 Route::get('/admin', function () {
@@ -46,3 +52,7 @@ Route::put('/infoakunpeternak/{id}', [InfoAkunController::class, 'update'])
 
 Route::delete('/infoakunpeternak/{id}', [InfoAkunController::class, 'destroy'])
     ->name('infoakun.destroy');
+
+// login
+
+
