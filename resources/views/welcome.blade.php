@@ -62,7 +62,7 @@
                     <div class="text-slid-box">
                         <div id="offer-box" class="carouselTicker">
                             <ul class="offer-box">
-                                <li>
+                               <li>
                                     <i class="fab fa "></i> Selamat datang di FishNote
                                 </li>
                                 <li>
@@ -72,6 +72,20 @@
                                     <i class="fab fa"></i> Silahkan registrasi terlebih dahulu
                                 </li>
                                 <li>
+                                    <i class="fab fa"></i> Mulai hidup sehat dengan mengonsumsi ikan segar tanpa pengawet.
+                                </li>
+                                <li>
+                                    <i class="fab fa"></i> Jaminan kesegaran 100% langsung dari kolam budidaya.
+                                </li>
+                                <li>
+                                    <i class="fab fa"></i> Dibudidayakan dengan pakan berkualitas, hasil lebih bersih & sehat.
+                                </li>
+                                <li>
+                                    <i class="fab fa"></i> Ukuran ikan bisa request sesuai kebutuhan pembeli.
+                                </li>
+                                <li>
+                                    <i class="fab fa"></i> Nggak usah ke pasar, ikan segar sampai depan rumah!
+                                </li>
                             </ul>
                         </div>
                     </div>

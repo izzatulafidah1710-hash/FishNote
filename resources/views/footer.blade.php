@@ -17,8 +17,7 @@
                             <h3>Laporan Kegiatan</h3>
                             <form class="newsletter-box">
                                 <div class="form-group">
-                                    <input class="" type="email" name="Email"
-                                        placeholder="Alamat Email*" />
+                                    <input class="" type="email" name="Email" placeholder="Alamat Email*" />
                                     <i class="fa fa-envelope"></i>
                                 </div>
                                 <button class="btn hvr-hover" type="Kirim">Kirim</button>
@@ -27,16 +26,13 @@
                     </div>
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="footer-top-box">
-                            <h3>Social Media</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <h3>Media Sosial</h3>
+                            <p>Ikuti media sosial kami untuk mendapatkan info terbaru tentang produk, panen, dan promo
+                                menarik setiap hari.</p>
                             <ul>
-                                <li><a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
                                 <li><a href="#"><i class="fab fa-google-plus" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a></li>
                                 <li><a href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fas fa-envelope" aria-hidden="true"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -46,23 +42,23 @@
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="footer-widget">
                             <h4>About FishNote</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                ut labore et dolore magna aliqua. </p>
+                            <p>FishNote adalah platform pencatatan budidaya ikan yang membantu petani ikan dan pelaku
+                                perikanan
+                                mengelola data kolam dengan lebih mudah, akurat, dan praktis.</p>
+                            <p>Praktis untuk pemula, membantu untuk profesional — FishNote hadir untuk bikin
+                                budidaya ikan jadi lebih cerdas dan menyenangkan. </p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="footer-link">
                             <h4>Information</h4>
                             <ul>
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Customer Service</a></li>
-                                <li><a href="#">Our Sitemap</a></li>
-                                <li><a href="#">Terms &amp; Conditions</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Delivery Information</a></li>
+                                <li><a href="#">Tentang Kami</a></li>
+                                <li><a href="#">Produk</a></li>
+                                <li><a href="#">Promo</a></li>
+                                <li><a href="#">Kontak Kami</a></li>
+                            </ul>
+
                             </ul>
                         </div>
                     </div>
@@ -71,16 +67,12 @@
                             <h4>Contact Us</h4>
                             <ul>
                                 <li>
-                                    <p><i class="fas fa-map-marker-alt"></i>Address: Michael I. Days 3756 <br>Preston
-                                        Street Wichita,<br> KS 67213 </p>
-                                </li>
-                                <li>
-                                    <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+1-888705770">+1-888 705
-                                            770</a></p>
+                                    <p><i class="fas fa-phone-square"></i>Phone: <a href="+62 831-6759-1147">+62
+                                            831-6759-1147</a></p>
                                 </li>
                                 <li>
                                     <p><i class="fas fa-envelope"></i>Email: <a
-                                            href="mailto:contactinfo@gmail.com">contactinfo@gmail.com</a></p>
+                                            href="mailto:FishNote06@gmail.com">FishNote06@gmail.com</a></p>
                                 </li>
                             </ul>
                         </div>
