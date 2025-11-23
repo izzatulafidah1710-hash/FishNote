@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('avatar')->nullable();
             $table->enum('status', ['pending', 'aktif', 'nonaktif'])->default('pending');
+            $table->timestamp('last_login')->nullable();
             $table->timestamps();
         });
     }

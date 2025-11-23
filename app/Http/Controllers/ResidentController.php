@@ -29,8 +29,6 @@ class ResidentController extends Controller
             'phone'         => ['nullable', 'string', 'max:15'],
             'address'       => ['nullable', 'string', 'max:255'],
             'farm_location' => ['nullable', 'string', 'max:255'],
-            'profile_photo' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
-            'status'        => ['required', 'in:active,inactive'],
         ]);
 
         Resident::create($request->validated());
@@ -57,8 +55,6 @@ class ResidentController extends Controller
             'phone'         => ['nullable', 'string', 'max:15'],
             'address'       => ['nullable', 'string', 'max:255'],
             'farm_location' => ['nullable', 'string', 'max:255'],
-            'profile_photo' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
-            'status'        => ['required', 'in:active,inactive'],
         ]);
 
         Resident::findOrFail($id)->update($request->validated);

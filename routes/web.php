@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ResidentController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\InfoAkunController;
+use App\Http\Controllers\PeternakActivityController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 
@@ -12,11 +13,11 @@ Route::get('/', function (){
 });
 
 Route::get('/dashboardadmin', function (){
-    return view('admin.dashboard');
+    return view('admin.dashboardadmin');
 });
 
 Route::get('/dashboarduser', function (){
-    return view('user.dashboard');
+    return view('user.dashboarduser');
 });
 
 Route::get('/admin', function () {
@@ -52,6 +53,11 @@ Route::put('/infoakunpeternak/{id}', [InfoAkunController::class, 'update'])
 
 Route::delete('/infoakunpeternak/{id}', [InfoAkunController::class, 'destroy'])
     ->name('infoakun.destroy');
+
+// aktivitas akun peternak
+Route::get('/aktivitas', [PeternakActivityController::class, 'index'])->name('aktivitas.index');
+Route::post('/aktivitas', [PeternakActivityController::class, 'store'])->name('aktivitas.store');
+Route::delete('/aktivitas/{id}', [PeternakActivityController::class, 'destroy'])->name('aktivitas.delete');
 
 // login
 

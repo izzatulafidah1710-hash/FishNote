@@ -11,10 +11,10 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item {{ request()->is('dashboard') ? 'active' : '' }}">
-                <a class="nav-link" href="/dashboard">
+            <li class="nav-item {{ request()->is('dashboarduser') ? 'active' : '' }}">
+                <a class="nav-link" href="/dashboarduser">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Dashboard Admin</span></a>
+                    <span>Dashboard Peternak</span></a>
             </li>
 
             <!-- Divider -->
@@ -22,38 +22,51 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Manajemen Pengguna
+                Aktivitas Peternak
             </div>
 
-            <!-- Nav Item - data peternak -->
-            <li class="nav-item {{ request()->is('datapeternak*') ? 'active' : '' }}">
-                <a class="nav-link" href="/datapeternak">
+            <!-- Nav Item - pencatatan -->
+            <li class="nav-item">
+                <a class="nav-link" href="">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Data Peternak</span></a>
+                    <span>Pencatatan</span></a>
             </li>
 
-             <!-- Nav Item - data promosi -->
-            <li class="nav-item {{ request()->is('datapromosi*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('datapromosi.index') }}">
+            <!-- Nav Item - data panen -->
+            <li class="nav-item">
+                <a class="nav-link" href="">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Data Promosi</span>
+                    <span>Data Panen</span></a>
+            </li>
+
+             <!-- Nav Item - promosi -->
+            <li class="nav-item">
+                <a class="nav-link" href="">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Promosi</span>
                 </a>
             </li>
 
-             <!-- Nav Item - info akun peternak -->
-           <li class="nav-item {{ request()->is('infoakunpeternak') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('infoakun.index') }}">
+             <!-- Nav Item - daftar promosi -->
+           <li class="nav-item">
+                <a class="nav-link" href="">
                     <i class="fas fa-fw fa-bars"></i>
-                     <span>Info Akun Peternak</span>
+                     <span>Daftar Promosi</span>
                 </a>
             </li>
 
-
-            <!-- Nav Item - aktivitas peternak -->
+            <!-- Nav Item - laporan -->
             <li class="nav-item">
                 <a class="nav-link" href="">
                     <i class="fas fa-fw fa-search"></i>
-                    <span>Aktivitas</span></a>
+                    <span>Laporan</span></a>
+            </li>
+
+            <!-- Nav Item -riwayat pencatatan -->
+            <li class="nav-item">
+                <a class="nav-link" href="">
+                    <i class="fas fa-fw fa-search"></i>
+                    <span>Riwayat Pencatatan</span></a>
             </li>
 
             <!-- Divider -->

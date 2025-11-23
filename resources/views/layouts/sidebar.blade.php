@@ -11,8 +11,8 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item {{ request()->is('dashboard') ? 'active' : '' }}">
-                <a class="nav-link" href="/dashboard">
+            <li class="nav-item {{ request()->is('dashboardadmin') ? 'active' : '' }}">
+                <a class="nav-link" href="/dashboardadmin">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Dashboard Admin</span></a>
             </li>
@@ -50,8 +50,8 @@
 
 
             <!-- Nav Item - aktivitas peternak -->
-            <li class="nav-item">
-                <a class="nav-link" href="">
+            <li class="nav-item {{ request()->is('aktivitas') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('aktivitas.index') }}">
                     <i class="fas fa-fw fa-search"></i>
                     <span>Aktivitas</span></a>
             </li>

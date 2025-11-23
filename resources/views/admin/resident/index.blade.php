@@ -20,8 +20,6 @@
                     <th>Email</th>
                     <th>Telepon</th>
                     <th>Alamat</th>
-                    <th>Status</th>
-                    <th>Login Terakhir</th>
                     <th>Aksi</th>
                 </tr>
             </thead>

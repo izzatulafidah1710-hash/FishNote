@@ -22,6 +22,8 @@
                     <th>No HP</th>
                     <th>Status</th>
                     <th>Avatar</th>
+                    <th>Status</th>
+                    <th>Login Terakhir</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -51,7 +53,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="6" class="text-center">Belum ada data</td>
+                    <td colspan="8" class="text-center">Belum ada data</td>
                 </tr>
                 @endforelse
             </tbody>

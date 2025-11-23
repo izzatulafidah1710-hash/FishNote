@@ -18,9 +18,6 @@ return new class extends Migration
             $table->string('phone')->nullable(); // Nomor telepon
             $table->string('address')->nullable(); // Alamat tempat budidaya
             $table->string('farm_location')->nullable(); // Lokasi kolam / tambak
-            $table->string('profile_photo')->nullable(); // Foto profil
-            $table->enum('status', ['active', 'inactive']) ->default('active'); // Status akun
-            $table->timestamp('last_login')->nullable(); // Waktu terakhir login
             $table->timestamps(); // created_at & updated_at
         });
     }

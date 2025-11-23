@@ -9,6 +9,6 @@
     </div>
 
     <!-- Content Row -->
-    @include('layouts.contentrow')
+    @include('layouts.contentadmin')
 </div>
 @endsection

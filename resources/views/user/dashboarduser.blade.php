@@ -9,7 +9,7 @@
         </a> --}}
     </div>
 
-    @include('userlayouts.contentrow')
+    @include('userlayouts.contentuser')
 
 </div>
 @endsection
