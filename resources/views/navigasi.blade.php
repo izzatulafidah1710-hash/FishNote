@@ -6,7 +6,8 @@
                         aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fa fa-bars"></i>
                     </button>
-                    <a class="navbar-brand" href="index.html"><img src="{{ asset ('images/logofishnote.png') }}" alt="logofishnote" width="150" height="150"></a>
+                    <a class="navbar-brand" href="index.html"><img src="{{ asset('images/logofishnote.png') }}"
+                            alt="logofishnote" width="150" height="150"></a>
                 </div>
                 <!-- End Header Navigation -->
 
@@ -26,6 +27,18 @@
                     <ul>
                         <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
                         <li class="side-menu">
+                            <script>
+                                document.getElementById("searchIcon").addEventListener("click", function() {
+                                    var searchBox = document.getElementById("searchInput");
+                                    searchBox.scrollIntoView({
+                                        behavior: "smooth"
+                                    });
+                                    setTimeout(function() {
+                                        searchBox.focus();
+                                    }, 500);
+                                });
+                            </script>
+
                             <a href="#">
                                 <i class="fa fa-shopping-bag"></i>
                                 <span class="badge">3</span>
@@ -33,35 +46,35 @@
                         </li>
                     </ul>
                 </div>
-            <!-- Start Side Menu -->
-            <div class="side">
-                <a href="#" class="close-side"><i class="fa fa-times"></i></a>
-                <li class="cart-box">
-                    <ul class="cart-list">
-                        <li>
-                            <a href="#" class="photo"><img src="images/img-pro-01.jpg" class="cart-thumb"
-                                    alt="" /></a>
-                            <h6><a href="#">Delica omtantur </a></h6>
-                            <p>1x - <span class="price">$80.00</span></p>
-                        </li>
-                        <li>
-                            <a href="#" class="photo"><img src="images/img-pro-02.jpg" class="cart-thumb"
-                                    alt="" /></a>
-                            <h6><a href="#">Omnes ocurreret</a></h6>
-                            <p>1x - <span class="price">$60.00</span></p>
-                        </li>
-                        <li>
-                            <a href="#" class="photo"><img src="images/img-pro-03.jpg" class="cart-thumb"
-                                    alt="" /></a>
-                            <h6><a href="#">Agam facilisis</a></h6>
-                            <p>1x - <span class="price">$40.00</span></p>
-                        </li>
-                        <li class="total">
-                            <a href="#" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
-                            <span class="float-right"><strong>Total</strong>: $180.00</span>
-                        </li>
-                    </ul>
-                </li>
-            </div>
-            <!-- End Side Menu -->
+                <!-- Start Side Menu -->
+                <div class="side">
+                    <a href="#" class="close-side"><i class="fa fa-times"></i></a>
+                    <li class="cart-box">
+                        <ul class="cart-list">
+                            <li>
+                                <a href="#" class="photo"><img src="images/img-pro-01.jpg" class="cart-thumb"
+                                        alt="" /></a>
+                                <h6><a href="#">Delica omtantur </a></h6>
+                                <p>1x - <span class="price">$80.00</span></p>
+                            </li>
+                            <li>
+                                <a href="#" class="photo"><img src="images/img-pro-02.jpg" class="cart-thumb"
+                                        alt="" /></a>
+                                <h6><a href="#">Omnes ocurreret</a></h6>
+                                <p>1x - <span class="price">$60.00</span></p>
+                            </li>
+                            <li>
+                                <a href="#" class="photo"><img src="images/img-pro-03.jpg" class="cart-thumb"
+                                        alt="" /></a>
+                                <h6><a href="#">Agam facilisis</a></h6>
+                                <p>1x - <span class="price">$40.00</span></p>
+                            </li>
+                            <li class="total">
+                                <a href="#" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
+                                <span class="float-right"><strong>Total</strong>: $180.00</span>
+                            </li>
+                        </ul>
+                    </li>
+                </div>
+                <!-- End Side Menu -->
         </nav>

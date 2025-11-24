@@ -3,31 +3,38 @@
 $errorMSG = "";
 
 // NAME
-if (empty($_POST["name"])) {
+if (empty($_POST['name'])) {
     $errorMSG = "Name is required ";
 } else {
-    $name = $_POST["name"];
+    $name = $_POST['name'] ??'';
 }
 
 // EMAIL
-if (empty($_POST["email"])) {
+if (empty($_POST['email'])) {
     $errorMSG .= "Email is required ";
 } else {
-    $email = $_POST["email"];
+    $email = $_POST['email'] ??'';
 }
 
 // Subject
-if (empty($_POST["subject"])) {
+if (empty($_POST['subject'])) {
     $errorMSG .= "Subject is required ";
 } else {
-    $subject = $_POST["guest"];
+    $subject = $_POST['subject'] ??'';
+}
+
+// Subject
+if (empty($_POST['guest'])) {
+    $errorMSG .= "Subject is required ";
+} else {
+    $subject = $_POST['guest'] ??'';
 }
 
 // MESSAGE
-if (empty($_POST["message"])) {
+if (empty($_POST['message'])) {
     $errorMSG .= "Message is required ";
 } else {
-    $message = $_POST["message"];
+    $message = $_POST['message'] ??'';
 }
 
 
