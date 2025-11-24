@@ -26,15 +26,15 @@
             </div>
 
             <!-- Nav Item - pencatatan -->
-            <li class="nav-item">
-                <a class="nav-link" href="">
+            <li class="nav-item {{ request()->is('user.pencatatan*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('user.pencatatan.index') }}">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Pencatatan</span></a>
             </li>
 
             <!-- Nav Item - data panen -->
-            <li class="nav-item">
-                <a class="nav-link" href="">
+            <li class="nav-item {{ request()->is('user.panen*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('user.panen.index') }}">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Panen</span></a>
             </li>

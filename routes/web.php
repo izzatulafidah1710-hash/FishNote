@@ -5,6 +5,8 @@ use App\Http\Controllers\ResidentController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\InfoAkunController;
 use App\Http\Controllers\PeternakActivityController;
+use App\Http\Controllers\User\PencatatanController;
+use App\Http\Controllers\User\DataPanenController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 
@@ -20,9 +22,15 @@ Route::get('/dashboarduser', function (){
     return view('user.dashboarduser');
 });
 
+// Dashboard admin
 Route::get('/admin', function () {
-    return view('admin.dashboard');
-})->name('admin.dashboard');
+    return view('admin.dashboardadmin');
+})->name('admin.dashboardadmin');
+
+ // Dashboard peternak
+Route::get('/user', function () {
+    return view('user.dashboarduser');
+})->name('user.dashboarduser');
 
 // data peternak-admin
 Route::get('/datapeternak', [ResidentController::class, 'index']);
@@ -59,6 +67,27 @@ Route::get('/aktivitas', [PeternakActivityController::class, 'index'])->name('ak
 Route::post('/aktivitas', [PeternakActivityController::class, 'store'])->name('aktivitas.store');
 Route::delete('/aktivitas/{id}', [PeternakActivityController::class, 'destroy'])->name('aktivitas.delete');
 
-// login
+// pencatatan peternak/user
+Route::prefix('user')->name('user.')->group(function () {
+    // pencatatan
+    Route::resource('pencatatan', PencatatanController::class);
+    // Nanti akan ditambahkan:
+    // Route untuk Data Panen
+    // Route untuk Promosi
+    // Route untuk Laporan
+    // Route untuk Riwayat Pencatatan
+    // Route untuk Keluar
+});
+
+// data panen/user
+Route::prefix('user')->name('user.')->group(function () {
+    // Data Panen
+    Route::resource('panen', DataPanenController::class);
+    // Nanti akan ditambahkan:
+    // Route untuk Promosi
+    // Route untuk Laporan
+    // Route untuk Riwayat Pencatatan
+    // Route untuk Keluar
+});
 
 
