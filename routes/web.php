@@ -7,12 +7,19 @@ use App\Http\Controllers\InfoAkunController;
 use App\Http\Controllers\PeternakActivityController;
 use App\Http\Controllers\User\PencatatanController;
 use App\Http\Controllers\User\DataPanenController;
+use App\Http\Controllers\User\PromosiController;
+use App\Http\Controllers\User\DaftarPromosiController;
+use App\Http\Controllers\PromosiPublicController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 
 Route::get('/', function (){
     return view('welcome');
 });
+
+// promosi public
+Route::get('/promosi-public', [PromosiPublicController::class, 'index'])->name('promosi.public.index');
+Route::get('/promosi-public/{id}', [PromosiPublicController::class, 'show'])->name('promosi.public.show');
 
 Route::get('/dashboardadmin', function (){
     return view('admin.dashboardadmin');
@@ -67,10 +74,17 @@ Route::get('/aktivitas', [PeternakActivityController::class, 'index'])->name('ak
 Route::post('/aktivitas', [PeternakActivityController::class, 'store'])->name('aktivitas.store');
 Route::delete('/aktivitas/{id}', [PeternakActivityController::class, 'destroy'])->name('aktivitas.delete');
 
-// pencatatan peternak/user
+// fitur-user
 Route::prefix('user')->name('user.')->group(function () {
     // pencatatan
     Route::resource('pencatatan', PencatatanController::class);
+    // panen
+    Route::resource('panen', DataPanenController::class);
+    // promosi
+    Route::resource('promosi', PromosiController::class);
+    // daftar promosi
+    Route::get('/daftar-promosi', [DaftarPromosiController::class, 'index'])->name('daftar-promosi.index');
+    Route::post('/daftar-promosi/{id}/toggle-status', [DaftarPromosiController::class, 'toggleStatus'])->name('daftar-promosi.toggle-status');
     // Nanti akan ditambahkan:
     // Route untuk Data Panen
     // Route untuk Promosi
@@ -78,16 +92,3 @@ Route::prefix('user')->name('user.')->group(function () {
     // Route untuk Riwayat Pencatatan
     // Route untuk Keluar
 });
-
-// data panen/user
-Route::prefix('user')->name('user.')->group(function () {
-    // Data Panen
-    Route::resource('panen', DataPanenController::class);
-    // Nanti akan ditambahkan:
-    // Route untuk Promosi
-    // Route untuk Laporan
-    // Route untuk Riwayat Pencatatan
-    // Route untuk Keluar
-});
-
-

@@ -40,16 +40,16 @@
             </li>
 
              <!-- Nav Item - promosi -->
-            <li class="nav-item">
-                <a class="nav-link" href="">
+            <li class="nav-item {{ request()->is('user.promosi*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('user.promosi.index') }}">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Promosi</span>
                 </a>
             </li>
 
              <!-- Nav Item - daftar promosi -->
-           <li class="nav-item">
-                <a class="nav-link" href="">
+           <li class="nav-item {{ request()->is('user.daftar-promosi*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('user.daftar-promosi.index') }}">
                     <i class="fas fa-fw fa-bars"></i>
                      <span>Daftar Promosi</span>
                 </a>
