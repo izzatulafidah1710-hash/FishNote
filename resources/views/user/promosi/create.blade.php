@@ -102,7 +102,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="kontak">Nomor Kontak (WhatsApp) <span class="text-danger">*</span></label>
-                                    <input type="text" name="kontak" id="kontak" class="form-control @error('kontak') is-invalid @enderror" value="{{ old('kontak') }}" placeholder="08123456789" required>
+                                    <input type="text" name="kontak" id="kontak" class="form-control @error('kontak') is-invalid @enderror" value="{{ old('kontak') }}" placeholder="08**********" required>
                                     <small class="form-text text-muted">Format: 08xxxxxxxxxx</small>
                                     @error('kontak')
                                     <span class="invalid-feedback">{{ $message }}</span>
@@ -112,7 +112,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="lokasi">Lokasi</label>
-                                    <input type="text" name="lokasi" id="lokasi" class="form-control @error('lokasi') is-invalid @enderror" value="{{ old('lokasi') }}" placeholder="Contoh: Batam, Kepulauan Riau">
+                                    <input type="text" name="lokasi" id="lokasi" class="form-control @error('lokasi') is-invalid @enderror" value="{{ old('lokasi') }}" placeholder="Contoh: Bengkalis, Kepulauan Riau">
                                     @error('lokasi')
                                     <span class="invalid-feedback">{{ $message }}</span>
                                     @enderror

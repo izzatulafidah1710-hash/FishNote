@@ -9,6 +9,7 @@ use App\Http\Controllers\User\PencatatanController;
 use App\Http\Controllers\User\DataPanenController;
 use App\Http\Controllers\User\PromosiController;
 use App\Http\Controllers\User\DaftarPromosiController;
+use App\Http\Controllers\User\LaporanController;
 use App\Http\Controllers\PromosiPublicController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -85,6 +86,10 @@ Route::prefix('user')->name('user.')->group(function () {
     // daftar promosi
     Route::get('/daftar-promosi', [DaftarPromosiController::class, 'index'])->name('daftar-promosi.index');
     Route::post('/daftar-promosi/{id}/toggle-status', [DaftarPromosiController::class, 'toggleStatus'])->name('daftar-promosi.toggle-status');
+    // laporan
+    Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
+    Route::get('/laporan/print', [LaporanController::class, 'print'])->name('laporan.print');
+    Route::get('/laporan/export-pdf', [LaporanController::class, 'exportPdf'])->name('laporan.export-pdf');
     // Nanti akan ditambahkan:
     // Route untuk Data Panen
     // Route untuk Promosi

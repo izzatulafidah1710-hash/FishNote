@@ -56,8 +56,8 @@
             </li>
 
             <!-- Nav Item - laporan -->
-            <li class="nav-item">
-                <a class="nav-link" href="">
+            <li class="nav-item {{ request()->is('user.laporan*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('user.laporan.index') }}">
                     <i class="fas fa-fw fa-search"></i>
                     <span>Laporan</span></a>
             </li>
