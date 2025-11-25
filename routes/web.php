@@ -11,6 +11,7 @@ use App\Http\Controllers\User\PromosiController;
 use App\Http\Controllers\User\DaftarPromosiController;
 use App\Http\Controllers\User\LaporanController;
 use App\Http\Controllers\PromosiPublicController;
+use App\Http\Controllers\User\RiwayatController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 
@@ -90,6 +91,9 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
     Route::get('/laporan/print', [LaporanController::class, 'print'])->name('laporan.print');
     Route::get('/laporan/export-pdf', [LaporanController::class, 'exportPdf'])->name('laporan.export-pdf');
+    // Riwayat Pencatatan
+    Route::get('/riwayat', [RiwayatController::class, 'index'])->name('riwayat.index');
+    Route::get('/riwayat/export', [RiwayatController::class, 'export'])->name('riwayat.export');
     // Nanti akan ditambahkan:
     // Route untuk Data Panen
     // Route untuk Promosi

@@ -36,7 +36,7 @@
             <li class="nav-item {{ request()->is('user.panen*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('user.panen.index') }}">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Data Panen</span></a>
+                    <span>Panen</span></a>
             </li>
 
              <!-- Nav Item - promosi -->
@@ -63,8 +63,8 @@
             </li>
 
             <!-- Nav Item -riwayat pencatatan -->
-            <li class="nav-item">
-                <a class="nav-link" href="">
+            <li class="nav-item {{ request()->is('user.riwayat*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('user.riwayat.index') }}">
                     <i class="fas fa-fw fa-search"></i>
                     <span>Riwayat Pencatatan</span></a>
             </li>
