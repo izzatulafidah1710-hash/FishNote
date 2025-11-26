@@ -21,6 +21,111 @@
     <link href="{{ asset('template/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('template/css/custom.css') }}" rel="stylesheet">
 
+    @stack('styles')
+
+    <style>
+        /* FIXED SIDEBAR - Priority Override */
+        .sidebar {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            bottom: 0 !important;
+            height: 100vh !important;
+            overflow-y: auto !important;
+            overflow-x: hidden !important;
+            z-index: 1000 !important;
+            width: 14rem !important;
+        }
+
+        /* Adjust page wrapper */
+        #wrapper {
+            display: flex;
+        }
+
+        /* Content wrapper adjustment */
+        #content-wrapper {
+            width: 100%;
+            margin-left: 14rem !important;
+            min-height: 100vh;
+        }
+
+        /* Topbar sticky */
+        .topbar {
+            position: sticky !important;
+            top: 0 !important;
+            z-index: 999 !important;
+            background-color: #fff !important;
+        }
+
+        /* Custom Scrollbar */
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Sidebar toggled (collapsed) state */
+        .sidebar.toggled {
+            width: 6.5rem !important;
+        }
+
+        body.sidebar-toggled #content-wrapper {
+            margin-left: 6.5rem !important;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                position: fixed !important;
+                left: -14rem !important;
+                transition: left 0.3s ease-in-out;
+            }
+
+            .sidebar.show,
+            body.sidebar-toggled .sidebar {
+                left: 0 !important;
+            }
+
+            #content-wrapper {
+                margin-left: 0 !important;
+                width: 100% !important;
+            }
+
+            body.sidebar-toggled #content-wrapper {
+                margin-left: 0 !important;
+            }
+
+            /* Overlay untuk mobile */
+            body.sidebar-toggled::before {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+            }
+        }
+
+        /* Pastikan konten tidak tertutup */
+        .container-fluid {
+            padding-right: 1.5rem;
+            padding-left: 1.5rem;
+        }
+    </style>
+
 </head>
 
 <body id="page-top">

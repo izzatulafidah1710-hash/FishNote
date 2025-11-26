@@ -10,6 +10,7 @@ use App\Http\Controllers\User\DataPanenController;
 use App\Http\Controllers\User\PromosiController;
 use App\Http\Controllers\User\DaftarPromosiController;
 use App\Http\Controllers\User\LaporanController;
+use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\PromosiPublicController;
 use App\Http\Controllers\User\RiwayatController;
 use App\Http\Controllers\Auth\LoginController;
@@ -27,16 +28,15 @@ Route::get('/dashboardadmin', function (){
     return view('admin.dashboardadmin');
 });
 
-Route::get('/dashboarduser', function (){
-    return view('user.dashboarduser');
-});
+// dashboard user controller
+Route::get('/dashboarduser', [DashboardController::class, 'index'])->name('user.dashboarduser');
 
 // Dashboard admin
 Route::get('/admin', function () {
     return view('admin.dashboardadmin');
 })->name('admin.dashboardadmin');
 
- // Dashboard peternak
+// Dashboard user
 Route::get('/user', function () {
     return view('user.dashboarduser');
 })->name('user.dashboarduser');
@@ -78,6 +78,8 @@ Route::delete('/aktivitas/{id}', [PeternakActivityController::class, 'destroy'])
 
 // fitur-user
 Route::prefix('user')->name('user.')->group(function () {
+    // Dashboard User
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     // pencatatan
     Route::resource('pencatatan', PencatatanController::class);
     // panen

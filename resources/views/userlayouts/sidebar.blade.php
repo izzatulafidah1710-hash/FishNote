@@ -12,7 +12,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item {{ request()->is('dashboarduser') ? 'active' : '' }}">
-                <a class="nav-link" href="/dashboarduser">
+                <a class="nav-link" href="{{ route('user.dashboarduser') }}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Dashboard Peternak</span></a>
             </li>
