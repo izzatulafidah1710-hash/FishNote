@@ -1,63 +1,86 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="container-fluid">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Data Peternak</h1>
-        <a href="/resident/create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-            <i class="fas fa-plus fa-sm text-white-50"></i> Tambah
-        </a>
+        <h1 class="h3 mb-0 text-gray-800">
+            <i class="fas fa-users text-primary"></i> Data Peternak
+        </h1>
     </div>
 
-    {{-- table --}}
-    <div class="container-fluid mt-4">
-        <h5 class="mb-3">Daftar Peternak</h5>
-        <table class="table table-bordered">
-            <thead class="table-light">
-                <tr>
-                    <th>No</th>
-                    <th>Nama</th>
-                    <th>Email</th>
-                    <th>Telepon</th>
-                    <th>Alamat</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse ($residents as $index => $resident)
-                    <tr>
-                        <td>{{ $index + 1 }}</td>
-                        <td>{{ $resident->name }}</td>
-                        <td>{{ $resident->email }}</td>
-                        <td>{{ $resident->phone }}</td>
-                        <td>{{ $resident->address }}</td>
-                        <td>
-                            <span class="badge {{ $resident->status == 'active' ? 'bg-success' : 'bg-danger' }}">
-                                {{ ucfirst($resident->status) }}
-                            </span>
-                        </td>
-                        <td>{{ $resident->last_login ?? '-' }}</td>
-                        <td>
-                            <div class="d-flex gap-2">
-                                <a href="{{ url('/resident/' . $resident->id . '/edit') }}" class="mr-3 btn btn-sm btn-warning">
-                                    <i class="fas fa-pen"></i>
+    <!-- Alert Success -->
+    @if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="fas fa-check-circle"></i> {{ session('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
+
+    <!-- DataTable Card -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Daftar Peternak</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th width="5%">No</th>
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>No. Telepon</th>
+                            <th>Alamat</th>
+                            <th>Lokasi Kolam</th>
+                            <th width="15%">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse($residents as $resident)
+                        <tr>
+                            <td>{{ $loop->iteration + ($residents->currentPage() - 1) * $residents->perPage() }}</td>
+                            <td>{{ $resident->name }}</td>
+                            <td>{{ $resident->email }}</td>
+                            <td>{{ $resident->phone ?: '-' }}</td>
+                            <td>{{ $resident->address ?: '-' }}</td>
+                            <td>{{ $resident->farm_location ?: '-' }}</td>
+                            <td>
+                                <a href="{{ route('admin.datapeternak.edit', $resident->id) }}" 
+                                   class="btn btn-sm btn-warning" 
+                                   title="Edit">
+                                    <i class="fas fa-edit"></i>
                                 </a>
-                                <form action="{{ url('/resident/' . $resident->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus data ini?')">
+                                <form action="{{ route('admin.datapeternak.destroy', $resident->id) }}" 
+                                      method="POST" 
+                                      style="display: inline-block;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger">
+                                    <button type="submit" 
+                                            class="btn btn-sm btn-danger" 
+                                            title="Hapus"
+                                            onclick="return confirm('Yakin ingin menghapus data peternak ini?')">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </form>
-                            </div>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="8" class="text-center text-muted">Belum ada data peternak</td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="7" class="text-center">Tidak ada data peternak</td>
+                        </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="mt-3">
+                {{ $residents->links() }}
+            </div>
+        </div>
     </div>
+</div>
 @endsection

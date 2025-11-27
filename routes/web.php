@@ -44,10 +44,10 @@ Route::get('/user', function () {
 // data peternak-admin
 Route::get('/datapeternak', [ResidentController::class, 'index']);
 Route::get('/datapeternak/create', [ResidentController::class, 'create']);
-Route::get('/datapeternak/{$id}', [ResidentController::class, 'edit']);
+Route::get('/datapeternak/{id}', [ResidentController::class, 'edit']);
 Route::post('/datapeternak', [ResidentController::class, 'store']);
-Route::post('/datapeternak/{$id}', [ResidentController::class, 'update']);
-Route::delete('/datapeternak/{$id}', [ResidentController::class, 'delete']);
+Route::post('/datapeternak/{id}', [ResidentController::class, 'update']);
+Route::delete('/datapeternak/{id}', [ResidentController::class, 'delete']);
 
 // data promosi-admin
 Route::resource('datapromosi', PromotionController::class);
