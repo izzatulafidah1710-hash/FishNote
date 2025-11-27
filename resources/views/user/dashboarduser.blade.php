@@ -527,4 +527,28 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 @endpush
+<style>
+.badge-lg {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+}
+
+.position-absolute {
+    position: absolute;
+    z-index: 10;
+}
+
+.card {
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.card-img-top-wrapper {
+    position: relative;
+}
+</style>
 @endsection

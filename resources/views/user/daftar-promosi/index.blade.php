@@ -236,7 +236,7 @@
     @endif
 </div>
 
-<style>
+{{-- <style>
 .badge-lg {
     font-size: 0.9rem;
     padding: 0.4rem 0.8rem;
@@ -259,5 +259,5 @@
 .card-img-top-wrapper {
     position: relative;
 }
-</style>
+</style> --}}
 @endsection

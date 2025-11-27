@@ -1,6 +1,6 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboardadmin">
                 <div class="sidebar-brand-icon">
                     <img src="{{ asset('template/img/logofishnote.png') }}" width="80" class="img-fluid">
                 </div>

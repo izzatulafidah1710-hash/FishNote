@@ -1,6 +1,6 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboarduser">
                 <div class="sidebar-brand-icon">
                     <img src="{{ asset('template/img/logofishnote.png') }}" width="80" class="img-fluid">
                 </div>
@@ -26,29 +26,29 @@
             </div>
 
             <!-- Nav Item - pencatatan -->
-            <li class="nav-item {{ request()->is('user.pencatatan*') ? 'active' : '' }}">
+            <li class="nav-item {{ request()->is('user/pencatatan*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('user.pencatatan.index') }}">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Pencatatan</span></a>
             </li>
 
             <!-- Nav Item - data panen -->
-            <li class="nav-item {{ request()->is('user.panen*') ? 'active' : '' }}">
+            <li class="nav-item {{ request()->is('user/panen*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('user.panen.index') }}">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Panen</span></a>
             </li>
 
              <!-- Nav Item - promosi -->
-            <li class="nav-item {{ request()->is('user.promosi*') ? 'active' : '' }}">
+            <li class="nav-item {{ request()->is('user/promosi*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('user.promosi.index') }}">
-                    <i class="fas fa-fw fa-folder"></i>
+                    <i class="fas fa-fw fa-bars"></i>
                     <span>Promosi</span>
                 </a>
             </li>
 
              <!-- Nav Item - daftar promosi -->
-           <li class="nav-item {{ request()->is('user.daftar-promosi*') ? 'active' : '' }}">
+           <li class="nav-item {{ request()->is('user/daftar-promosi*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('user.daftar-promosi.index') }}">
                     <i class="fas fa-fw fa-bars"></i>
                      <span>Daftar Promosi</span>
@@ -56,14 +56,14 @@
             </li>
 
             <!-- Nav Item - laporan -->
-            <li class="nav-item {{ request()->is('user.laporan*') ? 'active' : '' }}">
+            <li class="nav-item {{ request()->is('user/laporan*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('user.laporan.index') }}">
                     <i class="fas fa-fw fa-search"></i>
                     <span>Laporan</span></a>
             </li>
 
             <!-- Nav Item -riwayat pencatatan -->
-            <li class="nav-item {{ request()->is('user.riwayat*') ? 'active' : '' }}">
+            <li class="nav-item {{ request()->is('user/riwayat*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('user.riwayat.index') }}">
                     <i class="fas fa-fw fa-search"></i>
                     <span>Riwayat Pencatatan</span></a>
