@@ -3,19 +3,19 @@
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="shop-cat-box">
-                        <img class="img-fluid" src="images/categories_img_01.jpg" alt="" />
-                        <a class="btn hvr-hover" href="#">Ikan Nila Hitam</a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <div class="shop-cat-box">
-                        <img class="img-fluid" src="images/categories_img_02.jpg" alt="" />
+                        <img class="img-fluid" src="images/nila merah.jpg" alt="" />
                         <a class="btn hvr-hover" href="#">Ikan Nila Merah</a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="shop-cat-box">
-                        <img class="img-fluid" src="images/categories_img_03.jpg" alt="" />
+                        <img class="img-fluid" src="images/gurame.jpg" alt="" />
+                        <a class="btn hvr-hover" href="#">Ikan Gurame</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="shop-cat-box">
+                        <img class="img-fluid" src="images/lele .jpg" alt="" />
                         <a class="btn hvr-hover" href="#">Ikan Lele Lokal</a>
                     </div>
                 </div>
