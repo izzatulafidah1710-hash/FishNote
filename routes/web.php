@@ -13,11 +13,17 @@ use App\Http\Controllers\User\LaporanController;
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\PromosiPublicController;
 use App\Http\Controllers\User\RiwayatController;
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 
 Route::get('/', function (){
     return view('welcome');
+});
+
+// login
+Route::get('/', function () {
+    return redirect()->route('login');
 });
 
 // promosi public
@@ -103,3 +109,28 @@ Route::prefix('user')->name('user.')->group(function () {
     // Route untuk Riwayat Pencatatan
     // Route untuk Keluar
 });
+
+// login user & peternak
+// autektikasi
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+    
+    Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+    Route::post('/register', [AuthController::class, 'register'])->name('register.post');
+});
+
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
+// admin
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
+    Route::get('/dashboard', function() {
+        return view('admin.dashboardadmin');
+    })->name('dashboard');
+});
+// user
+Route::prefix('user')->name('user.')->middleware(['auth', 'peternak'])->group(function () {
+    Route::get('/dashboard', function() {
+        return view('user.dashboarduser');
+    })->name('dashboard');
+});
+

@@ -14,6 +14,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'resident_id',
     ];
 
     protected $hidden = [
@@ -23,22 +24,26 @@ class User extends Authenticatable
 
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'password' => 'hashed', // Laravel 11 & 12
     ];
 
-    public function setPasswordAttribute($value)
+    // protected function casts(): array
+    // {
+    //     return [
+    //         'email_verified_at' => 'datetime',
+    //         'password' => 'hashed',
+    //     ];
+    // }
+
+    // Relasi ke Resident
+    public function resident()
     {
-        if (!empty($value)) {
-            $this->attributes['password'] = bcrypt($value);
-        }
+        return $this->belongsTo(Resident::class);
     }
 
-    public function isAdmin(): bool
+    // Relasi ke Promosi
+    public function promosi()
     {
-        return $this->role === 'admin';
-    }
-
-    public function isPeternak(): bool
-    {
-        return $this->role === 'peternak';
+        return $this->hasMany(Promosi::class);
     }
 }
