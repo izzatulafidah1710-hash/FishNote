@@ -10,6 +10,10 @@ class AdminSeeder extends Seeder
 {
     public function run(): void
     {
+        // Hapus admin lama jika ada
+        User::where('email', 'admin@fishnote.com')->delete();
+
+        // Buat admin baru
         User::create([
             'name' => 'Administrator',
             'email' => 'admin@fishnote.com',

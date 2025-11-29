@@ -89,12 +89,9 @@ class AuthController extends Controller
 
             DB::commit();
 
-            // Auto login
-            Auth::login($user);
-
-            // Redirect ke dashboard user
-            return redirect()->route('user.dashboarduser')
-                ->with('success', 'Registrasi berhasil! Selamat datang di FishNote.');
+            // TIDAK AUTO LOGIN - Redirect ke halaman login
+            return redirect()->route('login')
+                ->with('success', 'Registrasi berhasil! Silakan login dengan akun Anda.');
                 
         } catch (\Exception $e) {
             DB::rollBack();
@@ -119,13 +116,13 @@ class AuthController extends Controller
 
         // Jika admin → redirect ke admin dashboard
         if ($user->role === 'admin') {
-            return redirect()->route('admin.dashboardadmin')
+            return redirect()->route('admin.dashboard')
                 ->with('success', 'Selamat datang, ' . $user->name . '!');
         }
 
         // Jika peternak → redirect ke user dashboard
         if ($user->role === 'peternak') {
-            return redirect()->route('user.dashboarduser')
+            return redirect()->route('user.dashboard')
                 ->with('success', 'Selamat datang kembali, ' . $user->name . '!');
         }
 

@@ -32,7 +32,7 @@
                     <span>Data Peternak</span></a>
             </li>
 
-             <!-- Nav Item - data promosi -->
+            <!-- Nav Item - data promosi -->
             <li class="nav-item {{ request()->is('datapromosi*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('datapromosi.index') }}">
                     <i class="fas fa-fw fa-folder"></i>
@@ -40,11 +40,11 @@
                 </a>
             </li>
 
-             <!-- Nav Item - info akun peternak -->
-           <li class="nav-item {{ request()->is('infoakunpeternak') ? 'active' : '' }}">
+            <!-- Nav Item - info akun peternak -->
+            <li class="nav-item {{ request()->is('infoakunpeternak') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('infoakun.index') }}">
                     <i class="fas fa-fw fa-bars"></i>
-                     <span>Info Akun Peternak</span>
+                    <span>Info Akun Peternak</span>
                 </a>
             </li>
 
@@ -65,11 +65,39 @@
             </div>
 
             <!-- Nav Item - keluar akun -->
+            <!-- Menu Keluar dengan Konfirmasi SweetAlert -->
             <li class="nav-item">
-                <a class="nav-link" href="">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Keluar</span></a>
+                <a class="nav-link" href="#" onclick="event.preventDefault(); confirmLogout();">
+                    <i class="fas fa-fw fa-sign-out-alt"></i>
+                    <span>Keluar</span>
+                </a>
             </li>
+
+            <!-- Form Logout -->
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+
+            <!-- Script SweetAlert (Letakkan sebelum penutup </body> di layout) -->
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script>
+                function confirmLogout() {
+                    Swal.fire({
+                        title: 'Keluar?',
+                        text: "Apakah Anda yakin ingin keluar dari sistem?",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Ya, Keluar!',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            document.getElementById('logout-form').submit();
+                        }
+                    });
+                }
+            </script>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
