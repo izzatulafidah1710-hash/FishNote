@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->enum('role', ['admin', 'peternak'])->default('peternak')->after('password');
+            $table->foreignId('resident_id')->nullable()->after('role')
+                ->constrained('residents')->onDelete('cascade');
         });
     }
 
@@ -22,7 +23,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('role');
+            $table->dropForeign(['resident_id']);
+            $table->dropColumn('resident_id');
         });
     }
 };
