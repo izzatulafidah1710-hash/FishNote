@@ -48,12 +48,15 @@
                             <td>{{ $resident->address ?: '-' }}</td>
                             <td>{{ $resident->farm_location ?: '-' }}</td>
                             <td>
-                                <a href="{{ route('admin.datapeternak.edit', $resident->id) }}" 
+                                <!-- Tombol Edit  -->
+                                <a href="{{ route('admin.resident.edit', $resident->id) }}" 
                                    class="btn btn-sm btn-warning" 
                                    title="Edit">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <form action="{{ route('admin.datapeternak.destroy', $resident->id) }}" 
+                                
+                                <!-- Tombol Hapus -->
+                                <form action="{{ route('admin.resident.destroy', $resident->id) }}" 
                                       method="POST" 
                                       style="display: inline-block;">
                                     @csrf

@@ -14,6 +14,7 @@ use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\PromosiPublicController;
 use App\Http\Controllers\User\RiwayatController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\User\ProfileController as UserProfile;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 
@@ -47,6 +48,7 @@ Route::get('/user', function () {
     return view('user.dashboarduser');
 })->name('user.dashboarduser');
 
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
 // data peternak-admin
 Route::get('/datapeternak', [ResidentController::class, 'index']);
 Route::get('/datapeternak/create', [ResidentController::class, 'create']);
@@ -54,6 +56,7 @@ Route::get('/datapeternak/{id}', [ResidentController::class, 'edit']);
 Route::post('/datapeternak', [ResidentController::class, 'store']);
 Route::post('/datapeternak/{id}', [ResidentController::class, 'update']);
 Route::delete('/datapeternak/{id}', [ResidentController::class, 'delete']);
+});
 
 // data promosi-admin
 Route::resource('datapromosi', PromotionController::class);
@@ -123,14 +126,23 @@ Route::middleware('guest')->group(function () {
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 // admin
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
-    Route::get('/dashboard', function() {
+    Route::get('/dashboardadmin', function() {
         return view('admin.dashboardadmin');
     })->name('dashboard');
 });
 // user
 Route::prefix('user')->name('user.')->middleware(['auth', 'peternak'])->group(function () {
-    Route::get('/dashboard', function() {
+    Route::get('/dashboarduser', function() {
         return view('user.dashboarduser');
     })->name('dashboard');
+});
+
+Route::prefix('user')->name('user.')->middleware(['auth', 'peternak'])->group(function () {
+    
+    // Profile
+    Route::get('/profile', [UserProfile::class, 'index'])->name('profile');
+    Route::get('/profile/edit', [UserProfile::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [UserProfile::class, 'update'])->name('profile.update');
+    Route::put('/profile/password', [UserProfile::class, 'updatePassword'])->name('profile.password');
 });
 
