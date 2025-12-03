@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ResidentController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\InfoAkunController;
@@ -18,9 +19,13 @@ use App\Http\Controllers\User\ProfileController as UserProfile;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 
-Route::get('/', function (){
-    return view('welcome');
-});
+// landing
+Route::get('/', [LandingController::class, 'index'])->name('landing');
+
+// about landing
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
 
 // login
 Route::get('/', function () {
@@ -146,3 +151,6 @@ Route::prefix('user')->name('user.')->middleware(['auth', 'peternak'])->group(fu
     Route::put('/profile/password', [UserProfile::class, 'updatePassword'])->name('profile.password');
 });
 
+// landing
+Route::get('/', [LandingController::class, 'index'])->name('landing');
+Route::get('/search', [LandingController::class, 'search'])->name('search');
