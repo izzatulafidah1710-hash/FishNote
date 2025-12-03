@@ -26,7 +26,7 @@
                             <div class="type-lb">
                                 <p class="sale">Sale</p>
                             </div>
-                            <img src="images/img-pro-01.jpg" class="img-fluid" alt="Image">
+                            <img src="images/nila product.jpg" class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right"
@@ -41,7 +41,7 @@
                         </div>
                         <div class="why-text">
                             <h4>Ikan Nila Hitam</h4>
-                            <h5> Rp.28.000</h5>
+                            <h5> Rp.35.000</h5>
                         </div>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                             <div class="type-lb">
                                 <p class="new">New</p>
                             </div>
-                            <img src="images/img-pro-02.jpg" class="img-fluid" alt="Image">
+                            <img src="images/patin product.jpg" class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right"
@@ -66,8 +66,8 @@
                             </div>
                         </div>
                         <div class="why-text">
-                            <h4>Ikan Nila Merah</h4>
-                            <h5> Rp.33.000</h5>
+                            <h4>Ikan Patin</h4>
+                            <h5> Rp.35.000</h5>
                         </div>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
                             <div class="type-lb">
                                 <p class="sale">Sale</p>
                             </div>
-                            <img src="images/img-pro-03.jpg" class="img-fluid" alt="Image">
+                            <img src="images/lele product.jpg" class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right"
@@ -92,7 +92,7 @@
                             </div>
                         </div>
                         <div class="why-text">
-                            <h4>Ikan Lele Lokal</h4>
+                            <h4>Ikan Lele</h4>
                             <h5> Rp.36.000</h5>
                         </div>
                     </div>
@@ -104,7 +104,7 @@
                             <div class="type-lb">
                                 <p class="sale">New</p>
                             </div>
-                            <img src="images/img-pro-04.jpg" class="img-fluid" alt="Image">
+                            <img src="images/gurame product.jpg" class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right"
@@ -118,8 +118,8 @@
                             </div>
                         </div>
                         <div class="why-text">
-                            <h4>Ikan Lele Dumbo</h4>
-                            <h5> Rp.26.000</h5>
+                            <h4>Ikan Gurame</h4>
+                            <h5> Rp.78.000</h5>
                         </div>
                     </div>
                 </div>
