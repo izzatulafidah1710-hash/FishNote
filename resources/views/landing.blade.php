@@ -338,7 +338,7 @@
                         class="text-gray-700 hover:text-blue-600 font-medium transition duration-300 hover:scale-110 inline-block">
                         Beranda
                     </a>
-                    <a href="{{ route('landing') }}#promosi"
+                    <a href="/promosi"
                         class="text-gray-700 hover:text-blue-600 font-medium transition duration-300 hover:scale-110 inline-block">
                         Promosi
                     </a>
@@ -562,7 +562,7 @@
                             </div>
 
                             <!-- Tombol Detail -->
-                            <a href="#"
+                            <a href="{{ route('promotions.show', $promo->id) }}"
                                 class="block w-full bg-blue-600 text-white py-2 rounded-lg font-medium text-center hover:bg-blue-700 transition duration-300 transform hover:scale-105 shadow-md hover:shadow-lg">
                                 Lihat Detail
                             </a>
@@ -593,7 +593,8 @@
             <!-- Tombol Lihat Semua -->
             @if ($promotions->count() > 0)
                 <div class="text-center mt-12 animate-fadeInUp delay-500">
-                    <a href="#promosi"
+                    <!-- Tombol Lihat Semua -->
+                    <a href="{{ route('promotions.index') }}"
                         class="inline-block px-8 py-3 border-2 border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-600 hover:text-white transition duration-300 hover:scale-105">
                         Lihat Semua Promosi ({{ $promotions->count() }})
                     </a>
