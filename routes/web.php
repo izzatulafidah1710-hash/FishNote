@@ -41,6 +41,14 @@ Route::get('/', function () {
 Route::get('/promosi', [PromosiPublicController::class, 'index'])->name('promosi');
 Route::get('/promosi/{id}', [PromosiPublicController::class, 'show'])->name('promosi.show');
 
+// Halaman daftar promosi
+Route::get('/promosi', [PromotionController::class, 'index'])
+    ->name('promotions.index');
+
+// Halaman detail promosi
+Route::get('/promosi/{id}', [PromotionController::class, 'show'])
+    ->name('promotions.show');
+
 Route::get('/dashboardadmin', function (){
     return view('admin.dashboardadmin');
 });
@@ -69,7 +77,26 @@ Route::delete('/datapeternak/{id}', [ResidentController::class, 'delete']);
 });
 
 // data promosi-admin
-Route::resource('datapromosi', PromotionController::class);
+Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
+
+    Route::get('/promosi', [PromotionController::class, 'index'])
+        ->name('admin.promotions.index');
+
+    Route::get('/promosi/create', [PromotionController::class, 'create'])
+        ->name('admin.promotions.create');
+
+    Route::post('/promosi', [PromotionController::class, 'store'])
+        ->name('admin.promotions.store');
+
+    Route::get('/promosi/{id}/edit', [PromotionController::class, 'edit'])
+        ->name('admin.promotions.edit');
+
+    Route::put('/promosi/{id}', [PromotionController::class, 'update'])
+        ->name('admin.promotions.update');
+
+    Route::delete('/promosi/{id}', [PromotionController::class, 'destroy'])
+        ->name('admin.promotions.destroy');
+});
 
 // info akun peternak
 Route::get('/infoakunpeternak', [InfoAkunController::class, 'index'])
