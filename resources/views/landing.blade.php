@@ -207,17 +207,17 @@
             background: linear-gradient(135deg, rgba(37, 99, 235, 0.85) 0%, rgba(29, 78, 216, 0.75) 50%, rgba(30, 64, 175, 0.65) 100%);
         }
 
-        /* Background images untuk setiap slide */
+        /* Background images dari local storage */
         .hero-slide-1 {
-            background-image: url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1200');
+            background-image: url('{{ asset('template/img/bg1.jpg') }}');
         }
 
         .hero-slide-2 {
-            background-image: url('https://images.unsplash.com/photo-1535591273668-578e31182c4f?w=1200');
+            background-image: url('{{ asset('template/img/bg2.jpg') }}');
         }
 
         .hero-slide-3 {
-            background-image: url('https://images.unsplash.com/photo-1544943910-4c1dc44aab44?w=1200');
+            background-image: url('{{ asset('template/img/bg3.jpg') }}');
         }
 
         /* Slider Navigation Dots */
@@ -334,21 +334,21 @@
 
                 <!-- Menu Desktop -->
                 <div class="hidden md:flex items-center space-x-8 animate-fadeIn delay-200">
-                    <a href="{{ route('landing') }}"
+                    <a href="{{ route('landing') }}" class="text-blue-600 font-medium"
                         class="text-gray-700 hover:text-blue-600 font-medium transition duration-300 hover:scale-110 inline-block">
                         Beranda
                     </a>
-                    <a href="{{ route('landing') }}#promosi"
+                    <a href="{{ route('promosi') }}"
                         class="text-gray-700 hover:text-blue-600 font-medium transition duration-300 hover:scale-110 inline-block">
                         Promosi
-                    </a>
-                    <a href="{{ route('landing') }}#kontak"
-                        class="text-gray-700 hover:text-blue-600 font-medium transition duration-300 hover:scale-110 inline-block">
-                        Kontak
                     </a>
                     <a href="{{ route('about') }}"
                         class="text-gray-700 hover:text-blue-600 font-medium transition duration-300 hover:scale-110 inline-block">
                         Tentang Kami
+                    </a>
+                    <a href="{{ route('landing') }}#kontak"
+                        class="text-gray-700 hover:text-blue-600 font-medium transition duration-300 hover:scale-110 inline-block">
+                        Kontak
                     </a>
                 </div>
 
@@ -514,8 +514,7 @@
                                 <img src="{{ asset('storage/' . $promo->gambar) }}" alt="{{ $promo->jenis_ikan }}"
                                     class="w-full h-48 object-cover transition duration-500 group-hover:scale-110">
                             @else
-                                <img src="https://images.unsplash.com/photo-1544943910-4c1dc44aab44?w=400"
-                                    alt="Default fish"
+                                <img src="" alt="Default fish"
                                     class="w-full h-48 object-cover transition duration-500 group-hover:scale-110">
                             @endif
 
@@ -593,13 +592,453 @@
             <!-- Tombol Lihat Semua -->
             @if ($promotions->count() > 0)
                 <div class="text-center mt-12 animate-fadeInUp delay-500">
-                    <a href="#promosi"
+                    <a href="{{ route('promosi') }}"
                         class="inline-block px-8 py-3 border-2 border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-600 hover:text-white transition duration-300 hover:scale-105">
-                        Lihat Semua Promosi ({{ $promotions->count() }})
+                        Lihat Semua Promosi →
                     </a>
                 </div>
             @endif
         </div>
+    </section>
+
+    <!-- FITUR UNGGULAN SECTION -->
+    <section class="bg-white py-20">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 animate-fadeInUp">
+                    Mengapa Memilih FishNote?
+                </h2>
+                <p class="text-gray-600 text-lg animate-fadeInUp delay-100">
+                    Platform terlengkap untuk mengelola dan memasarkan hasil budidaya perikanan Anda
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Fitur 1 -->
+                <div class="text-center p-6 rounded-xl hover:shadow-xl transition duration-300 animate-fadeInUp">
+                    <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-blue-600" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Mudah Digunakan</h3>
+                    <p class="text-gray-600">Interface yang user-friendly memudahkan peternak dalam mengelola bisnis
+                    </p>
+                </div>
+
+                <!-- Fitur 2 -->
+                <div
+                    class="text-center p-6 rounded-xl hover:shadow-xl transition duration-300 animate-fadeInUp delay-100">
+                    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Harga Kompetitif</h3>
+                    <p class="text-gray-600">Dapatkan harga terbaik langsung dari peternak tanpa perantara</p>
+                </div>
+
+                <!-- Fitur 3 -->
+                <div
+                    class="text-center p-6 rounded-xl hover:shadow-xl transition duration-300 animate-fadeInUp delay-200">
+                    <div class="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-yellow-600" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Proses Cepat</h3>
+                    <p class="text-gray-600">Transaksi dan pencatatan dilakukan secara real-time dan efisien</p>
+                </div>
+
+                <!-- Fitur 4 -->
+                <div
+                    class="text-center p-6 rounded-xl hover:shadow-xl transition duration-300 animate-fadeInUp delay-300">
+                    <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-purple-600" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Aman & Terpercaya</h3>
+                    <p class="text-gray-600">Data dan transaksi Anda dijamin aman dengan sistem keamanan terbaik</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CARA KERJA SECTION -->
+    <section class="bg-gradient-to-b from-gray-50 to-white py-20">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 animate-fadeInUp">
+                    Cara Kerja FishNote
+                </h2>
+                <p class="text-gray-600 text-lg animate-fadeInUp delay-100">
+                    Mulai bisnis perikanan Anda hanya dengan 3 langkah mudah
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Step 1 -->
+                <div
+                    class="relative p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 animate-fadeInUp">
+                    <div class="absolute -top-6 left-1/2 transform -translate-x-1/2">
+                        <div
+                            class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold shadow-lg">
+                            1
+                        </div>
+                    </div>
+                    <div class="text-center mt-6">
+                        <div class="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Daftar Gratis</h3>
+                        <p class="text-gray-600">Buat akun FishNote secara gratis dalam hitungan menit. Tidak ada biaya
+                            tersembunyi!</p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div
+                    class="relative p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 animate-fadeInUp delay-100">
+                    <div class="absolute -top-6 left-1/2 transform -translate-x-1/2">
+                        <div
+                            class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold shadow-lg">
+                            2
+                        </div>
+                    </div>
+                    <div class="text-center mt-6">
+                        <div class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-12 h-12 text-green-600" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Kelola Data</h3>
+                        <p class="text-gray-600">Catat hasil budidaya, kelola stok, dan pantau perkembangan bisnis Anda
+                            dengan mudah</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div
+                    class="relative p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 animate-fadeInUp delay-200">
+                    <div class="absolute -top-6 left-1/2 transform -translate-x-1/2">
+                        <div
+                            class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold shadow-lg">
+                            3
+                        </div>
+                    </div>
+                    <div class="text-center mt-6">
+                        <div
+                            class="w-24 h-24 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-12 h-12 text-yellow-600" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Pasarkan Produk</h3>
+                        <p class="text-gray-600">Buat promosi dan jangkau ribuan pembeli potensial di seluruh Indonesia
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="{{ route('register') }}"
+                    class="inline-block px-8 py-4 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition duration-300 shadow-lg hover:shadow-xl hover:scale-105">
+                    Mulai Sekarang →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATISTIK SECTION -->
+    <section class="bg-blue-600 text-white py-20">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 animate-fadeInUp">
+                    Dipercaya oleh Ribuan Peternak
+                </h2>
+                <p class="text-blue-100 text-lg animate-fadeInUp delay-100">
+                    Bergabunglah dengan komunitas peternak ikan terbesar di Indonesia
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Stat 1 -->
+                <div class="text-center animate-fadeInUp">
+                    <div class="text-5xl font-bold mb-2">500+</div>
+                    <div class="text-blue-100">Peternak Aktif</div>
+                </div>
+
+                <!-- Stat 2 -->
+                <div class="text-center animate-fadeInUp delay-100">
+                    <div class="text-5xl font-bold mb-2">10K+</div>
+                    <div class="text-blue-100">Transaksi Sukses</div>
+                </div>
+
+                <!-- Stat 3 -->
+                <div class="text-center animate-fadeInUp delay-200">
+                    <div class="text-5xl font-bold mb-2">50+</div>
+                    <div class="text-blue-100">Jenis Ikan</div>
+                </div>
+
+                <!-- Stat 4 -->
+                <div class="text-center animate-fadeInUp delay-300">
+                    <div class="text-5xl font-bold mb-2">98%</div>
+                    <div class="text-blue-100">Kepuasan Pengguna</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONI SECTION -->
+    <section class="bg-white py-20">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 animate-fadeInUp">
+                    Apa Kata Mereka?
+                </h2>
+                <p class="text-gray-600 text-lg animate-fadeInUp delay-100">
+                    Testimoni dari peternak yang telah sukses menggunakan FishNote
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Testimoni 1 -->
+                <div
+                    class="bg-gray-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 animate-fadeInUp">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                            </svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                            </svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                            </svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                            </svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6 italic">
+                        "FishNote sangat membantu saya dalam mengelola budidaya lele. Sekarang semua data tersimpan rapi
+                        dan saya bisa promosi langsung ke pembeli!"
+                    </p>
+                    <div class="flex items-center">
+                        <div
+                            class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold mr-4">
+                            BH
+                        </div>
+                        <div>
+                            <div class="font-bold text-gray-900">Budi Hartono</div>
+                            <div class="text-sm text-gray-500">Peternak Lele - Pekanbaru</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimoni 2 -->
+                <div
+                    class="bg-gray-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 animate-fadeInUp delay-100">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                            </svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                            </svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                            </svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                            </svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6 italic">
+                        "Platform yang sangat user-friendly! Penjualan ikan nila saya meningkat 40% sejak menggunakan
+                        FishNote. Highly recommended!"
+                    </p>
+                    <div class="flex items-center">
+                        <div
+                            class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white font-bold mr-4">
+                            SR
+                        </div>
+                        <div>
+                            <div class="font-bold text-gray-900">Siti Rahmawati</div>
+                            <div class="text-sm text-gray-500">Peternak Nila - Kampar</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimoni 3 -->
+                <div
+                    class="bg-gray-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 animate-fadeInUp delay-200">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                            </svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                            </svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                            </svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                            </svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6 italic">
+                        "Fitur pencatatan dan laporan sangat membantu untuk menganalisis bisnis. FishNote adalah solusi
+                        terbaik untuk peternak modern!"
+                    </p>
+                    <div class="flex items-center">
+                        <div
+                            class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold mr-4">
+                            AP
+                        </div>
+                        <div>
+                            <div class="font-bold text-gray-900">Ahmad Pratama</div>
+                            <div class="text-sm text-gray-500">Peternak Gurame - Bengkalis</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="bg-gray-50 py-20">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 animate-fadeInUp">
+                    Pertanyaan yang Sering Ditanyakan
+                </h2>
+                <p class="text-gray-600 text-lg animate-fadeInUp delay-100">
+                    Temukan jawaban untuk pertanyaan umum tentang FishNote
+                </p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition duration-300 animate-fadeInUp">
+                    <button class="w-full px-6 py-5 text-left flex justify-between items-center"
+                        onclick="toggleFAQ(1)">
+                        <span class="font-bold text-gray-900">Apakah FishNote gratis?</span>
+                        <svg id="faq-icon-1" class="w-6 h-6 text-blue-600 transform transition-transform duration-300"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <div id="faq-content-1" class="hidden px-6 pb-5 text-gray-600">
+                        Ya, FishNote sepenuhnya gratis untuk semua peternak. Anda dapat mendaftar, mengelola data, dan
+                        membuat promosi tanpa biaya apapun.
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div
+                    class="bg-white rounded-xl shadow-md hover:shadow-lg transition duration-300 animate-fadeInUp delay-100">
+                    <button class="w-full px-6 py-5 text-left flex justify-between items-center"
+                        onclick="toggleFAQ(2)">
+                        <span class="font-bold text-gray-900">Bagaimana cara membuat promosi?</span>
+                        <svg id="faq-icon-2" class="w-6 h-6 text-blue-600 transform transition-transform duration-300"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <div id="faq-content-2" class="hidden px-6 pb-5 text-gray-600">
+                        Setelah mendaftar, Anda dapat masuk ke dashboard peternak dan pilih menu "Promosi". Isi detail
+                        produk, upload foto, dan promosi Anda akan langsung tayang di halaman utama.
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div
+                    class="bg-white rounded-xl shadow-md hover:shadow-lg transition duration-300 animate-fadeInUp delay-200">
+                    <button class="w-full px-6 py-5 text-left flex justify-between items-center"
+                        onclick="toggleFAQ(3)">
+                        <span class="font-bold text-gray-900">Apakah data saya aman?</span>
+                        <svg id="faq-icon-3" class="w-6 h-6 text-blue-600 transform transition-transform duration-300"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <div id="faq-content-3" class="hidden px-6 pb-5 text-gray-600">
+                        Tentu! Kami menggunakan sistem keamanan tingkat enterprise dengan enkripsi data. Semua informasi
+                        pribadi dan bisnis Anda dijamin aman.
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div
+                    class="bg-white rounded-xl shadow-md hover:shadow-lg transition duration-300 animate-fadeInUp delay-300">
+                    <button class="w-full px-6 py-5 text-left flex justify-between items-center"
+                        onclick="toggleFAQ(4)">
+                        <span class="font-bold text-gray-900">Bagaimana cara menghubungi pembeli?</span>
+                        <svg id="faq-icon-4" class="w-6 h-6 text-blue-600 transform transition-transform duration-300"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <div id="faq-content-4" class="hidden px-6 pb-5 text-gray-600">
+                        Pembeli yang tertarik akan menghubungi Anda melalui nomor kontak yang Anda cantumkan di promosi.
+                        Anda juga bisa melihat statistik views untuk setiap promosi.
+                    </div>
+                </div>
     </section>
 
     <!-- CTA SECTION -->
@@ -619,50 +1058,158 @@
     </section>
 
     <!-- FOOTER -->
-    <footer id="kontak" class="bg-gray-900 text-white py-12">
+    <footer id="kontak" class="bg-gray-900 text-white py-16">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="grid md:grid-cols-4 gap-8">
+            <div class="grid md:grid-cols-4 gap-12">
+                <!-- Kolom 1 - Logo & Deskripsi -->
                 <div class="animate-fadeInUp">
-                    <div class="flex items-center space-x-3 mb-4">
-                        <a href="{{ route('landing') }}"
-                            class="flex items-center space-x-3 animate-slideInLeft group">
-                            <img src="{{ asset('template/img/logofishnote.png') }}" alt="FishNote Logo"
-                                class="w-17 h-16 object-contain group-hover:scale-110 group-hover:drop-shadow-lg transition duration-300">
-                            <span
-                                class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent group-hover:from-blue-700 group-hover:to-blue-900 transition duration-300">
-                                Fishnote
-                            </span>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <img src="{{ asset('template/img/logofishnote.png') }}" alt="FishNote Logo"
+                            class="w-16 h-16 object-contain">
+                        <span class="text-3xl font-bold text-white">
+                            Fishnote
+                        </span>
+                    </div>
+                    <p class="text-gray-400 text-base leading-relaxed">
+                        Platform digital untuk budidaya perikanan Indonesia yang modern dan terpercaya
+                    </p>
+                    <!-- Social Media -->
+                    <div class="flex space-x-4 mt-6">
+                        <a href="#"
+                            class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition duration-300">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-400 transition duration-300">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+                            </svg>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-pink-600 transition duration-300">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z" />
+                                <path
+                                    d="M12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
                         </a>
                     </div>
-                    <p class="text-gray-400 text-sm">Platform digital untuk budidaya perikanan Indonesia</p>
                 </div>
+
+                <!-- Kolom 2 - Menu -->
                 <div class="animate-fadeInUp delay-100">
-                    <h3 class="font-bold mb-4">Menu</h3>
-                    <ul class="space-y-2 text-gray-400 text-sm">
-                        <li><a href="#beranda" class="hover:text-white transition duration-300">Beranda</a></li>
-                        <li><a href="#promosi" class="hover:text-white transition duration-300">Promosi</a></li>
-                        <li><a href="#tentang" class="hover:text-white transition duration-300">Tentang Kami</a></li>
+                    <h3 class="text-xl font-bold mb-6 text-white">Menu</h3>
+                    <ul class="space-y-4">
+                        <li>
+                            <a href="{{ route('landing') }}"
+                                class="text-gray-400 hover:text-white transition duration-300 text-base flex items-center group">
+                                <span class="mr-2 group-hover:mr-3 transition-all"></span>
+                                Beranda
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('promosi') }}"
+                                class="text-gray-400 hover:text-white transition duration-300 text-base flex items-center group">
+                                <span class="mr-2 group-hover:mr-3 transition-all"></span>
+                                Promosi
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('about') }}"
+                                class="text-gray-400 hover:text-white transition duration-300 text-base flex items-center group">
+                                <span class="mr-2 group-hover:mr-3 transition-all"></span>
+                                Tentang Kami
+                            </a>
+                        </li>
                     </ul>
                 </div>
+
+                <!-- Kolom 3 - Bantuan -->
                 <div class="animate-fadeInUp delay-200">
-                    <h3 class="font-bold mb-4">Bantuan</h3>
-                    <ul class="space-y-2 text-gray-400 text-sm">
-                        <li><a href="#" class="hover:text-white transition duration-300">Cara Berjualan</a></li>
-                        <li><a href="#" class="hover:text-white transition duration-300">Cara Membeli</a></li>
-                        <li><a href="#" class="hover:text-white transition duration-300">FAQ</a></li>
+                    <h3 class="text-xl font-bold mb-6 text-white">Bantuan</h3>
+                    <ul class="space-y-4">
+                        <li>
+                            <a href="#"
+                                class="text-gray-400 hover:text-white transition duration-300 text-base flex items-center group">
+                                <span class="mr-2 group-hover:mr-3 transition-all"></span>
+                                Cara Berjualan
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="text-gray-400 hover:text-white transition duration-300 text-base flex items-center group">
+                                <span class="mr-2 group-hover:mr-3 transition-all"></span>
+                                Cara Membeli
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="text-gray-400 hover:text-white transition duration-300 text-base flex items-center group">
+                                <span class="mr-2 group-hover:mr-3 transition-all"></span>
+                                FAQ
+                            </a>
+                        </li>
                     </ul>
                 </div>
+
+                <!-- Kolom 4 - Kontak -->
                 <div class="animate-fadeInUp delay-300">
-                    <h3 class="font-bold mb-4">Kontak</h3>
-                    <ul class="space-y-2 text-gray-400 text-sm">
-                        <li>Email: info@fishnote.com</li>
-                        <li>Telp: +62 812-3456-7890</li>
-                        <li>Alamat: Pekanbaru, Riau</li>
+                    <h3 class="text-xl font-bold mb-6 text-white">Kontak</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-blue-500 mr-3 flex-shrink-0 mt-1" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                </path>
+                            </svg>
+                            <span class="text-gray-400 text-base">admin@fishnote.com</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-blue-500 mr-3 flex-shrink-0 mt-1" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                </path>
+                            </svg>
+                            <span class="text-gray-400 text-base">+62 831-6759-1147</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-blue-500 mr-3 flex-shrink-0 mt-1" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span class="text-gray-400 text-base">Bengkalis, Riau<br>Indonesia</span>
+                        </li>
                     </ul>
                 </div>
             </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
-                <p>&copy; 2024 FishNote. All rights reserved.</p>
+
+            <!-- Bottom Footer -->
+            <div class="border-t border-gray-800 mt-12 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-base mb-4 md:mb-0">
+                        &copy; 2025 FishNote. All rights reserved.
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="#"
+                            class="text-gray-400 hover:text-white transition duration-300 text-base">Privacy Policy</a>
+                        <a href="#"
+                            class="text-gray-400 hover:text-white transition duration-300 text-base">Terms of
+                            Service</a>
+                        <a href="#"
+                            class="text-gray-400 hover:text-white transition duration-300 text-base">Cookie Policy</a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
@@ -719,6 +1266,16 @@
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('hidden');
+        }
+    </script>
+
+    <script>
+        function toggleFAQ(id) {
+            const content = document.getElementById(`faq-content-${id}`);
+            const icon = document.getElementById(`faq-icon-${id}`);
+
+            content.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
         }
     </script>
 

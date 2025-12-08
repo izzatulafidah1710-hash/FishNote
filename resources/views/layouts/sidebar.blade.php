@@ -26,8 +26,8 @@
             </div>
 
             <!-- Nav Item - data peternak -->
-            <li class="nav-item {{ request()->is('admin/datapeternak*') ? 'active' : '' }}">
-                <a class="nav-link" href="admin.datapeternak.index">
+            <li class="nav-item {{ request()->is('datapeternak') ? 'active' : '' }}">
+                <a class="nav-link" href="/datapeternak">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Peternak</span></a>
             </li>

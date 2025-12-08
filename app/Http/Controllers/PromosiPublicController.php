@@ -8,40 +8,90 @@ use Illuminate\Http\Request;
 class PromosiPublicController extends Controller
 {
     /**
-     * Display a listing of public promotions.
+     * Halaman Landing - Tampilkan 8 promosi terbaru
+     */
+    public function landing()
+    {
+        // Ambil 8 promosi terbaru yang aktif untuk landing page
+        $promotions = Promosi::where('status', 'Aktif')
+                            ->orderBy('created_at', 'desc')
+                            ->take(8)
+                            ->get();
+        
+        return view('landing', compact('promotions'));
+    }
+
+    /**
+     * Halaman Semua Promosi - Display a listing of public promotions.
      */
     public function index(Request $request)
     {
-        $query = Promosi::active(); // Hanya promosi yang aktif
+        $query = Promosi::where('status', 'Aktif'); // Hanya promosi yang aktif
 
         // Filter berdasarkan jenis ikan
         if ($request->filled('jenis_ikan')) {
             $query->where('jenis_ikan', $request->jenis_ikan);
         }
 
-        // Search
-        if ($request->filled('search')) {
-            $query->where(function($q) use ($request) {
-                $q->where('judul_promosi', 'like', '%' . $request->search . '%')
-                  ->orWhere('deskripsi', 'like', '%' . $request->search . '%');
+        // Search (untuk search bar)
+        if ($request->filled('search') || $request->filled('q')) {
+            $search = $request->filled('search') ? $request->search : $request->q;
+            $query->where(function($q) use ($search) {
+                $q->where('judul_promosi', 'like', '%' . $search . '%')
+                  ->orWhere('deskripsi', 'like', '%' . $search . '%')
+                  ->orWhere('jenis_ikan', 'like', '%' . $search . '%')
+                  ->orWhere('lokasi', 'like', '%' . $search . '%');
             });
         }
 
-        $promosi = $query->orderBy('created_at', 'desc')->paginate(12);
+        // Sorting
+        if ($request->filled('sort')) {
+            switch ($request->sort) {
+                case 'harga_terendah':
+                    $query->orderBy('harga', 'asc');
+                    break;
+                case 'harga_tertinggi':
+                    $query->orderBy('harga', 'desc');
+                    break;
+                case 'stok_terbanyak':
+                    $query->orderBy('stok_tersedia', 'desc');
+                    break;
+                default:
+                    $query->orderBy('created_at', 'desc');
+            }
+        } else {
+            $query->orderBy('created_at', 'desc');
+        }
 
-        return view('public.promosi.index', compact('promosi'));
+        // Pagination: 12 promosi per halaman
+        $promotions = $query->paginate(12)->withQueryString();
+
+        // Ambil jenis ikan unik untuk filter
+        $jenisIkan = Promosi::where('status', 'Aktif')
+                           ->distinct()
+                           ->pluck('jenis_ikan');
+
+        return view('promosi', compact('promotions', 'jenisIkan'));
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified resource (Detail Promosi).
      */
     public function show($id)
     {
         $promosi = Promosi::where('status', 'Aktif')->findOrFail($id);
         
         // Increment views
-        $promosi->incrementViews();
+        $promosi->increment('views');
 
-        return view('public.promosi.show', compact('promosi'));
+        return view('promosi.show', compact('promosi'));
+    }
+    
+    /**
+     * Search promosi (alias untuk index dengan parameter search)
+     */
+    public function search(Request $request)
+    {
+        return $this->index($request);
     }
 }

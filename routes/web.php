@@ -27,14 +27,19 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
+Route::get('/promosi', function () {
+    return view('promosi');
+})->name('promosi');
+
 // login
 Route::get('/', function () {
     return redirect()->route('login');
 });
 
 // promosi public
-Route::get('/promosi-public', [PromosiPublicController::class, 'index'])->name('promosi.public.index');
-Route::get('/promosi-public/{id}', [PromosiPublicController::class, 'show'])->name('promosi.public.show');
+// Halaman Semua Promosi (Public)
+Route::get('/promosi', [PromosiPublicController::class, 'index'])->name('promosi');
+Route::get('/promosi/{id}', [PromosiPublicController::class, 'show'])->name('promosi.show');
 
 Route::get('/dashboardadmin', function (){
     return view('admin.dashboardadmin');
@@ -153,4 +158,4 @@ Route::prefix('user')->name('user.')->middleware(['auth', 'peternak'])->group(fu
 
 // landing
 Route::get('/', [LandingController::class, 'index'])->name('landing');
-Route::get('/search', [LandingController::class, 'search'])->name('search');
+Route::get('/search', [PromosiPublicController::class, 'search'])->name('search');

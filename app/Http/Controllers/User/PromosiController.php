@@ -155,4 +155,5 @@ class PromosiController extends Controller
         return redirect()->route('user.promosi.index')
             ->with('success', 'Promosi berhasil dihapus');
     }
+
 }

@@ -13,7 +13,9 @@ use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
-    // Halaman Login
+    /**
+     * Halaman Login
+     */
     public function showLoginForm()
     {
         // Jika sudah login, redirect ke dashboard sesuai role
@@ -23,12 +25,19 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    // Proses Login
+    /**
+     * Proses Login
+     */
     public function login(Request $request)
     {
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|min:6',
+        ], [
+            'email.required' => 'Email wajib diisi',
+            'email.email' => 'Format email tidak valid',
+            'password.required' => 'Password wajib diisi',
+            'password.min' => 'Password minimal 6 karakter',
         ]);
 
         $credentials = $request->only('email', 'password');
@@ -45,7 +54,9 @@ class AuthController extends Controller
         ]);
     }
 
-    // Halaman Register (Khusus Peternak)
+    /**
+     * Halaman Register (Khusus Peternak)
+     */
     public function showRegisterForm()
     {
         // Jika sudah login, redirect ke dashboard sesuai role
@@ -55,36 +66,51 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
-    // Proses Register
+    /**
+     * Proses Register
+     * PENTING: User dibuat dulu, baru Resident!
+     */
     public function register(Request $request)
     {
+        // Validasi input
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users|unique:residents',
+            'email' => 'required|string|email|max:255|unique:users,email|unique:residents,email',
             'password' => 'required|string|min:6|confirmed',
-            'phone' => 'nullable|string|max:20',
+            'phone' => 'required|string|max:20', // WAJIB untuk peternak
             'address' => 'nullable|string',
             'farm_location' => 'nullable|string',
+        ], [
+            'name.required' => 'Nama wajib diisi',
+            'email.required' => 'Email wajib diisi',
+            'email.email' => 'Format email tidak valid',
+            'email.unique' => 'Email sudah terdaftar',
+            'password.required' => 'Password wajib diisi',
+            'password.min' => 'Password minimal 6 karakter',
+            'password.confirmed' => 'Konfirmasi password tidak cocok',
+            'phone.required' => 'Nomor telepon wajib diisi',
         ]);
 
         DB::beginTransaction();
+        
         try {
-            // 1. Buat data resident (peternak)
-            $resident = Resident::create([
+            // ✅ LANGKAH 1: Buat User terlebih dahulu
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'role' => 'peternak', // Default role untuk registrasi
+            ]);
+
+            // ✅ LANGKAH 2: Buat Resident dengan user_id dari User yang baru dibuat
+            Resident::create([
+                'user_id' => $user->id, // ← INI YANG BENAR!
                 'name' => $request->name,
                 'email' => $request->email,
                 'phone' => $request->phone,
                 'address' => $request->address,
                 'farm_location' => $request->farm_location,
-            ]);
-
-            // 2. Buat user dengan role peternak
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'role' => 'peternak',
-                'resident_id' => $resident->id,
+                'status' => 'aktif', // Default status aktif
             ]);
 
             DB::commit();
@@ -95,21 +121,32 @@ class AuthController extends Controller
                 
         } catch (\Exception $e) {
             DB::rollBack();
-            return back()->withErrors(['error' => 'Terjadi kesalahan: ' . $e->getMessage()])->withInput();
+            
+            // Log error untuk debugging
+            \Log::error('Registration failed: ' . $e->getMessage());
+            
+            return back()
+                ->withErrors(['error' => 'Terjadi kesalahan saat registrasi. Silakan coba lagi.'])
+                ->withInput($request->except('password', 'password_confirmation'));
         }
     }
 
-    // Logout
+    /**
+     * Logout
+     */
     public function logout(Request $request)
     {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('login')->with('success', 'Anda telah logout.');
+        return redirect()->route('landing')
+            ->with('success', 'Anda telah logout.');
     }
 
-    // FUNGSI PENTING: Redirect berdasarkan role
+    /**
+     * FUNGSI PENTING: Redirect berdasarkan role
+     */
     private function redirectBasedOnRole()
     {
         $user = Auth::user();

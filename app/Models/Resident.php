@@ -3,28 +3,50 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Resident extends Model
 {
     protected $table = 'residents';
 
     protected $fillable = [
+        'user_id',
         'name',
         'email',
         'phone',
         'address',
         'farm_location',
+        'jenis_usaha',
+        'luas_lahan',
+        'status',
     ];
 
-    // Relasi ke User
-    public function user()
+    protected $casts = [
+        'luas_lahan' => 'decimal:2',
+    ];
+
+    /**
+     * Relasi ke User (One to One)
+     * Satu resident dimiliki oleh satu user
+     */
+    public function user(): BelongsTo
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 
-    // Relasi ke Promosi (melalui user)
-    public function promosi()
+    /**
+     * Scope untuk filter peternak aktif
+     */
+    public function scopeActive($query)
     {
-        return $this->hasManyThrough(Promosi::class, User::class, 'resident_id', 'user_id');
+        return $query->where('status', 'aktif');
+    }
+
+    /**
+     * Scope untuk filter peternak non-aktif
+     */
+    public function scopeInactive($query)
+    {
+        return $query->where('status', 'nonaktif');
     }
 }

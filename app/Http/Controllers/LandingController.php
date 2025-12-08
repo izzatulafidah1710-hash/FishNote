@@ -10,8 +10,9 @@ class LandingController extends Controller
     public function index()
     {
         // Ambil semua promosi yang aktif, urutkan terbaru
-        $promotions = Promosi::where('status', 'aktif')
+        $promotions = Promosi::where('status', 'Aktif')
                             ->orderBy('created_at', 'desc')
+                            ->take(8)  
                             ->get();
         
         return view('landing', compact('promotions'));
