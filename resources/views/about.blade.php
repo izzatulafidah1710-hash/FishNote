@@ -179,12 +179,13 @@
         <div class="max-w-7xl mx-auto px-4">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div class="animate-slideInLeft">
-                    <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600" alt="About FishNote"
+                    <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600" 
+                        alt="About FishNote"
                         class="rounded-xl shadow-2xl">
                 </div>
                 <div class="animate-slideInRight">
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                        Misi Kami
+                        Tentang FishNote
                     </h2>
                     <p class="text-gray-600 mb-4 leading-relaxed">
                         FishNote adalah platform digital yang menghubungkan peternak ikan dengan pembeli secara
@@ -275,14 +276,13 @@
                 <!-- Tim Member 1 -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover animate-fadeInUp">
                     <div class="relative overflow-hidden group">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400"
+                       <img src="{{ asset('images/foto tim, aidil.jpg') }}"
                             alt="Team Member"
                             class="w-full h-80 object-cover transition duration-500 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-blue-900 to-transparent opacity-60"></div>
                     </div>
                     <div class="p-6 text-center">
-                        <h3 class="text-xl font-bold text-gray-900 mb-1">Ahmad Rizki</h3>
-                        <p class="text-blue-600 font-medium mb-3">CEO & Founder</p>
+                        <h3 class="text-xl font-bold text-gray-900 mb-1">Aidil Ardiansyah</h3>
+                        <p class="text-blue-600 font-medium mb-3">Back-End Developer </p>
                         <p class="text-gray-600 text-sm mb-4">
                             Memimpin visi dan strategi perusahaan untuk mengembangkan ekosistem perikanan digital
                             Indonesia
@@ -311,14 +311,13 @@
                 <!-- Tim Member 2 -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover animate-fadeInUp delay-100">
                     <div class="relative overflow-hidden group">
-                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400"
+                        <img src="{{ asset('images/foto tim, mulan.jpg') }}"
                             alt="Team Member"
                             class="w-full h-80 object-cover transition duration-500 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-blue-900 to-transparent opacity-60"></div>
                     </div>
                     <div class="p-6 text-center">
-                        <h3 class="text-xl font-bold text-gray-900 mb-1">Siti Nurhaliza</h3>
-                        <p class="text-blue-600 font-medium mb-3">CTO & Co-Founder</p>
+                        <h3 class="text-xl font-bold text-gray-900 mb-1">Yuniarti Mulansari</h3>
+                        <p class="text-blue-600 font-medium mb-3">UI/UX Designer</p>
                         <p class="text-gray-600 text-sm mb-4">
                             Bertanggung jawab atas pengembangan teknologi dan infrastruktur platform FishNote
                         </p>
@@ -346,14 +345,13 @@
                 <!-- Tim Member 3 -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover animate-fadeInUp delay-200">
                     <div class="relative overflow-hidden group">
-                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400"
+                       <img src="{{ asset('images/foto tim, izza.jpg') }}"
                             alt="Team Member"
                             class="w-full h-80 object-cover transition duration-500 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-blue-900 to-transparent opacity-60"></div>
                     </div>
                     <div class="p-6 text-center">
-                        <h3 class="text-xl font-bold text-gray-900 mb-1">Budi Santoso</h3>
-                        <p class="text-blue-600 font-medium mb-3">Head of Marketing</p>
+                        <h3 class="text-xl font-bold text-gray-900 mb-1">Izzatul Afidah</h3>
+                        <p class="text-blue-600 font-medium mb-3">Front-End Developer</p>
                         <p class="text-gray-600 text-sm mb-4">
                             Mengelola strategi pemasaran dan membangun hubungan dengan peternak serta pembeli
                         </p>

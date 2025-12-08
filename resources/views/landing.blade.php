@@ -561,7 +561,7 @@
                             </div>
 
                             <!-- Tombol Detail -->
-                            <a href="#"
+                            <a href="{{ route('promotions.show', $promo->id) }}"
                                 class="block w-full bg-blue-600 text-white py-2 rounded-lg font-medium text-center hover:bg-blue-700 transition duration-300 transform hover:scale-105 shadow-md hover:shadow-lg">
                                 Lihat Detail
                             </a>
