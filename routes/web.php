@@ -27,9 +27,9 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-Route::get('/promosi', function () {
-    return view('promosi');
-})->name('promosi');
+// Route::get('/promosi', function () {
+//     return view('promosi');
+// })->name('promosi');
 
 // login
 Route::get('/', function () {
@@ -42,12 +42,12 @@ Route::get('/promosi', [PromosiPublicController::class, 'index'])->name('promosi
 Route::get('/promosi/{id}', [PromosiPublicController::class, 'show'])->name('promosi.show');
 
 // Halaman daftar promosi
-Route::get('/promosi', [PromotionController::class, 'index'])
-    ->name('promotions.index');
+// Route::get('/promosi', [PromotionController::class, 'index'])
+//     ->name('promotions.index');
 
-// Halaman detail promosi
-Route::get('/promosi/{id}', [PromotionController::class, 'show'])
-    ->name('promotions.show');
+// // Halaman detail promosi
+ Route::get('/promosi/{id}', [PromotionController::class, 'show'])
+     ->name('promotions.show');
 
 Route::get('/dashboardadmin', function (){
     return view('admin.dashboardadmin');
@@ -77,6 +77,7 @@ Route::delete('/datapeternak/{id}', [ResidentController::class, 'delete']);
 });
 
 // data promosi-admin
+Route::resource('datapromosi', PromotionController::class);
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 
     Route::get('/promosi', [PromotionController::class, 'index'])

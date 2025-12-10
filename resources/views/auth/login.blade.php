@@ -273,38 +273,6 @@
             background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
             color: #721c24;
         }
-
-        /* Floating Decoration */
-        .decoration {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .decoration-1 {
-            width: 100px;
-            height: 100px;
-            top: 10%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .decoration-2 {
-            width: 150px;
-            height: 150px;
-            bottom: 15%;
-            right: 10%;
-            animation-delay: 2s;
-        }
-
-        .decoration-3 {
-            width: 80px;
-            height: 80px;
-            top: 60%;
-            left: 15%;
-            animation-delay: 4s;
-        }
     </style>
 </head>
 <body>

@@ -174,13 +174,12 @@
         </div>
     </section>
 
-    <!-- TENTANG PERUSAHAAN -->
+    <!-- TENTANG project -->
     <section class="bg-white py-16">
         <div class="max-w-7xl mx-auto px-4">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div class="animate-slideInLeft">
-                    <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600" 
-                        alt="About FishNote"
+                    <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600" alt="About FishNote"
                         class="rounded-xl shadow-2xl">
                 </div>
                 <div class="animate-slideInRight">
@@ -276,15 +275,14 @@
                 <!-- Tim Member 1 -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover animate-fadeInUp">
                     <div class="relative overflow-hidden group">
-                       <img src="{{ asset('images/foto tim, aidil.jpg') }}"
-                            alt="Team Member"
-                            class="w-full h-80 object-cover transition duration-500 group-hover:scale-110">
+                        <img src="{{ asset('images/foto tim, aidil.png') }}" alt="Aidil Ardiansyah"
+                            class="w-44 h-56 object-cover rounded-lg mx-auto">
                     </div>
                     <div class="p-6 text-center">
                         <h3 class="text-xl font-bold text-gray-900 mb-1">Aidil Ardiansyah</h3>
                         <p class="text-blue-600 font-medium mb-3">Back-End Developer </p>
                         <p class="text-gray-600 text-sm mb-4">
-                            Memimpin visi dan strategi perusahaan untuk mengembangkan ekosistem perikanan digital
+                            Memimpin visi dan strategi project untuk mengembangkan pencatatan hasil budidaya perikanan digital
                             Indonesia
                         </p>
                         <div class="flex justify-center space-x-3">
@@ -311,9 +309,8 @@
                 <!-- Tim Member 2 -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover animate-fadeInUp delay-100">
                     <div class="relative overflow-hidden group">
-                        <img src="{{ asset('images/foto tim, mulan.jpg') }}"
-                            alt="Team Member"
-                            class="w-full h-80 object-cover transition duration-500 group-hover:scale-110">
+                        <img src="{{ asset('images/foto tim, mulan.jpg') }}" alt="Aidil Ardiansyah"
+                            class="w-44 h-56 object-cover rounded-lg mx-auto">
                     </div>
                     <div class="p-6 text-center">
                         <h3 class="text-xl font-bold text-gray-900 mb-1">Yuniarti Mulansari</h3>
@@ -345,15 +342,14 @@
                 <!-- Tim Member 3 -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover animate-fadeInUp delay-200">
                     <div class="relative overflow-hidden group">
-                       <img src="{{ asset('images/foto tim, izza.jpg') }}"
-                            alt="Team Member"
-                            class="w-full h-80 object-cover transition duration-500 group-hover:scale-110">
+                        <img src="{{ asset('images/foto tim, izza.jpg') }}" alt="Aidil Ardiansyah"
+                            class="w-44 h-56 object-cover rounded-lg mx-auto">
                     </div>
                     <div class="p-6 text-center">
                         <h3 class="text-xl font-bold text-gray-900 mb-1">Izzatul Afidah</h3>
                         <p class="text-blue-600 font-medium mb-3">Front-End Developer</p>
                         <p class="text-gray-600 text-sm mb-4">
-                            Mengelola strategi pemasaran dan membangun hubungan dengan peternak serta pembeli
+                            Mengelola strategi promosi dan membangun hubungan dengan peternak serta pembeli/pengunjung
                         </p>
                         <div class="flex justify-center space-x-3">
                             <a href="#"

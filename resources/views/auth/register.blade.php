@@ -324,39 +324,6 @@
             box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
         }
 
-        /* Floating Decoration */
-        .decoration {
-            position: fixed;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            animation: float 6s ease-in-out infinite;
-            z-index: -1;
-        }
-
-        .decoration-1 {
-            width: 120px;
-            height: 120px;
-            top: 10%;
-            left: 5%;
-            animation-delay: 0s;
-        }
-
-        .decoration-2 {
-            width: 180px;
-            height: 180px;
-            bottom: 10%;
-            right: 5%;
-            animation-delay: 2s;
-        }
-
-        .decoration-3 {
-            width: 100px;
-            height: 100px;
-            top: 50%;
-            left: 10%;
-            animation-delay: 4s;
-        }
-
         /* Feature Badge */
         .feature-badge {
             display: inline-flex;

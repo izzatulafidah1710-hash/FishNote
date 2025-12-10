@@ -313,7 +313,9 @@
         .delay-3 {
             animation-delay: 0.3s;
         }
+
     </style>
+
 </head>
 
 <body class="bg-gray-50">
@@ -858,11 +860,11 @@
                     <div class="flex items-center">
                         <div
                             class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold mr-4">
-                            BH
+                            AA
                         </div>
                         <div>
-                            <div class="font-bold text-gray-900">Budi Hartono</div>
-                            <div class="text-sm text-gray-500">Peternak Lele - Pekanbaru</div>
+                            <div class="font-bold text-gray-900">Aidil Ardiansyah</div>
+                            <div class="text-sm text-gray-500">Peternak Lele - Bengkalis</div>
                         </div>
                     </div>
                 </div>
@@ -901,11 +903,11 @@
                     <div class="flex items-center">
                         <div
                             class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white font-bold mr-4">
-                            SR
+                            UJ
                         </div>
                         <div>
-                            <div class="font-bold text-gray-900">Siti Rahmawati</div>
-                            <div class="text-sm text-gray-500">Peternak Nila - Kampar</div>
+                            <div class="font-bold text-gray-900">Ujang</div>
+                            <div class="text-sm text-gray-500">Peternak Nila - Bengkalis</div>
                         </div>
                     </div>
                 </div>
@@ -944,10 +946,10 @@
                     <div class="flex items-center">
                         <div
                             class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold mr-4">
-                            AP
+                            MM
                         </div>
                         <div>
-                            <div class="font-bold text-gray-900">Ahmad Pratama</div>
+                            <div class="font-bold text-gray-900">Mamat</div>
                             <div class="text-sm text-gray-500">Peternak Gurame - Bengkalis</div>
                         </div>
                     </div>
