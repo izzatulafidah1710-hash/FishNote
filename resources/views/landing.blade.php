@@ -176,7 +176,7 @@
         .hero-slider {
             position: relative;
             width: 100%;
-            height: 600px;
+            height: 700px;
             overflow: hidden;
         }
 
@@ -255,13 +255,13 @@
         /* Responsive untuk mobile */
         @media (max-width: 768px) {
             .hero-slider {
-                height: 500px;
+                height: 550px;
             }
         }
 
         @media (max-width: 640px) {
             .hero-slider {
-                height: 450px;
+                height: 500px;
             }
 
             .slider-dots {
@@ -277,7 +277,6 @@
                 width: 24px;
             }
         }
-
 
         /* Animasi saat scroll */
         @keyframes slideUp {
@@ -314,20 +313,102 @@
             animation-delay: 0.3s;
         }
 
+        /* Animasi untuk fitur cards */
+        .feature-card {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .feature-card.animate-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-card:nth-child(1) {
+            transition-delay: 0.2s;
+        }
+
+        .feature-card:nth-child(2) {
+            transition-delay: 0.4s;
+        }
+
+        .feature-card:nth-child(3) {
+            transition-delay: 0.6s;
+        }
+
+        .feature-card:nth-child(4) {
+            transition-delay: 0.8s;
+        }
+
+        /* Animasi untuk step cards */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(60px) scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .step-card {
+            opacity: 0;
+            transform: translateY(60px) scale(0.95);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .step-card.animate-visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .step-card:nth-child(1) {
+            transition-delay: 0.1s;
+        }
+
+        .step-card:nth-child(2) {
+            transition-delay: 0.3s;
+        }
+
+        .step-card:nth-child(3) {
+            transition-delay: 0.5s;
+        }
+
+        /* Animasi untuk badge number */
+        .step-badge {
+            transition: transform 0.3s ease;
+        }
+
+        .step-card:hover .step-badge {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Animasi untuk icon */
+        .step-icon-wrapper {
+            transition: transform 0.3s ease;
+        }
+
+        .step-card:hover .step-icon-wrapper {
+            transform: scale(1.1);
+        }
     </style>
+
 
 </head>
 
 <body class="bg-gray-50">
 
     <!-- NAVBAR -->
-    <nav class="bg-white shadow-md sticky top-0 z-50 animate-fadeIn">
+    <nav class="bg-white bg-opacity-70 backdrop-blur-lg shadow-sm fixed top-0 left-0 right-0 z-50 animate-fadeIn">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="flex justify-between items-center h-16">
+            <div class="flex items-center justify-between h-20">
                 <!-- Logo dengan Shadow Hover -->
                 <a href="{{ route('landing') }}" class="flex items-center space-x-3 animate-slideInLeft group">
-                    <img src="{{ asset('template/img/logofishnote.png') }}" alt="FishNote Logo"
-                        class="w-17 h-16 object-contain group-hover:scale-110 group-hover:drop-shadow-lg transition duration-300">
+                    <img src="{{ asset('template/img/logo1.png') }}" alt="FishNote Logo"
+                        class="w-20 h-20 object-contain group-hover:scale-110 group-hover:drop-shadow-lg transition duration-300">
                     <span
                         class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent group-hover:from-blue-700 group-hover:to-blue-900 transition duration-300">
                         Fishnote
@@ -335,39 +416,58 @@
                 </a>
 
                 <!-- Menu Desktop -->
-                <div class="hidden md:flex items-center space-x-8 animate-fadeIn delay-200">
-                    <a href="{{ route('landing') }}" class="text-blue-600 font-medium"
-                        class="text-gray-700 hover:text-blue-600 font-medium transition duration-300 hover:scale-110 inline-block">
-                        Beranda
+                <div class="hidden md:flex items-center space-x-12 animate-fadeIn delay-200">
+                    <a href="{{ route('landing') }}"
+                        class="flex items-center space-x-2 text-blue-700 font-semibold transition duration-300 hover:scale-105 hover:text-blue-900 group">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                            </path>
+                        </svg>
+                        <span>Beranda</span>
                     </a>
                     <a href="{{ route('promosi') }}"
-                        class="text-gray-700 hover:text-blue-600 font-medium transition duration-300 hover:scale-110 inline-block">
-                        Promosi
+                        class="flex items-center space-x-2 text-gray-700 hover:text-blue-700 font-medium transition duration-300 hover:scale-105 group">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+                            </path>
+                        </svg>
+                        <span>Promosi</span>
                     </a>
                     <a href="{{ route('about') }}"
-                        class="text-gray-700 hover:text-blue-600 font-medium transition duration-300 hover:scale-110 inline-block">
-                        Tentang Kami
+                        class="flex items-center space-x-2 text-gray-700 hover:text-blue-700 font-medium transition duration-300 hover:scale-105 group">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span>Tentang Kami</span>
                     </a>
                     <a href="{{ route('landing') }}#kontak"
-                        class="text-gray-700 hover:text-blue-600 font-medium transition duration-300 hover:scale-110 inline-block">
-                        Kontak
+                        class="flex items-center space-x-2 text-gray-700 hover:text-blue-700 font-medium transition duration-300 hover:scale-105 group">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                        <span>Kontak</span>
                     </a>
                 </div>
 
-                <!-- Tombol Login & Register -->
-                <div class="hidden md:flex items-center space-x-4 animate-slideInRight">
+                <!-- Tombol Login & Register - STYLE BARU KEREN -->
+                <div class="hidden md:flex items-center space-x-3 animate-slideInRight">
                     <a href="{{ route('login') }}"
-                        class="px-4 py-2 text-blue-600 font-medium hover:bg-blue-50 rounded-lg transition duration-300 hover:scale-105">
+                        class="px-6 py-2.5 text-blue-600 font-semibold hover:bg-blue-50 rounded-xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-blue-200">
                         Masuk
                     </a>
                     <a href="{{ route('register') }}"
-                        class="px-6 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition duration-300 hover:scale-105 shadow-md hover:shadow-lg">
-                        Daftar
+                        class="px-6 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                        Daftar Sekarang
                     </a>
                 </div>
 
                 <!-- Menu Mobile (Hamburger) -->
-                <button class="md:hidden" onclick="toggleMobileMenu()">
+                <button class="md:hidden ml-auto text-gray-700" onclick="toggleMobileMenu()">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M4 6h16M4 12h16M4 18h16"></path>
@@ -379,10 +479,14 @@
         <!-- Mobile Menu -->
         <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
             <div class="px-4 py-3 space-y-3">
-                <a href="#beranda" class="block text-gray-700 hover:text-blue-600 font-medium">Beranda</a>
-                <a href="#promosi" class="block text-gray-700 hover:text-blue-600 font-medium">Promosi</a>
-                <a href="#tentang" class="block text-gray-700 hover:text-blue-600 font-medium">Tentang Kami</a>
-                <a href="#kontak" class="block text-gray-700 hover:text-blue-600 font-medium">Kontak</a>
+                <a href="{{ route('landing') }}"
+                    class="block text-gray-700 hover:text-blue-600 font-medium">Beranda</a>
+                <a href="{{ route('promosi') }}"
+                    class="block text-gray-700 hover:text-blue-600 font-medium">Promosi</a>
+                <a href="{{ route('about') }}" class="block text-gray-700 hover:text-blue-600 font-medium">Tentang
+                    Kami</a>
+                <a href="{{ route('landing') }}#kontak"
+                    class="block text-gray-700 hover:text-blue-600 font-medium">Kontak</a>
                 <div class="flex flex-col space-y-2 pt-3 border-t">
                     <a href="{{ route('login') }}"
                         class="px-4 py-2 text-center text-blue-600 font-medium border border-blue-600 rounded-lg">Masuk</a>
@@ -617,8 +721,9 @@
 
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Fitur 1 -->
-                <div class="text-center p-6 rounded-xl hover:shadow-xl transition duration-300 animate-fadeInUp">
-                    <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div class="text-center p-6 rounded-xl hover:shadow-xl transition duration-300 feature-card">
+                    <div
+                        class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6 transition-transform duration-300 hover:scale-110">
                         <svg class="w-10 h-10 text-blue-600" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -631,9 +736,9 @@
                 </div>
 
                 <!-- Fitur 2 -->
-                <div
-                    class="text-center p-6 rounded-xl hover:shadow-xl transition duration-300 animate-fadeInUp delay-100">
-                    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div class="text-center p-6 rounded-xl hover:shadow-xl transition duration-300 feature-card">
+                    <div
+                        class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 transition-transform duration-300 hover:scale-110">
                         <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -646,9 +751,9 @@
                 </div>
 
                 <!-- Fitur 3 -->
-                <div
-                    class="text-center p-6 rounded-xl hover:shadow-xl transition duration-300 animate-fadeInUp delay-200">
-                    <div class="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div class="text-center p-6 rounded-xl hover:shadow-xl transition duration-300 feature-card">
+                    <div
+                        class="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6 transition-transform duration-300 hover:scale-110">
                         <svg class="w-10 h-10 text-yellow-600" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -660,9 +765,9 @@
                 </div>
 
                 <!-- Fitur 4 -->
-                <div
-                    class="text-center p-6 rounded-xl hover:shadow-xl transition duration-300 animate-fadeInUp delay-300">
-                    <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div class="text-center p-6 rounded-xl hover:shadow-xl transition duration-300 feature-card">
+                    <div
+                        class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6 transition-transform duration-300 hover:scale-110">
                         <svg class="w-10 h-10 text-purple-600" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -692,15 +797,16 @@
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Step 1 -->
                 <div
-                    class="relative p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 animate-fadeInUp">
-                    <div class="absolute -top-6 left-1/2 transform -translate-x-1/2">
+                    class="relative p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 step-card">
+                    <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 step-badge">
                         <div
                             class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold shadow-lg">
                             1
                         </div>
                     </div>
                     <div class="text-center mt-6">
-                        <div class="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <div
+                            class="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6 step-icon-wrapper">
                             <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -716,15 +822,16 @@
 
                 <!-- Step 2 -->
                 <div
-                    class="relative p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 animate-fadeInUp delay-100">
-                    <div class="absolute -top-6 left-1/2 transform -translate-x-1/2">
+                    class="relative p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 step-card">
+                    <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 step-badge">
                         <div
                             class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold shadow-lg">
                             2
                         </div>
                     </div>
                     <div class="text-center mt-6">
-                        <div class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <div
+                            class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 step-icon-wrapper">
                             <svg class="w-12 h-12 text-green-600" fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -740,8 +847,8 @@
 
                 <!-- Step 3 -->
                 <div
-                    class="relative p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 animate-fadeInUp delay-200">
-                    <div class="absolute -top-6 left-1/2 transform -translate-x-1/2">
+                    class="relative p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 step-card">
+                    <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 step-badge">
                         <div
                             class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold shadow-lg">
                             3
@@ -749,7 +856,7 @@
                     </div>
                     <div class="text-center mt-6">
                         <div
-                            class="w-24 h-24 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            class="w-24 h-24 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6 step-icon-wrapper">
                             <svg class="w-12 h-12 text-yellow-600" fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -1066,7 +1173,7 @@
                 <!-- Kolom 1 - Logo & Deskripsi -->
                 <div class="animate-fadeInUp">
                     <div class="flex items-center space-x-3 mb-6">
-                        <img src="{{ asset('template/img/logofishnote.png') }}" alt="FishNote Logo"
+                        <img src="{{ asset('template/img/logo1.png') }}" alt="FishNote Logo"
                             class="w-16 h-16 object-contain">
                         <span class="text-3xl font-bold text-white">
                             Fishnote
@@ -1279,6 +1386,60 @@
             content.classList.toggle('hidden');
             icon.classList.toggle('rotate-180');
         }
+    </script>
+
+    <script>
+        // Intersection Observer untuk animasi saat scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.2,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-visible');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe semua feature cards
+            const featureCards = document.querySelectorAll('.feature-card');
+            featureCards.forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+
+    <script>
+        // Intersection Observer untuk animasi saat scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.2,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-visible');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe semua feature cards
+            const featureCards = document.querySelectorAll('.feature-card');
+            featureCards.forEach(card => {
+                observer.observe(card);
+            });
+
+            // Observe semua step cards
+            const stepCards = document.querySelectorAll('.step-card');
+            stepCards.forEach(card => {
+                observer.observe(card);
+            });
+        });
     </script>
 
 </body>

@@ -2,7 +2,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboarduser">
                 <div class="sidebar-brand-icon">
-                    <img src="{{ asset('template/img/logofishnote.png') }}" width="80" class="img-fluid">
+                    <img src="{{ asset('template/img/logo1.png') }}" width="80" class="img-fluid">
                 </div>
                 <div class="sidebar-brand-text">FishNote</div>
             </a>

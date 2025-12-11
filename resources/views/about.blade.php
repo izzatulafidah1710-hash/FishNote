@@ -99,14 +99,14 @@
 
 <body class="bg-gray-50">
 
-    <!-- NAVBAR (sama seperti landing page) -->
-    <nav class="bg-white shadow-md sticky top-0 z-50 animate-fadeIn">
+    <!-- NAVBAR (tentang kami) -->
+    <nav class="bg-white bg-opacity-70 backdrop-blur-lg shadow-sm sticky top-0 z-50 animate-fadeIn">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="flex justify-between items-center h-16">
+            <div class="flex items-center justify-between h-20">
                 <!-- Logo dengan Shadow Hover -->
-                <a href="{{ route('landing') }}" class="flex items-center space-x-3 animate-slideInLeft group">
-                    <img src="{{ asset('template/img/logofishnote.png') }}" alt="FishNote Logo"
-                        class="w-17 h-16 object-contain group-hover:scale-110 group-hover:drop-shadow-lg transition duration-300">
+                <a href="{{ route('about') }}" class="flex items-center space-x-3 animate-slideInLeft group">
+                    <img src="{{ asset('template/img/logo1.png') }}" alt="FishNote Logo"
+                        class="w-20 h-20 object-contain group-hover:scale-110 group-hover:drop-shadow-lg transition duration-300">
                     <span
                         class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent group-hover:from-blue-700 group-hover:to-blue-900 transition duration-300">
                         Fishnote
@@ -114,30 +114,58 @@
                 </a>
 
                 <!-- Menu Desktop -->
-                <div class="hidden md:flex items-center space-x-8">
+                <div class="hidden md:flex items-center space-x-12 animate-fadeIn delay-200">
                     <a href="{{ route('landing') }}"
-                        class="text-gray-700 hover:text-blue-600 font-medium transition duration-300">Beranda</a>
+                        class="flex items-center space-x-2 text-gray-700 hover:text-blue-700 font-medium transition duration-300 hover:scale-105 group">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                            </path>
+                        </svg>
+                        <span>Beranda</span>
+                    </a>
                     <a href="{{ route('promosi') }}"
-                        class="text-gray-700 hover:text-blue-600 font-medium transition duration-300">Promosi</a>
-                    <a href="{{ route('about') }}" class="text-blue-600 font-medium">Tentang Kami</a>
-                    <a href="#kontak"
-                        class="text-gray-700 hover:text-blue-600 font-medium transition duration-300">Kontak</a>
+                        class="flex items-center space-x-2 text-gray-700 hover:text-blue-700 font-medium transition duration-300 hover:scale-105 group">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+                            </path>
+                        </svg>
+                        <span>Promosi</span>
+                    </a>
+                    <a href="{{ route('about') }}"
+                        class="flex items-center space-x-2 text-blue-700 font-semibold transition duration-300 hover:scale-105 hover:text-blue-900 group">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span>Tentang Kami</span>
+                    </a>
+                    <a href="{{ route('about') }}#kontak"
+                        class="flex items-center space-x-2 text-gray-700 hover:text-blue-700 font-medium transition duration-300 hover:scale-105 group">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                        <span>Kontak</span>
+                    </a>
                 </div>
 
-                <!-- Tombol Login & Register -->
-                <div class="hidden md:flex items-center space-x-4">
+                <!-- Tombol Login & Register - STYLE BARU KEREN -->
+                <div class="hidden md:flex items-center space-x-3 animate-slideInRight">
                     <a href="{{ route('login') }}"
-                        class="px-4 py-2 text-blue-600 font-medium hover:bg-blue-50 rounded-lg transition duration-300">
+                        class="px-6 py-2.5 text-blue-600 font-semibold hover:bg-blue-50 rounded-xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-blue-200">
                         Masuk
                     </a>
                     <a href="{{ route('register') }}"
-                        class="px-6 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition duration-300 shadow-md">
-                        Daftar
+                        class="px-6 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                        Daftar Sekarang
                     </a>
                 </div>
 
                 <!-- Menu Mobile (Hamburger) -->
-                <button class="md:hidden" onclick="toggleMobileMenu()">
+                <button class="md:hidden ml-auto text-gray-700" onclick="toggleMobileMenu()">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M4 6h16M4 12h16M4 18h16"></path>
@@ -164,11 +192,26 @@
         </div>
     </nav>
 
-    <!-- HERO ABOUT -->
-    <section class="bg-gradient-to-br from-blue-600 to-blue-800 text-white py-20">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4 animate-fadeInUp">Tentang FishNote</h1>
-            <p class="text-xl text-blue-100 max-w-3xl mx-auto animate-fadeInUp delay-100">
+    <!-- HEADER SECTION dengan Background Image + Fallback -->
+    <section class="relative text-white overflow-hidden"
+        style="margin-top: -80px; padding-top: 120px; min-height: 430px;">
+        <!-- Background Image -->
+        <div class="absolute inset-0 bg-cover bg-center"
+            style="background-image: url('{{ asset('template/img/bg3.jpg') }}');">
+            <!-- Overlay Biru Transparan -->
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-600/90 via-blue-700/85 to-indigo-900/80"></div>
+        </div>
+
+        <!-- Decorative Circles -->
+        <div class="absolute top-10 left-10 w-64 h-64 bg-blue-400/20 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-10 right-10 w-80 h-80 bg-indigo-500/20 rounded-full blur-3xl"></div>
+
+        <!-- Content -->
+        <div class="relative z-10 max-w-7xl mx-auto px-4 text-center py-12">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 animate-fadeInUp">
+                Tentang FishNote
+            </h1>
+            <p class="text-xl text-blue-100 max-w-3xl mx-auto animate-fadeInUp delay-100 leading-relaxed">
                 Platform digital terdepan untuk menghubungkan peternak ikan dengan pembeli di seluruh Indonesia
             </p>
         </div>
@@ -282,7 +325,8 @@
                         <h3 class="text-xl font-bold text-gray-900 mb-1">Aidil Ardiansyah</h3>
                         <p class="text-blue-600 font-medium mb-3">Back-End Developer </p>
                         <p class="text-gray-600 text-sm mb-4">
-                            Memimpin visi dan strategi project untuk mengembangkan pencatatan hasil budidaya perikanan digital
+                            Memimpin visi dan strategi project untuk mengembangkan pencatatan hasil budidaya perikanan
+                            digital
                             Indonesia
                         </p>
                         <div class="flex justify-center space-x-3">
@@ -398,7 +442,7 @@
                 <!-- Kolom 1 - Logo & Deskripsi -->
                 <div class="animate-fadeInUp">
                     <div class="flex items-center space-x-3 mb-6">
-                        <img src="{{ asset('template/img/logofishnote.png') }}" alt="FishNote Logo"
+                        <img src="{{ asset('template/img/logo1.png') }}" alt="FishNote Logo"
                             class="w-16 h-16 object-contain">
                         <span class="text-3xl font-bold text-white">
                             Fishnote

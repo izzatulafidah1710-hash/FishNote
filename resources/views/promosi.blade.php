@@ -12,6 +12,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -39,46 +40,76 @@
 
 <body class="bg-gray-50">
 
-    <!-- NAVBAR -->
-    <nav class="bg-white shadow-md sticky top-0 z-50">
+    <!-- NAVBAR (promosi)-->
+    <nav class="bg-white bg-opacity-70 backdrop-blur-lg shadow-sm sticky top-0 z-50 animate-fadeIn">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="flex justify-between items-center h-16">
-                <!-- Logo -->
-                <a href="{{ route('landing') }}" class="flex items-center space-x-3 group">
-                    <img src="{{ asset('template/img/logofishnote.png') }}" alt="FishNote Logo"
-                        class="w-17 h-16 object-contain group-hover:scale-110 transition duration-300">
-                    <span class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo dengan Shadow Hover -->
+                <a href="{{ route('landing') }}" class="flex items-center space-x-3 animate-slideInLeft group">
+                    <img src="{{ asset('template/img/logo1.png') }}" alt="FishNote Logo"
+                        class="w-20 h-20 object-contain group-hover:scale-110 group-hover:drop-shadow-lg transition duration-300">
+                    <span
+                        class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent group-hover:from-blue-700 group-hover:to-blue-900 transition duration-300">
                         Fishnote
                     </span>
                 </a>
 
                 <!-- Menu Desktop -->
-                <div class="hidden md:flex items-center space-x-8">
+                <div class="hidden md:flex items-center space-x-12 animate-fadeIn delay-200">
                     <a href="{{ route('landing') }}"
-                        class="text-gray-700 hover:text-blue-600 font-medium transition duration-300">Beranda</a>
-                    <a href="{{ route('promosi') }}" class="text-blue-600 font-medium"
-                        class="text-gray-700 hover:text-blue-600 font-medium transition duration-300">Promosi</a>
-                    <a href="{{ route('about') }}">Tentang Kami</a>
+                        class="flex items-center space-x-2 text-gray-700 hover:text-blue-700 font-medium transition duration-300 hover:scale-105 group">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                            </path>
+                        </svg>
+                        <span>Beranda</span>
+                    </a>
+                    <a href="{{ route('promosi') }}"
+                        class="flex items-center space-x-2 text-blue-700 font-semibold transition duration-300 hover:scale-105 hover:text-blue-900 group">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+                            </path>
+                        </svg>
+                        <span>Promosi</span>
+                    </a>
+                    <a href="{{ route('about') }}"
+                        class="flex items-center space-x-2 text-gray-700 hover:text-blue-700 font-medium transition duration-300 hover:scale-105 group">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span>Tentang Kami</span>
+                    </a>
                     <a href="{{ route('promosi') }}#kontak"
-                        class="text-gray-700 hover:text-blue-600 font-medium transition duration-300 hover:scale-110 inline-block">
-                        Kontak
+                        class="flex items-center space-x-2 text-gray-700 hover:text-blue-700 font-medium transition duration-300 hover:scale-105 group">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                        <span>Kontak</span>
                     </a>
                 </div>
 
-                <!-- Tombol Login & Register -->
-                <div class="hidden md:flex items-center space-x-4">
-                    <a href="{{ route('login') }}" class="px-4 py-2 text-blue-600 font-medium hover:bg-blue-50 rounded-lg transition duration-300">
+                <!-- Tombol Login & Register - STYLE BARU KEREN -->
+                <div class="hidden md:flex items-center space-x-3 animate-slideInRight">
+                    <a href="{{ route('login') }}"
+                        class="px-6 py-2.5 text-blue-600 font-semibold hover:bg-blue-50 rounded-xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-blue-200">
                         Masuk
                     </a>
-                    <a href="{{ route('register') }}" class="px-6 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition duration-300 shadow-md">
-                        Daftar
+                    <a href="{{ route('register') }}"
+                        class="px-6 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                        Daftar Sekarang
                     </a>
                 </div>
 
                 <!-- Menu Mobile (Hamburger) -->
-                <button class="md:hidden" onclick="toggleMobileMenu()">
+                <button class="md:hidden ml-auto text-gray-700" onclick="toggleMobileMenu()">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
             </div>
@@ -89,37 +120,58 @@
             <div class="px-4 py-3 space-y-3">
                 <a href="{{ route('landing') }}" class="block text-gray-700 hover:text-blue-600 font-medium">Beranda</a>
                 <a href="{{ route('promosi') }}" class="block text-blue-600 font-medium">Promosi</a>
-                <a href="{{ route('promosi') }}#kontak" class="block text-gray-700 hover:text-blue-600 font-medium">Kontak</a>
-                <a href="{{ route('about') }}" class="block text-gray-700 hover:text-blue-600 font-medium">Tentang Kami</a>
+                <a href="{{ route('promosi') }}#kontak"
+                    class="block text-gray-700 hover:text-blue-600 font-medium">Kontak</a>
+                <a href="{{ route('about') }}" class="block text-gray-700 hover:text-blue-600 font-medium">Tentang
+                    Kami</a>
                 <div class="flex flex-col space-y-2 pt-3 border-t">
-                    <a href="{{ route('login') }}" class="px-4 py-2 text-center text-blue-600 font-medium border border-blue-600 rounded-lg">Masuk</a>
-                    <a href="{{ route('register') }}" class="px-4 py-2 text-center bg-blue-600 text-white font-medium rounded-lg">Daftar</a>
+                    <a href="{{ route('login') }}"
+                        class="px-4 py-2 text-center text-blue-600 font-medium border border-blue-600 rounded-lg">Masuk</a>
+                    <a href="{{ route('register') }}"
+                        class="px-4 py-2 text-center bg-blue-600 text-white font-medium rounded-lg">Daftar</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- HEADER SECTION -->
-    <section class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
-        <div class="max-w-7xl mx-auto px-4 text-center">
+    <!-- HEADER SECTION dengan Background Image -->
+    <section class="relative text-white overflow-hidden"
+        style="margin-top: -80px; padding-top: 120px; min-height: 430px;">
+        <!-- Background Image -->
+        <div class="absolute inset-0 bg-cover bg-center"
+            style="background-image: url('{{ asset('template/img/bg3.jpg') }}');">
+            <!-- Overlay Biru Transparan dengan Gradient -->
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-600/90 via-blue-700/85 to-indigo-900/80"></div>
+        </div>
+
+        <!-- Decorative Elements -->
+        <div class="absolute top-10 left-10 w-64 h-64 bg-blue-400/20 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-10 right-10 w-80 h-80 bg-indigo-500/20 rounded-full blur-3xl"></div>
+
+        <!-- Content -->
+        <div class="relative z-10 max-w-7xl mx-auto px-4 text-center py-12">
             <h1 class="text-4xl md:text-5xl font-bold mb-4 animate-fadeInUp">
                 Semua Promosi Perikanan
             </h1>
             <p class="text-xl text-blue-100 mb-8 animate-fadeInUp">
                 Temukan berbagai penawaran terbaik dari peternak ikan di seluruh Indonesia
             </p>
+
             <!-- Search Bar -->
             <div class="max-w-2xl mx-auto animate-fadeInUp">
                 <form action="{{ route('promosi') }}" method="GET" class="flex gap-3">
                     <div class="flex-1 relative">
-                        <svg class="absolute left-4 top-4 text-gray-400 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        <svg class="absolute left-4 top-4 text-gray-400 w-5 h-5" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                         </svg>
-                        <input type="text" name="q" placeholder="Cari jenis ikan, lokasi, atau peternak..." 
-                            class="w-full pl-12 pr-4 py-3 rounded-xl text-gray-900 focus:ring-2 focus:ring-white" 
+                        <input type="text" name="q" placeholder="Cari jenis ikan, lokasi, atau peternak..."
+                            class="w-full pl-12 pr-4 py-3.5 rounded-xl text-gray-900 focus:ring-2 focus:ring-white border-2 border-white/30 bg-white/95 backdrop-blur-sm"
                             value="{{ request('q') }}">
                     </div>
-                    <button type="submit" class="px-8 py-3 bg-white text-blue-600 font-bold rounded-xl hover:bg-gray-100 transition duration-300">
+                    <button type="submit"
+                        class="px-8 py-3.5 bg-white text-blue-600 font-bold rounded-xl hover:bg-blue-50 transition duration-300 shadow-lg">
                         Cari
                     </button>
                 </form>
@@ -131,35 +183,35 @@
     <section class="bg-white border-b py-6">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex flex-wrap items-center justify-between gap-4">
-                
+
                 <!-- Filter Kategori -->
                 <div class="flex flex-wrap gap-2">
                     <button class="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium">
                         Semua
                     </button>
-                
-                <!-- Sort -->
-                <div class="flex items-center gap-2">
-                    <span class="text-gray-600 text-sm font-medium">Urutkan:</span>
-                    <select class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-                        <option>Terbaru</option>
-                        <option>Harga Terendah</option>
-                        <option>Harga Tertinggi</option>
-                        <option>Stok Terbanyak</option>
-                    </select>
+
+                    <!-- Sort -->
+                    <div class="flex items-center gap-2">
+                        <span class="text-gray-600 text-sm font-medium">Urutkan:</span>
+                        <select class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                            <option>Terbaru</option>
+                            <option>Harga Terendah</option>
+                            <option>Harga Tertinggi</option>
+                            <option>Stok Terbanyak</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Result Count -->
+                <div class="mt-4">
+                    <p class="text-gray-600">
+                        Menampilkan <span class="font-bold text-gray-900">{{ $promotions->count() }}</span> promosi
+                        @if (request('q'))
+                            untuk "<span class="font-bold text-blue-600">{{ request('q') }}</span>"
+                        @endif
+                    </p>
                 </div>
             </div>
-            
-            <!-- Result Count -->
-            <div class="mt-4">
-                <p class="text-gray-600">
-                    Menampilkan <span class="font-bold text-gray-900">{{ $promotions->count() }}</span> promosi
-                    @if(request('q'))
-                        untuk "<span class="font-bold text-blue-600">{{ request('q') }}</span>"
-                    @endif
-                </p>
-            </div>
-        </div>
     </section>
 
     <!-- GRID PROMOSI -->
@@ -174,49 +226,56 @@
                                 <img src="{{ asset('storage/' . $promo->gambar) }}" alt="{{ $promo->jenis_ikan }}"
                                     class="w-full h-48 object-cover transition duration-500 group-hover:scale-110">
                             @else
-                                <img src=""
-                                    alt="Default fish"
+                                <img src="" alt="Default fish"
                                     class="w-full h-48 object-cover transition duration-500 group-hover:scale-110">
                             @endif
-                            
-                            <div class="absolute inset-0 bg-blue-600 bg-opacity-0 group-hover:bg-opacity-20 transition duration-300"></div>
-                            
-                            <div class="absolute top-3 right-3 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+
+                            <div
+                                class="absolute inset-0 bg-blue-600 bg-opacity-0 group-hover:bg-opacity-20 transition duration-300">
+                            </div>
+
+                            <div
+                                class="absolute top-3 right-3 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
                                 Tersedia
                             </div>
                         </div>
-                        
+
                         <div class="p-4">
-                            <h3 class="text-lg font-bold text-gray-900 mb-2 hover:text-blue-600 transition duration-300">
+                            <h3
+                                class="text-lg font-bold text-gray-900 mb-2 hover:text-blue-600 transition duration-300">
                                 {{ $promo->jenis_ikan }}
                             </h3>
                             <p class="text-gray-600 text-sm mb-3">{{ Str::limit($promo->deskripsi, 50) }}</p>
-                            
+
                             <!-- Lokasi -->
                             <div class="flex items-center text-gray-500 text-sm mb-3">
-                                <svg class="w-4 h-4 mr-1 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg class="w-4 h-4 mr-1 text-blue-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                    </path>
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                 </svg>
                                 <span>{{ $promo->lokasi ?? 'Riau' }}</span>
                             </div>
-                            
+
                             <!-- Harga & Stok -->
                             <div class="flex items-center justify-between mb-4">
                                 <div>
                                     <p class="text-xs text-gray-500">Harga</p>
-                                    <p class="text-lg font-bold text-blue-600">Rp {{ number_format($promo->harga, 0, ',', '.') }}/kg</p>
+                                    <p class="text-lg font-bold text-blue-600">Rp
+                                        {{ number_format($promo->harga, 0, ',', '.') }}/kg</p>
                                 </div>
                                 <div class="text-right">
                                     <p class="text-xs text-gray-500">Stok</p>
                                     <p class="font-bold text-gray-900">{{ $promo->stok }} kg</p>
                                 </div>
                             </div>
-                            
+
                             <!-- Tombol -->
-                            <button class="w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition duration-300 shadow-md hover:shadow-lg">
+                            <button
+                                class="w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition duration-300 shadow-md hover:shadow-lg">
                                 Lihat Detail
                             </button>
                         </div>
@@ -224,13 +283,16 @@
                 @empty
                     <!-- Tidak Ada Promosi -->
                     <div class="col-span-full text-center py-16">
-                        <svg class="w-24 h-24 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-24 h-24 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                            </path>
                         </svg>
                         <h3 class="text-2xl font-bold text-gray-700 mb-2">Promosi Tidak Ditemukan</h3>
                         <p class="text-gray-500 mb-6">Coba kata kunci lain atau lihat semua promosi</p>
-                        <a href="{{ route('promosi') }}" class="inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition">
+                        <a href="{{ route('promosi') }}"
+                            class="inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition">
                             Lihat Semua Promosi
                         </a>
                     </div>
@@ -238,10 +300,10 @@
             </div>
 
             <!-- Pagination -->
-            @if($promotions->count() > 0)
-            <div class="mt-12">
-                {{ $promotions->links() }}
-            </div>
+            @if ($promotions->count() > 0)
+                <div class="mt-12">
+                    {{ $promotions->links() }}
+                </div>
             @endif
         </div>
     </section>
@@ -254,7 +316,7 @@
                 <!-- Kolom 1 - Logo & Deskripsi -->
                 <div class="animate-fadeInUp">
                     <div class="flex items-center space-x-3 mb-6">
-                        <img src="{{ asset('template/img/logofishnote.png') }}" alt="FishNote Logo"
+                        <img src="{{ asset('template/img/logo1.png') }}" alt="FishNote Logo"
                             class="w-16 h-16 object-contain">
                         <span class="text-3xl font-bold text-white">
                             Fishnote
@@ -412,4 +474,5 @@
     </script>
 
 </body>
+
 </html>
