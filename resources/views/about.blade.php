@@ -222,7 +222,7 @@
         <div class="max-w-7xl mx-auto px-4">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div class="animate-slideInLeft">
-                    <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600" alt="About FishNote"
+                    <img src="{{ asset('template/img/logo1.png') }}" alt="About FishNote"
                         class="rounded-xl shadow-2xl">
                 </div>
                 <div class="animate-slideInRight">

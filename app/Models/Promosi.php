@@ -14,6 +14,7 @@ class Promosi extends Model
 
     protected $fillable = [
         'user_id',
+        'resident_id', 
         'judul_promosi',
         'jenis_ikan',
         'deskripsi',
@@ -37,13 +38,26 @@ class Promosi extends Model
         'views' => 'integer',
     ];
 
-    // Relasi ke User
+    /**
+     * Relasi ke User
+     */
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    // Accessor untuk status badge
+    /**
+     * Relasi ke Resident (Peternak)
+     * TAMBAHKAN INI - PENTING!
+     */
+    public function resident()
+    {
+        return $this->belongsTo(Resident::class, 'resident_id');
+    }
+
+    /**
+     * Accessor untuk status badge
+     */
     public function getStatusBadgeAttribute()
     {
         $badges = [
@@ -55,7 +69,9 @@ class Promosi extends Model
         return $badges[$this->status] ?? 'secondary';
     }
 
-    // Cek apakah promosi masih aktif berdasarkan tanggal
+    /**
+     * Cek apakah promosi masih aktif berdasarkan tanggal
+     */
     public function getIsActiveAttribute()
     {
         $now = Carbon::now();
@@ -65,7 +81,9 @@ class Promosi extends Model
             && $this->stok_tersedia > 0;
     }
 
-    // Hitung sisa hari promosi
+    /**
+     * Hitung sisa hari promosi
+     */
     public function getSisaHariAttribute()
     {
         $now = Carbon::now();
@@ -75,7 +93,9 @@ class Promosi extends Model
         return $now->diffInDays($this->tanggal_berakhir);
     }
 
-    // Scope untuk promosi aktif
+    /**
+     * Scope untuk promosi aktif
+     */
     public function scopeActive($query)
     {
         return $query->where('status', 'Aktif')
@@ -84,15 +104,27 @@ class Promosi extends Model
                     ->where('stok_tersedia', '>', 0);
     }
 
-    // Scope untuk filter berdasarkan jenis ikan
+    /**
+     * Scope untuk filter berdasarkan jenis ikan
+     */
     public function scopeByJenisIkan($query, $jenisIkan)
     {
         return $query->where('jenis_ikan', $jenisIkan);
     }
 
-    // Increment views
+    /**
+     * Increment views
+     */
     public function incrementViews()
     {
         $this->increment('views');
+    }
+
+    /**
+     * Accessor untuk format harga
+     */
+    public function getFormattedHargaAttribute()
+    {
+        return 'Rp ' . number_format($this->harga, 0, ',', '.');
     }
 }

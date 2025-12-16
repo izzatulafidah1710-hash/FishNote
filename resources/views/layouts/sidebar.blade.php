@@ -25,16 +25,17 @@
                 Manajemen Pengguna
             </div>
 
-            <!-- Nav Item - data peternak -->
-            <li class="nav-item {{ request()->is('datapeternak') ? 'active' : '' }}">
-                <a class="nav-link" href="/datapeternak">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Data Peternak</span></a>
+            <!-- Nav Item - Data Peternak -->
+            <li class="nav-item {{ request()->is('admin/datapeternak*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.datapeternak.index') }}">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Data Peternak</span>
+                </a>
             </li>
 
             <!-- Nav Item - data promosi -->
-            <li class="nav-item {{ request()->is('datapromosi*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('datapromosi.index') }}">
+            <li class="nav-item {{ request()->is('admin/datapromosi*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.promotions.index') }}">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Data Promosi</span>
                 </a>
@@ -50,9 +51,9 @@
 
 
             <!-- Nav Item - aktivitas peternak -->
-            <li class="nav-item {{ request()->is('aktivitas') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('aktivitas.index') }}">
-                    <i class="fas fa-fw fa-search"></i>
+            <li class="nav-item {{ request()->is('admin/aktivitas*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.aktivitas.index') }}">
+                    <i class="fas fa-fw fa-chart-line"></i>
                     <span>Aktivitas</span></a>
             </li>
 

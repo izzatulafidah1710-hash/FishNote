@@ -139,7 +139,7 @@
         style="margin-top: -80px; padding-top: 120px; min-height: 430px;">
         <!-- Background Image -->
         <div class="absolute inset-0 bg-cover bg-center"
-            style="background-image: url('{{ asset('template/img/bg3.jpg') }}');">
+            style="background-image: url('{{ asset('template/img/bg4.png') }}');">
             <!-- Overlay Biru Transparan dengan Gradient -->
             <div class="absolute inset-0 bg-gradient-to-br from-blue-600/90 via-blue-700/85 to-indigo-900/80"></div>
         </div>
@@ -222,12 +222,19 @@
                     <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover animate-fadeInUp opacity-0"
                         style="animation-delay: {{ ($index % 12) * 0.05 }}s; animation-fill-mode: forwards;">
                         <div class="relative overflow-hidden group">
-                            @if ($promo->gambar)
-                                <img src="{{ asset('storage/' . $promo->gambar) }}" alt="{{ $promo->jenis_ikan }}"
+                            @if ($promo->foto)
+                                <img src="{{ asset('storage/' . $promo->foto) }}" alt="{{ $promo->jenis_ikan }}"
                                     class="w-full h-48 object-cover transition duration-500 group-hover:scale-110">
                             @else
-                                <img src="" alt="Default fish"
-                                    class="w-full h-48 object-cover transition duration-500 group-hover:scale-110">
+                                <div
+                                    class="w-full h-48 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                                    <svg class="w-16 h-16 text-white opacity-50" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                        </path>
+                                    </svg>
+                                </div>
                             @endif
 
                             <div
@@ -269,15 +276,15 @@
                                 </div>
                                 <div class="text-right">
                                     <p class="text-xs text-gray-500">Stok</p>
-                                    <p class="font-bold text-gray-900">{{ $promo->stok }} kg</p>
+                                    <p class="font-bold text-gray-900">{{ $promo->stok_tersedia }} kg</p>
                                 </div>
                             </div>
 
                             <!-- Tombol -->
-                            <button
-                                class="w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition duration-300 shadow-md hover:shadow-lg">
+                            <a href="{{ route('promosi.show', $promo->id) }}"
+                                class="block w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition duration-300 shadow-md hover:shadow-lg text-center">
                                 Lihat Detail
-                            </button>
+                            </a>
                         </div>
                     </div>
                 @empty

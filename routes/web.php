@@ -16,6 +16,7 @@ use App\Http\Controllers\PromosiPublicController;
 use App\Http\Controllers\User\RiwayatController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\User\ProfileController as UserProfile;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 
@@ -46,8 +47,8 @@ Route::get('/promosi/{id}', [PromosiPublicController::class, 'show'])->name('pro
 //     ->name('promotions.index');
 
 // // Halaman detail promosi
- Route::get('/promosi/{id}', [PromotionController::class, 'show'])
-     ->name('promotions.show');
+// Route::get('/promosi/{id}', [PromotionController::class, 'show'])
+//     ->name('promotions.show');
 
 Route::get('/dashboardadmin', function (){
     return view('admin.dashboardadmin');
@@ -67,34 +68,30 @@ Route::get('/user', function () {
 })->name('user.dashboarduser');
 
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboardadmin', [AdminDashboardController::class, 'index'])->name('dashboardadmin');
 // data peternak-admin
-Route::get('/datapeternak', [ResidentController::class, 'index']);
-Route::get('/datapeternak/create', [ResidentController::class, 'create']);
-Route::get('/datapeternak/{id}', [ResidentController::class, 'edit']);
-Route::post('/datapeternak', [ResidentController::class, 'store']);
-Route::post('/datapeternak/{id}', [ResidentController::class, 'update']);
-Route::delete('/datapeternak/{id}', [ResidentController::class, 'delete']);
+Route::get('/datapeternak', [ResidentController::class, 'index'])->name('datapeternak.index');
+    Route::get('/datapeternak/create', [ResidentController::class, 'create'])->name('datapeternak.create');
+    Route::post('/datapeternak', [ResidentController::class, 'store'])->name('datapeternak.store');
+    Route::get('/datapeternak/{id}/edit', [ResidentController::class, 'edit'])->name('datapeternak.edit');
+    Route::put('/datapeternak/{id}', [ResidentController::class, 'update'])->name('datapeternak.update');
+    Route::delete('/datapeternak/{id}', [ResidentController::class, 'delete'])->name('datapeternak.delete');
 });
 
 // data promosi-admin
 Route::resource('datapromosi', PromotionController::class);
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
-
     Route::get('/promosi', [PromotionController::class, 'index'])
         ->name('admin.promotions.index');
-
     Route::get('/promosi/create', [PromotionController::class, 'create'])
         ->name('admin.promotions.create');
-
     Route::post('/promosi', [PromotionController::class, 'store'])
         ->name('admin.promotions.store');
-
     Route::get('/promosi/{id}/edit', [PromotionController::class, 'edit'])
         ->name('admin.promotions.edit');
-
     Route::put('/promosi/{id}', [PromotionController::class, 'update'])
         ->name('admin.promotions.update');
-
     Route::delete('/promosi/{id}', [PromotionController::class, 'destroy'])
         ->name('admin.promotions.destroy');
 });
@@ -119,9 +116,9 @@ Route::delete('/infoakunpeternak/{id}', [InfoAkunController::class, 'destroy'])
     ->name('infoakun.destroy');
 
 // aktivitas akun peternak
-Route::get('/aktivitas', [PeternakActivityController::class, 'index'])->name('aktivitas.index');
-Route::post('/aktivitas', [PeternakActivityController::class, 'store'])->name('aktivitas.store');
-Route::delete('/aktivitas/{id}', [PeternakActivityController::class, 'destroy'])->name('aktivitas.delete');
+Route::get('/aktivitas', [PeternakActivityController::class, 'index'])->name('admin.aktivitas.index');
+Route::post('/aktivitas', [PeternakActivityController::class, 'store'])->name('admin.aktivitas.store');
+Route::delete('/aktivitas/{id}', [PeternakActivityController::class, 'destroy'])->name('admin.aktivitas.delete');
 
 // fitur-user
 Route::prefix('user')->name('user.')->group(function () {
@@ -177,13 +174,24 @@ Route::prefix('user')->name('user.')->middleware(['auth', 'peternak'])->group(fu
 
 Route::prefix('user')->name('user.')->middleware(['auth', 'peternak'])->group(function () {
     
-    // Profile
-    Route::get('/profile', [UserProfile::class, 'index'])->name('profile');
-    Route::get('/profile/edit', [UserProfile::class, 'edit'])->name('profile.edit');
-    Route::put('/profile', [UserProfile::class, 'update'])->name('profile.update');
-    Route::put('/profile/password', [UserProfile::class, 'updatePassword'])->name('profile.password');
+// Profile
+Route::get('/profile', [UserProfile::class, 'index'])->name('profile');
+Route::get('/profile/edit', [UserProfile::class, 'edit'])->name('profile.edit');
+Route::put('/profile', [UserProfile::class, 'update'])->name('profile.update');
+Route::put('/profile/password', [UserProfile::class, 'updatePassword'])->name('profile.password');
 });
 
 // landing
 Route::get('/', [LandingController::class, 'index'])->name('landing');
 Route::get('/search', [PromosiPublicController::class, 'search'])->name('search');
+
+// foto promosi
+Route::get('/file/{fotoPath}', function ($fotoPath = null) {
+    $path = urldecode($fotoPath);
+
+    if (! Storage::disk('public')->exists($fotoPath)) {
+        abort(404);
+    }
+    return response()->file(Storage::disk('public')->path('promosi'));
+
+})->where('path', '.*'); 

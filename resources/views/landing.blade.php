@@ -394,6 +394,230 @@
         .step-card:hover .step-icon-wrapper {
             transform: scale(1.1);
         }
+
+        /* Animasi Parallax untuk Hero */
+        @keyframes parallaxFloat {
+
+            0%,
+            100% {
+                transform: translateY(0px) scale(1);
+            }
+
+            50% {
+                transform: translateY(-30px) scale(1.05);
+            }
+        }
+
+        /* Animasi Glow Effect */
+        @keyframes glow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 0 40px rgba(59, 130, 246, 0.8);
+            }
+        }
+
+        /* Animasi Wave untuk background */
+        @keyframes wave {
+            0% {
+                transform: translateX(0) translateZ(0) scaleY(1);
+            }
+
+            50% {
+                transform: translateX(-25%) translateZ(0) scaleY(0.55);
+            }
+
+            100% {
+                transform: translateX(-50%) translateZ(0) scaleY(1);
+            }
+        }
+
+        /* Card 3D Hover Effect */
+        .card-3d {
+            perspective: 1000px;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+        }
+
+        .card-3d:hover {
+            transform: translateY(-15px) rotateX(5deg);
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.25),
+                0 0 0 1px rgba(255, 255, 255, 0.08),
+                0 0 60px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Magnetic Button Effect */
+        .btn-magnetic {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+        }
+
+        .btn-magnetic::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-magnetic:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-magnetic:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Shimmer Loading Effect */
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+
+        .shimmer {
+            background: linear-gradient(90deg,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0.3) 50%,
+                    rgba(255, 255, 255, 0) 100%);
+            background-size: 1000px 100%;
+            animation: shimmer 2s infinite;
+        }
+
+        /* Pulse Animation untuk Badge */
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+            }
+
+            50% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+            }
+
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+            }
+        }
+
+        .pulse-badge {
+            animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+        }
+
+        /* Text Gradient Animation */
+        @keyframes textGradient {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .text-gradient-animated {
+            background: linear-gradient(90deg, #2563eb, #3b82f6, #60a5fa, #3b82f6, #2563eb);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textGradient 3s ease infinite;
+        }
+
+        /* Floating Elements */
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .float-animation:nth-child(2) {
+            animation-delay: 1s;
+        }
+
+        .float-animation:nth-child(3) {
+            animation-delay: 2s;
+        }
+
+        /* Reveal Animation */
+        @keyframes reveal {
+            from {
+                opacity: 0;
+                transform: translateY(100px) scale(0.9);
+                filter: blur(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        .reveal-on-scroll {
+            opacity: 0;
+            animation: reveal 1s ease-out forwards;
+        }
+
+        /* Background Pattern Animation */
+        .animated-bg {
+            background:
+                linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+                linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: movePattern 20s linear infinite;
+        }
+
+        @keyframes movePattern {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: 50px 50px;
+            }
+        }
+
+        /* Typing Effect */
+        @keyframes typing {
+            from {
+                width: 0
+            }
+
+            to {
+                width: 100%
+            }
+        }
+
+        @keyframes blink {
+            50% {
+                border-color: transparent
+            }
+        }
+
+        .typing-effect {
+            overflow: hidden;
+            border-right: 3px solid #2563eb;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink 0.75s step-end infinite;
+        }
     </style>
 
 
@@ -609,90 +833,152 @@
             </div>
 
             <!-- GRID PROMOSI DARI DATABASE -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 @forelse($promotions as $index => $promo)
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover animate-fadeInUp opacity-0"
-                        style="animation-delay: {{ $index * 0.1 }}s; animation-fill-mode: forwards;">
-                        <div class="relative overflow-hidden group">
-                            <!-- Gambar Promosi -->
-                            @if ($promo->gambar)
-                                <img src="{{ asset('storage/' . $promo->gambar) }}" alt="{{ $promo->jenis_ikan }}"
-                                    class="w-full h-48 object-cover transition duration-500 group-hover:scale-110">
+                    <div class="group relative bg-white rounded-2xl overflow-hidden card-3d opacity-0 reveal-on-scroll"
+                        style="animation-delay: {{ $index * 0.15 }}s;">
+
+                        <!-- Shimmer Effect Overlay -->
+                        <div
+                            class="absolute inset-0 shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none">
+                        </div>
+
+                        <!-- Image Container dengan Parallax -->
+                        <div class="relative overflow-hidden h-56">
+                            @if ($promo->foto)
+                                <img src="{{ asset('storage/' . $promo->foto) }}" alt="{{ $promo->jenis_ikan }}"
+                                    class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:rotate-2">
                             @else
-                                <img src="" alt="Default fish"
-                                    class="w-full h-48 object-cover transition duration-500 group-hover:scale-110">
+                                <div
+                                    class="w-full h-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                                    <svg class="w-20 h-20 text-white opacity-50" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                        </path>
+                                    </svg>
+                                </div>
                             @endif
 
-                            <!-- Overlay saat hover -->
+                            <!-- Gradient Overlay -->
                             <div
-                                class="absolute inset-0 bg-blue-600 bg-opacity-0 group-hover:bg-opacity-20 transition duration-300">
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                             </div>
 
+                            <!-- Badge Tersedia dengan Pulse -->
+                            <div class="absolute top-4 right-4 pulse-badge">
+                                <div
+                                    class="bg-gradient-to-r from-green-400 to-emerald-500 text-white px-4 py-1.5 rounded-full text-sm font-bold shadow-lg flex items-center space-x-1">
+                                    <span class="w-2 h-2 bg-white rounded-full animate-ping"></span>
+                                    <span>Tersedia</span>
+                                </div>
+                            </div>
+
+                            <!-- Quick View Button - Muncul saat hover -->
                             <div
-                                class="absolute top-3 right-3 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg transform group-hover:scale-110 transition duration-300">
-                                Tersedia
+                                class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                                <a href="{{ route('promosi.show', $promo->id) }}"
+                                    class="bg-white text-blue-600 px-6 py-2 rounded-full font-semibold shadow-xl hover:shadow-2xl transform hover:scale-110 transition-all duration-300">
+                                    Quick View
+                                </a>
                             </div>
                         </div>
-                        <div class="p-5">
-                            <h3
-                                class="text-xl font-bold text-gray-900 mb-2 hover:text-blue-600 transition duration-300">
-                                {{ $promo->jenis_ikan }}</h3>
-                            <p class="text-gray-600 text-sm mb-3">{{ Str::limit($promo->deskripsi, 60) }}</p>
 
-                            <!-- Lokasi -->
-                            <div class="flex items-center text-gray-500 text-sm mb-3">
-                                <svg class="w-4 h-4 mr-1 text-blue-600" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
-                                    </path>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                </svg>
-                                <span>{{ $promo->lokasi ?? 'Riau' }}</span>
+                        <!-- Card Content -->
+                        <div class="p-6 relative">
+                            <!-- Animated Background Pattern -->
+                            <div
+                                class="absolute inset-0 animated-bg opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                             </div>
 
-                            <!-- Harga & Stok -->
-                            <div class="flex items-center justify-between mb-4">
-                                <div>
-                                    <p class="text-sm text-gray-500">Harga</p>
-                                    <p class="text-lg font-bold text-blue-600">Rp
-                                        {{ number_format($promo->harga, 0, ',', '.') }}/kg</p>
-                                </div>
-                                <div class="text-right">
-                                    <p class="text-sm text-gray-500">Stok</p>
-                                    <p class="font-semibold text-gray-900">{{ $promo->stok }} kg</p>
-                                </div>
-                            </div>
+                            <div class="relative z-10">
+                                <h3
+                                    class="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">
+                                    {{ $promo->jenis_ikan }}
+                                </h3>
+                                <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+                                    {{ $promo->deskripsi }}
+                                </p>
 
-                            <!-- Tombol Detail -->
-                            <a href="{{ route('promotions.show', $promo->id) }}"
-                                class="block w-full bg-blue-600 text-white py-2 rounded-lg font-medium text-center hover:bg-blue-700 transition duration-300 transform hover:scale-105 shadow-md hover:shadow-lg">
-                                Lihat Detail
-                            </a>
+                                <!-- Lokasi -->
+                                <div
+                                    class="flex items-center text-gray-500 text-sm mb-4 group-hover:text-blue-600 transition-colors duration-300">
+                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                        </path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+                                    <span class="font-medium">{{ $promo->lokasi ?? 'Riau' }}</span>
+                                </div>
+
+                                <!-- Price & Stock dengan animasi -->
+                                <div
+                                    class="flex items-center justify-between mb-5 p-3 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl group-hover:from-blue-100 group-hover:to-indigo-100 transition-all duration-300">
+                                    <div>
+                                        <p class="text-xs text-gray-500 mb-1">Harga</p>
+                                        <p class="text-lg font-bold text-gradient-animated">
+                                            Rp {{ number_format($promo->harga, 0, ',', '.') }}
+                                        </p>
+                                        <p class="text-xs text-gray-500">/kg</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="text-xs text-gray-500 mb-1">Stok</p>
+                                        <p class="text-2xl font-bold text-gray-900">{{ $promo->stok_tersedia }}</p>
+                                        <p class="text-xs text-gray-500">kg</p>
+                                    </div>
+                                </div>
+
+                                <!-- Button Detail dengan Magnetic Effect -->
+                                <a href="{{ route('promosi.show', $promo->id) }}"
+                                    class="block w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 rounded-xl font-semibold text-center btn-magnetic relative overflow-hidden group">
+                                    <span class="relative z-10 flex items-center justify-center">
+                                        Lihat Detail
+                                        <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-2 transition-transform duration-300"
+                                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                        </svg>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Decorative Corner -->
+                        <div
+                            class="absolute -bottom-2 -right-2 w-20 h-20 bg-blue-600 rounded-tl-full opacity-0 group-hover:opacity-10 transition-opacity duration-500">
                         </div>
                     </div>
                 @empty
-                    <!-- Jika tidak ada promosi -->
-                    <div class="col-span-full text-center py-12 animate-fadeIn">
-                        <div class="inline-block p-8 bg-white rounded-2xl shadow-lg">
-                            <svg class="w-24 h-24 text-gray-400 mx-auto mb-4 animate-float" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4">
-                                </path>
-                            </svg>
-                            <h3 class="text-2xl font-bold text-gray-700 mb-2">Belum Ada Promosi</h3>
-                            <p class="text-gray-500 mb-4">Promosi dari peternak akan muncul di sini</p>
-                            <a href="{{ route('register') }}"
-                                class="inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition duration-300">
-                                Jadi Peternak Pertama!
-                            </a>
+                    <!-- Empty State dengan animasi -->
+                    <div class="col-span-full">
+                        <div class="text-center py-16 reveal-on-scroll">
+                            <div
+                                class="inline-block p-12 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-3xl shadow-2xl relative overflow-hidden">
+                                <!-- Animated Background -->
+                                <div class="absolute inset-0 animated-bg opacity-50"></div>
+
+                                <div class="relative z-10">
+                                    <svg class="w-32 h-32 text-blue-400 mx-auto mb-6 float-animation" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4">
+                                        </path>
+                                    </svg>
+                                    <h3 class="text-3xl font-bold text-gray-800 mb-3">Belum Ada Promosi</h3>
+                                    <p class="text-gray-600 mb-6 text-lg">Jadilah yang pertama mempromosikan produk
+                                        Anda!</p>
+                                    <a href="{{ route('register') }}"
+                                        class="inline-block px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold rounded-xl btn-magnetic">
+                                        Mulai Berpromosi Sekarang
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 @endforelse
-
             </div>
 
             <!-- Tombol Lihat Semua -->
@@ -721,65 +1007,128 @@
 
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Fitur 1 -->
-                <div class="text-center p-6 rounded-xl hover:shadow-xl transition duration-300 feature-card">
+                <div class="group relative p-8 bg-white rounded-2xl card-3d feature-card text-center">
                     <div
-                        class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6 transition-transform duration-300 hover:scale-110">
-                        <svg class="w-10 h-10 text-blue-600" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
+                        class="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Mudah Digunakan</h3>
-                    <p class="text-gray-600">Interface yang user-friendly memudahkan peternak dalam mengelola bisnis
-                    </p>
+
+                    <div class="relative z-10">
+                        <div
+                            class="w-24 h-24 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center mx-auto mb-6 float-animation group-hover:scale-110 transition-transform duration-500">
+                            <div
+                                class="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center">
+                                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <h3
+                            class="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
+                            Mudah Digunakan</h3>
+                        <p class="text-gray-600 leading-relaxed">Interface yang user-friendly memudahkan peternak dalam
+                            mengelola bisnis</p>
+
+                        <!-- Decorative Line -->
+                        <div
+                            class="mt-6 h-1 w-0 group-hover:w-full bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full mx-auto transition-all duration-500">
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Fitur 2 -->
-                <div class="text-center p-6 rounded-xl hover:shadow-xl transition duration-300 feature-card">
+                <div class="group relative p-8 bg-white rounded-2xl card-3d feature-card text-center">
                     <div
-                        class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 transition-transform duration-300 hover:scale-110">
-                        <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
-                            </path>
-                        </svg>
+                        class="absolute inset-0 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Harga Kompetitif</h3>
-                    <p class="text-gray-600">Dapatkan harga terbaik langsung dari peternak tanpa perantara</p>
+
+                    <div class="relative z-10">
+                        <div class="w-24 h-24 bg-gradient-to-br from-green-100 to-green-200 rounded-full flex items-center justify-center mx-auto mb-6 float-animation group-hover:scale-110 transition-transform duration-500"
+                            style="animation-delay: 0.2s;">
+                            <div
+                                class="w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center">
+                                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                                    </path>
+                                </svg>
+                            </div>
+                        </div>
+                        <h3
+                            class="text-xl font-bold text-gray-900 mb-3 group-hover:text-green-600 transition-colors duration-300">
+                            Harga Kompetitif</h3>
+                        <p class="text-gray-600 leading-relaxed">Dapatkan harga terbaik langsung dari peternak tanpa
+                            perantara</p>
+
+                        <div
+                            class="mt-6 h-1 w-0 group-hover:w-full bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mx-auto transition-all duration-500">
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Fitur 3 -->
-                <div class="text-center p-6 rounded-xl hover:shadow-xl transition duration-300 feature-card">
+                <div class="group relative p-8 bg-white rounded-2xl card-3d feature-card text-center">
                     <div
-                        class="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6 transition-transform duration-300 hover:scale-110">
-                        <svg class="w-10 h-10 text-yellow-600" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                        </svg>
+                        class="absolute inset-0 bg-gradient-to-br from-yellow-50 to-amber-50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Proses Cepat</h3>
-                    <p class="text-gray-600">Transaksi dan pencatatan dilakukan secara real-time dan efisien</p>
+
+                    <div class="relative z-10">
+                        <div class="w-24 h-24 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-full flex items-center justify-center mx-auto mb-6 float-animation group-hover:scale-110 transition-transform duration-500"
+                            style="animation-delay: 0.4s;">
+                            <div
+                                class="w-20 h-20 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center">
+                                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <h3
+                            class="text-xl font-bold text-gray-900 mb-3 group-hover:text-yellow-600 transition-colors duration-300">
+                            Proses Cepat</h3>
+                        <p class="text-gray-600 leading-relaxed">Transaksi dan pencatatan dilakukan secara real-time
+                            dan efisien</p>
+
+                        <div
+                            class="mt-6 h-1 w-0 group-hover:w-full bg-gradient-to-r from-yellow-500 to-amber-500 rounded-full mx-auto transition-all duration-500">
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Fitur 4 -->
-                <div class="text-center p-6 rounded-xl hover:shadow-xl transition duration-300 feature-card">
+                <div class="group relative p-8 bg-white rounded-2xl card-3d feature-card text-center">
                     <div
-                        class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6 transition-transform duration-300 hover:scale-110">
-                        <svg class="w-10 h-10 text-purple-600" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
-                            </path>
-                        </svg>
+                        class="absolute inset-0 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Aman & Terpercaya</h3>
-                    <p class="text-gray-600">Data dan transaksi Anda dijamin aman dengan sistem keamanan terbaik</p>
+
+                    <div class="relative z-10">
+                        <div class="w-24 h-24 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full flex items-center justify-center mx-auto mb-6 float-animation group-hover:scale-110 transition-transform duration-500"
+                            style="animation-delay: 0.6s;">
+                            <div
+                                class="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center">
+                                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                                    </path>
+                                </svg>
+                            </div>
+                        </div>
+                        <h3
+                            class="text-xl font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors duration-300">
+                            Aman & Terpercaya</h3>
+                        <p class="text-gray-600 leading-relaxed">Data dan transaksi Anda dijamin aman dengan sistem
+                            keamanan terbaik</p>
+
+                        <div
+                            class="mt-6 h-1 w-0 group-hover:w-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mx-auto transition-all duration-500">
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
     </section>
 
     <!-- CARA KERJA SECTION -->
@@ -1438,6 +1787,65 @@
             const stepCards = document.querySelectorAll('.step-card');
             stepCards.forEach(card => {
                 observer.observe(card);
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const revealElements = document.querySelectorAll('.reveal-on-scroll');
+
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.animation = 'reveal 1s ease-out forwards';
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            revealElements.forEach(element => {
+                revealObserver.observe(element);
+            });
+
+            // Feature Cards Animation
+            const featureCards = document.querySelectorAll('.feature-card');
+            const cardObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-visible');
+                    }
+                });
+            }, {
+                threshold: 0.2
+            });
+
+            featureCards.forEach(card => {
+                cardObserver.observe(card);
+            });
+
+            // Step Cards Animation
+            const stepCards = document.querySelectorAll('.step-card');
+            stepCards.forEach(card => {
+                cardObserver.observe(card);
+            });
+        });
+
+        // Magnetic Button Effect untuk semua button dengan class btn-magnetic
+        document.querySelectorAll('.btn-magnetic').forEach(button => {
+            button.addEventListener('mousemove', (e) => {
+                const rect = button.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+
+                button.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px) scale(1.05)`;
+            });
+
+            button.addEventListener('mouseleave', () => {
+                button.style.transform = 'translate(0, 0) scale(1)';
             });
         });
     </script>
