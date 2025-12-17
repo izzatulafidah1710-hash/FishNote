@@ -41,15 +41,6 @@
                 </a>
             </li>
 
-            <!-- Nav Item - info akun peternak -->
-            <li class="nav-item {{ request()->is('infoakunpeternak') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('infoakun.index') }}">
-                    <i class="fas fa-fw fa-bars"></i>
-                    <span>Info Akun Peternak</span>
-                </a>
-            </li>
-
-
             <!-- Nav Item - aktivitas peternak -->
             <li class="nav-item {{ request()->is('admin/aktivitas*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.aktivitas.index') }}">

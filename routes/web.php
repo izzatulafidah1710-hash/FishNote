@@ -68,8 +68,6 @@ Route::get('/user', function () {
 })->name('user.dashboarduser');
 
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
-    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
-    Route::get('/dashboardadmin', [AdminDashboardController::class, 'index'])->name('dashboardadmin');
 // data peternak-admin
 Route::get('/datapeternak', [ResidentController::class, 'index'])->name('datapeternak.index');
     Route::get('/datapeternak/create', [ResidentController::class, 'create'])->name('datapeternak.create');

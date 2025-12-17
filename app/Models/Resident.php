@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Resident extends Model
 {
@@ -32,6 +33,15 @@ class Resident extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * ✅ Relasi ke Pencatatan (One to Many)
+     * TAMBAHKAN INI - PENTING!
+     */
+    public function pencatatan(): HasMany
+    {
+        return $this->hasMany(Pencatatan::class, 'resident_id');
     }
 
     /**
