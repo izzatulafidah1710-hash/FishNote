@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan {{ $monthNames[$bulan] ?? 'Bulanan' }} {{ $tahun }}</title>
+    <title>Laporan {{ $monthNames[(int)$bulan] ?? 'Bulanan' }} {{ $tahun }}</title>
     
     <style>
         * {
@@ -204,7 +204,7 @@
                 9 => 'September', 10 => 'Oktober', 11 => 'November', 12 => 'Desember'
             ];
         @endphp
-        Periode: {{ $monthNames[$bulan] }} {{ $tahun }}
+        Periode: {{ $monthNames[(int)$bulan] ?? 'Bulan Tidak Valid' }} {{ $tahun }}
     </div>
 
     <!-- Ringkasan Keuangan -->
