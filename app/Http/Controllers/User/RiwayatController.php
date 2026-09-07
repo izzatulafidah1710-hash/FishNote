@@ -16,8 +16,7 @@ class RiwayatController extends Controller
      */
     public function index(Request $request)
     {
-        // Sementara menggunakan user_id = 1
-        $userId = 1;
+        $userId = auth()->id();
 
         // Filter
         $tipe = $request->input('tipe', 'semua');

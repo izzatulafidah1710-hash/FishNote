@@ -17,8 +17,7 @@ class LaporanController extends Controller
      */
     public function index(Request $request)
     {
-        // Sementara menggunakan user_id = 1
-        $userId = 1;
+        $userId = auth()->id();
 
         // Periode filter (default bulan ini)
         $bulan = $request->input('bulan', date('m'));
@@ -219,7 +218,7 @@ class LaporanController extends Controller
      */
     public function print(Request $request)
     {
-        $userId = 1;
+        $userId = auth()->id();
         $bulan = $request->input('bulan', date('m'));
         $tahun = $request->input('tahun', date('Y'));
 

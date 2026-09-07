@@ -19,6 +19,13 @@ class PeternakMiddleware
             abort(403, 'Anda tidak memiliki akses ke halaman ini.');
         }
 
+        if (Auth::user()->resident && Auth::user()->resident->status !== 'aktif') {
+            Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+            return redirect()->route('login')->with('error', 'Akun Anda berstatus nonaktif. Silakan hubungi administrator.');
+        }
+
         return $next($request);
     }
 }

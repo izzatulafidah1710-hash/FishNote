@@ -17,7 +17,7 @@ class PencatatanController extends Controller
         $query = Pencatatan::query();
 
         // Sementara memakai user_id = 1
-        $query->where('user_id', 1);
+        $query->where('user_id', auth()->id());
 
         // Filter jenis kegiatan
         if ($request->filled('jenis_kegiatan')) {
@@ -68,7 +68,7 @@ class PencatatanController extends Controller
             'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        $validated['user_id'] = 1;
+        $validated['user_id'] = auth()->id();
 
         if ($request->hasFile('foto')) {
             $validated['foto'] = $request->file('foto')->store('pencatatan', 'public');
@@ -85,6 +85,9 @@ class PencatatanController extends Controller
      */
     public function show(Pencatatan $pencatatan)
     {
+        if ($pencatatan->user_id !== auth()->id()) {
+            abort(403, 'Anda tidak memiliki akses ke data ini.');
+        }
         return view('user.pencatatan.show', compact('pencatatan'));
     }
 
@@ -93,6 +96,9 @@ class PencatatanController extends Controller
      */
     public function edit(Pencatatan $pencatatan)
     {
+        if ($pencatatan->user_id !== auth()->id()) {
+            abort(403, 'Anda tidak memiliki akses ke data ini.');
+        }
         return view('user.pencatatan.edit', compact('pencatatan'));
     }
 
@@ -101,6 +107,10 @@ class PencatatanController extends Controller
      */
     public function update(Request $request, Pencatatan $pencatatan)
     {
+        if ($pencatatan->user_id !== auth()->id()) {
+            abort(403, 'Anda tidak memiliki akses ke data ini.');
+        }
+
         $validated = $request->validate([
             'tanggal' => 'required|date',
             'jenis_kegiatan' => 'required|string|max:255',
@@ -140,6 +150,10 @@ class PencatatanController extends Controller
      */
     public function destroy(Pencatatan $pencatatan)
     {
+        if ($pencatatan->user_id !== auth()->id()) {
+            abort(403, 'Anda tidak memiliki akses ke data ini.');
+        }
+
         if ($pencatatan->foto) {
             Storage::disk('public')->delete($pencatatan->foto);
         }

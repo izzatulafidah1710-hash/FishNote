@@ -16,8 +16,8 @@ class PromosiController extends Controller
     {
         $query = Promosi::query();
 
-        // Sementara menggunakan user_id = 1 (sebelum ada login)
-        $query->where('user_id', 1);
+        $userId = auth()->id();
+        $query->where('user_id', $userId);
 
         // Filter berdasarkan status
         if ($request->filled('status')) {
@@ -32,9 +32,9 @@ class PromosiController extends Controller
         $promosi = $query->orderBy('created_at', 'desc')->paginate(10);
 
         // Statistik
-        $totalPromosi = Promosi::where('user_id', 1)->count();
-        $promosiAktif = Promosi::where('user_id', 1)->where('status', 'Aktif')->count();
-        $totalViews = Promosi::where('user_id', 1)->sum('views') ?? 0;
+        $totalPromosi = Promosi::where('user_id', $userId)->count();
+        $promosiAktif = Promosi::where('user_id', $userId)->where('status', 'Aktif')->count();
+        $totalViews = Promosi::where('user_id', $userId)->sum('views') ?? 0;
 
         return view('user.promosi.index', compact('promosi', 'totalPromosi', 'promosiAktif', 'totalViews'));
     }
@@ -67,8 +67,7 @@ class PromosiController extends Controller
             'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        // Sementara menggunakan user_id = 1
-        $validated['user_id'] = 1;
+        $validated['user_id'] = auth()->id();
         $validated['views'] = 0;
 
         // Upload foto jika ada
@@ -89,9 +88,10 @@ class PromosiController extends Controller
      */
     public function show(Promosi $promosi)
     {
-        // Increment views
+        if ($promosi->user_id !== auth()->id()) {
+            abort(403, 'Anda tidak memiliki akses ke data ini.');
+        }
         $promosi->incrementViews();
-
         return view('user.promosi.show', compact('promosi'));
     }
 
@@ -100,6 +100,9 @@ class PromosiController extends Controller
      */
     public function edit(Promosi $promosi)
     {
+        if ($promosi->user_id !== auth()->id()) {
+            abort(403, 'Anda tidak memiliki akses ke data ini.');
+        }
         return view('user.promosi.edit', compact('promosi'));
     }
 
@@ -108,6 +111,10 @@ class PromosiController extends Controller
      */
     public function update(Request $request, Promosi $promosi)
     {
+        if ($promosi->user_id !== auth()->id()) {
+            abort(403, 'Anda tidak memiliki akses ke data ini.');
+        }
+
         $validated = $request->validate([
             'judul_promosi' => 'required|string|max:255',
             'jenis_ikan' => 'required|string|max:255',
@@ -123,9 +130,7 @@ class PromosiController extends Controller
             'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        // Upload foto baru jika ada
         if ($request->hasFile('foto')) {
-            // Hapus foto lama
             if ($promosi->foto) {
                 Storage::disk('public')->delete($promosi->foto);
             }
@@ -145,7 +150,10 @@ class PromosiController extends Controller
      */
     public function destroy(Promosi $promosi)
     {
-        // Hapus foto jika ada
+        if ($promosi->user_id !== auth()->id()) {
+            abort(403, 'Anda tidak memiliki akses ke data ini.');
+        }
+
         if ($promosi->foto) {
             Storage::disk('public')->delete($promosi->foto);
         }

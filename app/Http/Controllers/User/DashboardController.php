@@ -13,8 +13,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        // Sementara menggunakan user_id = 1
-        $userId = 1;
+        $userId = auth()->id();
 
         // Bulan ini
         $bulanIni = Carbon::now()->month;

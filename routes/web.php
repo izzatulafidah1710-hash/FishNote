@@ -1,153 +1,54 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\LandingController;
+use App\Http\Controllers\PromosiPublicController;
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ResidentController;
 use App\Http\Controllers\PromotionController;
-use App\Http\Controllers\InfoAkunController;
 use App\Http\Controllers\PeternakActivityController;
+use App\Http\Controllers\admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\User\DashboardController as UserDashboardController;
 use App\Http\Controllers\User\PencatatanController;
 use App\Http\Controllers\User\DataPanenController;
-use App\Http\Controllers\User\PromosiController;
+use App\Http\Controllers\User\PromosiController as UserPromosiController;
 use App\Http\Controllers\User\DaftarPromosiController;
 use App\Http\Controllers\User\LaporanController;
-use App\Http\Controllers\User\DashboardController;
-use App\Http\Controllers\PromosiPublicController;
 use App\Http\Controllers\User\RiwayatController;
-use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\User\ProfileController as UserProfile;
-use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
 
-// landing
+/*
+|--------------------------------------------------------------------------
+| Public Routes
+|--------------------------------------------------------------------------
+*/
 Route::get('/', [LandingController::class, 'index'])->name('landing');
 
-// about landing
 Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-// Route::get('/promosi', function () {
-//     return view('promosi');
-// })->name('promosi');
-
-// login
-Route::get('/', function () {
-    return redirect()->route('login');
-});
-
-// promosi public
-// Halaman Semua Promosi (Public)
+// Promosi Public
 Route::get('/promosi', [PromosiPublicController::class, 'index'])->name('promosi');
 Route::get('/promosi/{id}', [PromosiPublicController::class, 'show'])->name('promosi.show');
+Route::get('/search', [PromosiPublicController::class, 'search'])->name('search');
 
-// Halaman daftar promosi
-// Route::get('/promosi', [PromotionController::class, 'index'])
-//     ->name('promotions.index');
+// Serving public storage files safely
+Route::get('/file/{fotoPath}', function ($fotoPath) {
+    $path = urldecode($fotoPath);
 
-// // Halaman detail promosi
-// Route::get('/promosi/{id}', [PromotionController::class, 'show'])
-//     ->name('promotions.show');
+    if (!Storage::disk('public')->exists($path)) {
+        abort(404);
+    }
+    return response()->file(Storage::disk('public')->path($path));
+})->where('fotoPath', '.*')->name('file.show');
 
-Route::get('/dashboardadmin', function (){
-    return view('admin.dashboardadmin');
-});
-
-// dashboard user controller
-Route::get('/dashboarduser', [DashboardController::class, 'index'])->name('user.dashboarduser');
-
-// Dashboard admin
-Route::get('/admin', function () {
-    return view('admin.dashboardadmin');
-})->name('admin.dashboardadmin');
-
-// Dashboard user
-Route::get('/user', function () {
-    return view('user.dashboarduser');
-})->name('user.dashboarduser');
-
-Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
-// data peternak-admin
-Route::get('/datapeternak', [ResidentController::class, 'index'])->name('datapeternak.index');
-    Route::get('/datapeternak/create', [ResidentController::class, 'create'])->name('datapeternak.create');
-    Route::post('/datapeternak', [ResidentController::class, 'store'])->name('datapeternak.store');
-    Route::get('/datapeternak/{id}/edit', [ResidentController::class, 'edit'])->name('datapeternak.edit');
-    Route::put('/datapeternak/{id}', [ResidentController::class, 'update'])->name('datapeternak.update');
-    Route::delete('/datapeternak/{id}', [ResidentController::class, 'delete'])->name('datapeternak.delete');
-});
-
-// data promosi-admin
-Route::resource('datapromosi', PromotionController::class);
-Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
-    Route::get('/promosi', [PromotionController::class, 'index'])
-        ->name('admin.promotions.index');
-    Route::get('/promosi/create', [PromotionController::class, 'create'])
-        ->name('admin.promotions.create');
-    Route::post('/promosi', [PromotionController::class, 'store'])
-        ->name('admin.promotions.store');
-    Route::get('/promosi/{id}/edit', [PromotionController::class, 'edit'])
-        ->name('admin.promotions.edit');
-    Route::put('/promosi/{id}', [PromotionController::class, 'update'])
-        ->name('admin.promotions.update');
-    Route::delete('/promosi/{id}', [PromotionController::class, 'destroy'])
-        ->name('admin.promotions.destroy');
-});
-
-// info akun peternak
-Route::get('/infoakunpeternak', [InfoAkunController::class, 'index'])
-    ->name('infoakun.index');
-
-Route::get('/infoakunpeternak/create', [InfoAkunController::class, 'create'])
-    ->name('infoakun.create');
-
-Route::post('/infoakunpeternak', [InfoAkunController::class, 'store'])
-    ->name('infoakun.store');
-
-Route::get('/infoakunpeternak/{id}/edit', [InfoAkunController::class, 'edit'])
-    ->name('infoakun.edit');
-
-Route::put('/infoakunpeternak/{id}', [InfoAkunController::class, 'update'])
-    ->name('infoakun.update');
-
-Route::delete('/infoakunpeternak/{id}', [InfoAkunController::class, 'destroy'])
-    ->name('infoakun.destroy');
-
-// aktivitas akun peternak
-Route::get('/aktivitas', [PeternakActivityController::class, 'index'])->name('admin.aktivitas.index');
-Route::post('/aktivitas', [PeternakActivityController::class, 'store'])->name('admin.aktivitas.store');
-Route::delete('/aktivitas/{id}', [PeternakActivityController::class, 'destroy'])->name('admin.aktivitas.delete');
-
-// fitur-user
-Route::prefix('user')->name('user.')->group(function () {
-    // Dashboard User
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    // pencatatan
-    Route::resource('pencatatan', PencatatanController::class);
-    // panen
-    Route::resource('panen', DataPanenController::class);
-    // promosi
-    Route::resource('promosi', PromosiController::class);
-    // daftar promosi
-    Route::get('/daftar-promosi', [DaftarPromosiController::class, 'index'])->name('daftar-promosi.index');
-    Route::post('/daftar-promosi/{id}/toggle-status', [DaftarPromosiController::class, 'toggleStatus'])->name('daftar-promosi.toggle-status');
-    // laporan
-    Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
-    Route::get('/laporan/print', [LaporanController::class, 'print'])->name('laporan.print');
-    Route::get('/laporan/export-pdf', [LaporanController::class, 'exportPdf'])->name('laporan.export-pdf');
-    // Riwayat Pencatatan
-    Route::get('/riwayat', [RiwayatController::class, 'index'])->name('riwayat.index');
-    Route::get('/riwayat/export', [RiwayatController::class, 'export'])->name('riwayat.export');
-    // Nanti akan ditambahkan:
-    // Route untuk Data Panen
-    // Route untuk Promosi
-    // Route untuk Laporan
-    // Route untuk Riwayat Pencatatan
-    // Route untuk Keluar
-});
-
-// login user & peternak
-// autektikasi
+/*
+|--------------------------------------------------------------------------
+| Guest Routes (Authentikasi)
+|--------------------------------------------------------------------------
+*/
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [AuthController::class, 'login'])->name('login.post');
@@ -157,39 +58,72 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
-// admin
+
+/*
+|--------------------------------------------------------------------------
+| Admin Routes (Protected: auth, admin)
+|--------------------------------------------------------------------------
+*/
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
-    Route::get('/dashboardadmin', function() {
-        return view('admin.dashboardadmin');
-    })->name('dashboard');
+    // Dashboard Admin
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboardadmin', [AdminDashboardController::class, 'index']); // Alias
+
+    // Data Peternak
+    Route::get('/datapeternak', [ResidentController::class, 'index'])->name('datapeternak.index');
+    Route::get('/datapeternak/create', [ResidentController::class, 'create'])->name('datapeternak.create');
+    Route::post('/datapeternak', [ResidentController::class, 'store'])->name('datapeternak.store');
+    Route::get('/datapeternak/{id}', [ResidentController::class, 'show'])->name('datapeternak.show');
+    Route::get('/datapeternak/{id}/edit', [ResidentController::class, 'edit'])->name('datapeternak.edit');
+    Route::put('/datapeternak/{id}', [ResidentController::class, 'update'])->name('datapeternak.update');
+    Route::delete('/datapeternak/{id}', [ResidentController::class, 'destroy'])->name('datapeternak.delete');
+
+    // Data Promosi
+    Route::resource('datapromosi', PromotionController::class);
+    Route::post('/datapromosi/{id}/toggle-status', [PromotionController::class, 'toggleStatus'])->name('datapromosi.toggle-status');
+
+    // Aktivitas Peternak
+    Route::get('/aktivitas', [PeternakActivityController::class, 'index'])->name('aktivitas.index');
+    Route::delete('/aktivitas/{id}', [PeternakActivityController::class, 'destroy'])->name('aktivitas.delete');
+    Route::post('/aktivitas/clear', [PeternakActivityController::class, 'clearOldActivities'])->name('aktivitas.clear');
 });
-// user
+
+/*
+|--------------------------------------------------------------------------
+| User / Peternak Routes (Protected: auth, peternak)
+|--------------------------------------------------------------------------
+*/
 Route::prefix('user')->name('user.')->middleware(['auth', 'peternak'])->group(function () {
-    Route::get('/dashboarduser', function() {
-        return view('user.dashboarduser');
-    })->name('dashboard');
+    // Dashboard User
+    Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboarduser', [UserDashboardController::class, 'index']); // Alias
+
+    // Pencatatan
+    Route::resource('pencatatan', PencatatanController::class);
+
+    // Panen
+    Route::resource('panen', DataPanenController::class);
+
+    // Promosi
+    Route::resource('promosi', UserPromosiController::class);
+
+    // Daftar Promosi & Toggle Status
+    Route::get('/daftar-promosi', [DaftarPromosiController::class, 'index'])->name('daftar-promosi.index');
+    Route::post('/daftar-promosi/{id}/toggle-status', [DaftarPromosiController::class, 'toggleStatus'])->name('daftar-promosi.toggle-status');
+
+    // Laporan
+    Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
+    Route::get('/laporan/print', [LaporanController::class, 'print'])->name('laporan.print');
+    Route::get('/laporan/export-pdf', [LaporanController::class, 'exportPdf'])->name('laporan.export-pdf');
+
+    // Riwayat
+    Route::get('/riwayat', [RiwayatController::class, 'index'])->name('riwayat.index');
+    Route::get('/riwayat/export', [RiwayatController::class, 'export'])->name('riwayat.export');
+
+    // Profile
+    Route::get('/profile', [UserProfile::class, 'index'])->name('profile');
+    Route::get('/profile/edit', [UserProfile::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [UserProfile::class, 'update'])->name('profile.update');
+    Route::put('/profile/password', [UserProfile::class, 'updatePassword'])->name('profile.password');
 });
-
-Route::prefix('user')->name('user.')->middleware(['auth', 'peternak'])->group(function () {
-    
-// Profile
-Route::get('/profile', [UserProfile::class, 'index'])->name('profile');
-Route::get('/profile/edit', [UserProfile::class, 'edit'])->name('profile.edit');
-Route::put('/profile', [UserProfile::class, 'update'])->name('profile.update');
-Route::put('/profile/password', [UserProfile::class, 'updatePassword'])->name('profile.password');
-});
-
-// landing
-Route::get('/', [LandingController::class, 'index'])->name('landing');
-Route::get('/search', [PromosiPublicController::class, 'search'])->name('search');
-
-// foto promosi
-Route::get('/file/{fotoPath}', function ($fotoPath = null) {
-    $path = urldecode($fotoPath);
-
-    if (! Storage::disk('public')->exists($fotoPath)) {
-        abort(404);
-    }
-    return response()->file(Storage::disk('public')->path('promosi'));
-
-})->where('path', '.*'); 
+ 

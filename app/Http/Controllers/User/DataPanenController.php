@@ -16,8 +16,8 @@ class DataPanenController extends Controller
     {
         $query = DataPanen::query();
 
-        // Sementara menggunakan user_id = 1 (sebelum ada login)
-        $query->where('user_id', 1);
+        $userId = auth()->id();
+        $query->where('user_id', $userId);
 
         // Filter berdasarkan status
         if ($request->filled('status')) {
@@ -37,9 +37,9 @@ class DataPanenController extends Controller
         $dataPanen = $query->orderBy('tanggal_panen', 'desc')->paginate(10);
 
         // Statistik
-        $totalPanen = DataPanen::where('user_id', 1)->count();
-        $totalBerat = DataPanen::where('user_id', 1)->sum('berat_total');
-        $totalPendapatan = DataPanen::where('user_id', 1)->sum('total_pendapatan');
+        $totalPanen = DataPanen::where('user_id', $userId)->count();
+        $totalBerat = DataPanen::where('user_id', $userId)->sum('berat_total');
+        $totalPendapatan = DataPanen::where('user_id', $userId)->sum('total_pendapatan');
 
         return view('user.panen.index', compact('dataPanen', 'totalPanen', 'totalBerat', 'totalPendapatan'));
     }
@@ -76,8 +76,7 @@ class DataPanenController extends Controller
         // Hitung total pendapatan
         $validated['total_pendapatan'] = $validated['berat_total'] * $validated['harga_per_kg'];
 
-        // Sementara menggunakan user_id = 1
-        $validated['user_id'] = 1;
+        $validated['user_id'] = auth()->id();
 
         // Upload foto jika ada
         if ($request->hasFile('foto')) {
@@ -97,6 +96,9 @@ class DataPanenController extends Controller
      */
     public function show(DataPanen $panen)
     {
+        if ($panen->user_id !== auth()->id()) {
+            abort(403, 'Anda tidak memiliki akses ke data ini.');
+        }
         return view('user.panen.show', compact('panen'));
     }
 
@@ -105,6 +107,9 @@ class DataPanenController extends Controller
      */
     public function edit(DataPanen $panen)
     {
+        if ($panen->user_id !== auth()->id()) {
+            abort(403, 'Anda tidak memiliki akses ke data ini.');
+        }
         return view('user.panen.edit', compact('panen'));
     }
 
@@ -113,6 +118,10 @@ class DataPanenController extends Controller
      */
     public function update(Request $request, DataPanen $panen)
     {
+        if ($panen->user_id !== auth()->id()) {
+            abort(403, 'Anda tidak memiliki akses ke data ini.');
+        }
+
         $validated = $request->validate([
             'tanggal_panen' => 'required|date',
             'jenis_ikan' => 'required|string|max:255',
@@ -154,6 +163,10 @@ class DataPanenController extends Controller
      */
     public function destroy(DataPanen $panen)
     {
+        if ($panen->user_id !== auth()->id()) {
+            abort(403, 'Anda tidak memiliki akses ke data ini.');
+        }
+
         // Hapus foto jika ada
         if ($panen->foto) {
             Storage::disk('public')->delete($panen->foto);

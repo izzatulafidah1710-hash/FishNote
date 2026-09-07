@@ -43,6 +43,19 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials, $request->filled('remember'))) {
+            $user = Auth::user();
+
+            // Cek jika peternak dan statusnya nonaktif
+            if ($user->isPeternak() && $user->resident && $user->resident->status !== 'aktif') {
+                Auth::logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+
+                throw ValidationException::withMessages([
+                    'email' => ['Akun Anda berstatus nonaktif. Silakan hubungi administrator.'],
+                ]);
+            }
+
             $request->session()->regenerate();
             
             // Redirect berdasarkan role
