@@ -15,8 +15,8 @@ class DaftarPromosiController extends Controller
     {
         $query = Promosi::query();
 
-        // Sementara menggunakan user_id = 1 (sebelum ada login)
-        $query->where('user_id', 1);
+        // Filter milik user yang sedang login
+        $query->where('user_id', auth()->id());
 
         // Filter berdasarkan status
         if ($request->filled('status')) {
@@ -41,6 +41,10 @@ class DaftarPromosiController extends Controller
     {
         $promosi = Promosi::findOrFail($id);
         
+        if ($promosi->user_id !== auth()->id()) {
+            abort(403, 'Anda tidak memiliki akses untuk mengubah status promosi ini.');
+        }
+
         // Toggle status
         if ($promosi->status === 'Aktif') {
             $promosi->status = 'Tidak Aktif';

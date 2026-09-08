@@ -22,7 +22,11 @@ class AuthController extends Controller
         if (Auth::check()) {
             return $this->redirectBasedOnRole();
         }
-        return view('auth.login');
+        return response()
+            ->view('auth.login')
+            ->header('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate')
+            ->header('Pragma', 'no-cache')
+            ->header('Expires', 'Fri, 01 Jan 1990 00:00:00 GMT');
     }
 
     /**
@@ -30,6 +34,11 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
+        // Jika sudah login, redirect langsung
+        if (Auth::check()) {
+            return $this->redirectBasedOnRole();
+        }
+
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|min:6',
@@ -76,7 +85,11 @@ class AuthController extends Controller
         if (Auth::check()) {
             return $this->redirectBasedOnRole();
         }
-        return view('auth.register');
+        return response()
+            ->view('auth.register')
+            ->header('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate')
+            ->header('Pragma', 'no-cache')
+            ->header('Expires', 'Fri, 01 Jan 1990 00:00:00 GMT');
     }
 
     /**

@@ -85,7 +85,17 @@ class DataPanenController extends Controller
             $validated['foto'] = $file->storeAs('panen', $filename, 'public');
         }
 
-        DataPanen::create($validated);
+        $panenItem = DataPanen::create($validated);
+
+        if (auth()->user()->resident) {
+            \App\Models\PeternakActivity::create([
+                'peternak_id'   => auth()->user()->resident->id,
+                'activity_type' => 'Panen',
+                'description'   => 'Menambahkan data panen ' . $panenItem->jenis_ikan . ' (' . $panenItem->berat_total . ' kg)',
+                'related_module'=> 'panen',
+                'related_id'    => $panenItem->id,
+            ]);
+        }
 
         return redirect()->route('user.panen.index')
             ->with('success', 'Data panen berhasil ditambahkan');
@@ -154,6 +164,16 @@ class DataPanenController extends Controller
 
         $panen->update($validated);
 
+        if (auth()->user()->resident) {
+            \App\Models\PeternakActivity::create([
+                'peternak_id'   => auth()->user()->resident->id,
+                'activity_type' => 'Update',
+                'description'   => 'Mengubah data panen ' . $panen->jenis_ikan,
+                'related_module'=> 'panen',
+                'related_id'    => $panen->id,
+            ]);
+        }
+
         return redirect()->route('user.panen.index')
             ->with('success', 'Data panen berhasil diupdate');
     }
@@ -167,12 +187,23 @@ class DataPanenController extends Controller
             abort(403, 'Anda tidak memiliki akses ke data ini.');
         }
 
+        $jenisIkan = $panen->jenis_ikan;
         // Hapus foto jika ada
         if ($panen->foto) {
             Storage::disk('public')->delete($panen->foto);
         }
 
         $panen->delete();
+
+        if (auth()->user()->resident) {
+            \App\Models\PeternakActivity::create([
+                'peternak_id'   => auth()->user()->resident->id,
+                'activity_type' => 'Delete',
+                'description'   => 'Menghapus data panen ' . $jenisIkan,
+                'related_module'=> 'panen',
+                'related_id'    => null,
+            ]);
+        }
 
         return redirect()->route('user.panen.index')
             ->with('success', 'Data panen berhasil dihapus');

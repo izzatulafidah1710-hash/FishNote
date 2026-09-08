@@ -1,72 +1,73 @@
 @extends('userlayouts.app')
 
 @section('content')
-<div class="container-fluid">
-    <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">
-            <i class="fas fa-edit text-primary"></i> Edit Profile
-        </h1>
-        <a href="{{ route('user.profile') }}" class="btn btn-secondary">
-            <i class="fas fa-arrow-left"></i> Kembali
+<div class="container-fluid px-4 py-3">
+    <!-- Vizora Top Header Bar -->
+    <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-4 pb-2 border-bottom">
+        <div>
+            <h4 class="font-weight-bold text-dark mb-1" style="letter-spacing: -0.3px;">Edit Profile</h4>
+            <p class="text-muted small mb-0">Perbarui informasi profil dan kata sandi akun Anda</p>
+        </div>
+        <a href="{{ route('user.profile') }}" class="btn btn-light border font-weight-bold px-3 py-2 shadow-sm rounded-lg text-dark" style="font-size: 0.85rem;">
+            <i class="fas fa-arrow-left mr-1.5"></i> Kembali ke Profile
         </a>
     </div>
 
     @if($errors->any())
-    <div class="alert alert-danger alert-dismissible fade show">
-        <i class="fas fa-exclamation-triangle"></i> <strong>Terjadi Kesalahan!</strong>
-        <ul class="mb-0 mt-2">
+    <div class="alert alert-danger border-0 shadow-sm rounded-lg alert-dismissible fade show mb-4 py-3" role="alert">
+        <i class="fas fa-exclamation-triangle mr-2 text-danger"></i> <strong>Terjadi Kesalahan!</strong>
+        <ul class="mb-0 mt-2 pl-3">
             @foreach($errors->all() as $error)
                 <li>{{ $error }}</li>
             @endforeach
         </ul>
-        <button type="button" class="close" data-dismiss="alert">
-            <span>&times;</span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
         </button>
     </div>
     @endif
 
     <div class="row">
-        <!-- Profile Info Section -->
+        <!-- Profile Info Section (Left Column) -->
         <div class="col-lg-4 mb-4">
             <!-- Avatar Card -->
-            <div class="card shadow mb-4">
-                <div class="card-body text-center py-4">
-                    <img class="img-profile rounded-circle mb-3" 
-                         src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=4e73df&color=fff&size=200" 
+            <div class="card border-0 shadow-sm rounded-lg mb-4">
+                <div class="card-body text-center p-4">
+                    <img class="img-profile rounded-circle shadow-sm mb-3" 
+                         src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=2563eb&color=fff&size=200" 
                          alt="{{ Auth::user()->name }}"
-                         style="width: 120px; height: 120px; border: 4px solid #4e73df;">
-                    <h5 class="mb-1 font-weight-bold">{{ Auth::user()->name }}</h5>
-                    <p class="text-muted mb-0">
-                        <i class="fas fa-user-tag"></i> Peternak
-                    </p>
+                         style="width: 120px; height: 120px; border: 4px solid #dbeafe; object-fit: cover;">
+                    <h5 class="font-weight-bold text-dark mb-1">{{ Auth::user()->name }}</h5>
+                    <span class="badge badge-light border text-primary font-weight-bold px-3 py-1" style="font-size: 0.78rem;">
+                        <i class="fas fa-user-tag mr-1"></i> Peternak
+                    </span>
                 </div>
             </div>
 
             <!-- Change Password Card -->
-            <div class="card shadow mb-4">
-                <div class="card-header py-3 bg-warning">
-                    <h6 class="m-0 font-weight-bold text-white">
-                        <i class="fas fa-lock"></i> Ubah Password
+            <div class="card border-0 shadow-sm rounded-lg mb-4">
+                <div class="card-header bg-white py-3 px-4 border-bottom">
+                    <h6 class="font-weight-bold text-dark m-0">
+                        <i class="fas fa-lock text-warning mr-2"></i>Ubah Password
                     </h6>
                 </div>
-                <div class="card-body">
+                <div class="card-body p-4">
                     <form action="{{ route('user.profile.password') }}" method="POST">
                         @csrf
                         @method('PUT')
 
-                        <div class="form-group">
-                            <label for="current_password" class="font-weight-bold">
+                        <div class="form-group mb-3">
+                            <label for="current_password" class="font-weight-bold text-dark small">
                                 Password Lama <span class="text-danger">*</span>
                             </label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="fas fa-key"></i>
+                                    <span class="input-group-text bg-light border-right-0">
+                                        <i class="fas fa-key text-muted"></i>
                                     </span>
                                 </div>
                                 <input type="password" 
-                                       class="form-control @error('current_password') is-invalid @enderror" 
+                                       class="form-control bg-light @error('current_password') is-invalid @enderror" 
                                        id="current_password" 
                                        name="current_password" 
                                        placeholder="Masukkan password lama"
@@ -77,18 +78,18 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="password" class="font-weight-bold">
+                        <div class="form-group mb-3">
+                            <label for="password" class="font-weight-bold text-dark small">
                                 Password Baru <span class="text-danger">*</span>
                             </label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="fas fa-lock"></i>
+                                    <span class="input-group-text bg-light border-right-0">
+                                        <i class="fas fa-lock text-muted"></i>
                                     </span>
                                 </div>
                                 <input type="password" 
-                                       class="form-control @error('password') is-invalid @enderror" 
+                                       class="form-control bg-light @error('password') is-invalid @enderror" 
                                        id="password" 
                                        name="password"
                                        placeholder="Minimal 6 karakter" 
@@ -98,22 +99,22 @@
                                 @enderror
                             </div>
                             <small class="form-text text-muted">
-                                <i class="fas fa-info-circle"></i> Minimal 6 karakter
+                                <i class="fas fa-info-circle mr-1"></i> Minimal 6 karakter
                             </small>
                         </div>
 
-                        <div class="form-group">
-                            <label for="password_confirmation" class="font-weight-bold">
+                        <div class="form-group mb-4">
+                            <label for="password_confirmation" class="font-weight-bold text-dark small">
                                 Konfirmasi Password <span class="text-danger">*</span>
                             </label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="fas fa-lock"></i>
+                                    <span class="input-group-text bg-light border-right-0">
+                                        <i class="fas fa-check-double text-muted"></i>
                                     </span>
                                 </div>
                                 <input type="password" 
-                                       class="form-control" 
+                                       class="form-control bg-light" 
                                        id="password_confirmation" 
                                        name="password_confirmation"
                                        placeholder="Ulangi password baru" 
@@ -121,42 +122,41 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-warning btn-block font-weight-bold">
-                            <i class="fas fa-key"></i> Ubah Password
+                        <button type="submit" class="btn btn-warning btn-block font-weight-bold text-white shadow-sm rounded-lg py-2">
+                            <i class="fas fa-key mr-1.5"></i> Ubah Password
                         </button>
                     </form>
                 </div>
             </div>
-
         </div>
 
-        <!-- Edit Profile Form -->
+        <!-- Edit Profile Form (Right Column) -->
         <div class="col-lg-8">
-            <div class="card shadow mb-4">
-                <div class="card-header py-3 bg-primary">
-                    <h6 class="m-0 font-weight-bold text-white">
-                        <i class="fas fa-user-edit"></i> Informasi Profile
+            <div class="card border-0 shadow-sm rounded-lg mb-4">
+                <div class="card-header bg-white py-3 px-4 border-bottom">
+                    <h6 class="font-weight-bold text-dark m-0">
+                        <i class="fas fa-user-edit text-primary mr-2"></i>Informasi Profile
                     </h6>
                 </div>
-                <div class="card-body">
+                <div class="card-body p-4">
                     <form action="{{ route('user.profile.update') }}" method="POST">
                         @csrf
                         @method('PUT')
 
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="name" class="font-weight-bold">
+                                <div class="form-group mb-3">
+                                    <label for="name" class="font-weight-bold text-dark small">
                                         Nama Lengkap <span class="text-danger">*</span>
                                     </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text">
-                                                <i class="fas fa-user"></i>
+                                            <span class="input-group-text bg-light border-right-0">
+                                                <i class="fas fa-user text-muted"></i>
                                             </span>
                                         </div>
                                         <input type="text" 
-                                               class="form-control @error('name') is-invalid @enderror" 
+                                               class="form-control bg-light @error('name') is-invalid @enderror" 
                                                id="name" 
                                                name="name" 
                                                value="{{ old('name', $resident->name) }}"
@@ -170,18 +170,18 @@
                             </div>
 
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="email" class="font-weight-bold">
+                                <div class="form-group mb-3">
+                                    <label for="email" class="font-weight-bold text-dark small">
                                         Email <span class="text-danger">*</span>
                                     </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text">
-                                                <i class="fas fa-envelope"></i>
+                                            <span class="input-group-text bg-light border-right-0">
+                                                <i class="fas fa-envelope text-muted"></i>
                                             </span>
                                         </div>
                                         <input type="email" 
-                                               class="form-control @error('email') is-invalid @enderror" 
+                                               class="form-control bg-light @error('email') is-invalid @enderror" 
                                                id="email" 
                                                name="email" 
                                                value="{{ old('email', $resident->email) }}"
@@ -197,18 +197,18 @@
 
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="phone" class="font-weight-bold">
+                                <div class="form-group mb-3">
+                                    <label for="phone" class="font-weight-bold text-dark small">
                                         No. Telepon
                                     </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text">
-                                                <i class="fas fa-phone"></i>
+                                            <span class="input-group-text bg-light border-right-0">
+                                                <i class="fas fa-phone text-muted"></i>
                                             </span>
                                         </div>
                                         <input type="text" 
-                                               class="form-control @error('phone') is-invalid @enderror" 
+                                               class="form-control bg-light @error('phone') is-invalid @enderror" 
                                                id="phone" 
                                                name="phone" 
                                                value="{{ old('phone', $resident->phone) }}" 
@@ -221,18 +221,18 @@
                             </div>
 
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="farm_location" class="font-weight-bold">
+                                <div class="form-group mb-3">
+                                    <label for="farm_location" class="font-weight-bold text-dark small">
                                         Lokasi Budidaya
                                     </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text">
-                                                <i class="fas fa-water"></i>
+                                            <span class="input-group-text bg-light border-right-0">
+                                                <i class="fas fa-water text-muted"></i>
                                             </span>
                                         </div>
                                         <input type="text" 
-                                               class="form-control @error('farm_location') is-invalid @enderror" 
+                                               class="form-control bg-light @error('farm_location') is-invalid @enderror" 
                                                id="farm_location" 
                                                name="farm_location" 
                                                value="{{ old('farm_location', $resident->farm_location) }}" 
@@ -245,20 +245,20 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="address" class="font-weight-bold">
+                        <div class="form-group mb-4">
+                            <label for="address" class="font-weight-bold text-dark small">
                                 Alamat Lengkap
                             </label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="fas fa-map-marker-alt"></i>
+                                    <span class="input-group-text bg-light border-right-0">
+                                        <i class="fas fa-map-marker-alt text-muted"></i>
                                     </span>
                                 </div>
-                                <textarea class="form-control @error('address') is-invalid @enderror" 
+                                <textarea class="form-control bg-light @error('address') is-invalid @enderror" 
                                           id="address" 
                                           name="address" 
-                                          rows="4" 
+                                          rows="3" 
                                           placeholder="Masukkan alamat lengkap Anda">{{ old('address', $resident->address) }}</textarea>
                                 @error('address')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -270,57 +270,21 @@
 
                         <div class="d-flex justify-content-between align-items-center">
                             <small class="text-muted">
-                                <i class="fas fa-asterisk text-danger"></i> Field bertanda bintang wajib diisi
+                                <i class="fas fa-asterisk text-danger mr-1"></i> Field bertanda bintang wajib diisi
                             </small>
                             <div>
-                                <a href="{{ route('user.profile') }}" class="btn btn-secondary">
-                                    <i class="fas fa-times"></i> Batal
+                                <a href="{{ route('user.profile') }}" class="btn btn-light border font-weight-bold rounded-lg px-3 mr-2">
+                                    Batal
                                 </a>
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fas fa-save"></i> Simpan Perubahan
+                                <button type="submit" class="btn btn-primary font-weight-bold shadow-sm rounded-lg px-4">
+                                    <i class="fas fa-save mr-1.5"></i> Simpan Perubahan
                                 </button>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
-
-            <!-- Info Card -->
-            <div class="card shadow border-left-info">
-                <div class="card-body">
-                    <div class="text-info">
-                        <i class="fas fa-info-circle fa-2x mb-2"></i>
-                        <p class="small mb-0">
-                            <strong>Tips:</strong> Pastikan data yang Anda masukkan sudah benar sebelum menyimpan perubahan.
-                        </p>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
-
-<style>
-.border-left-info {
-    border-left: 0.25rem solid #36b9cc !important;
-}
-
-.input-group-text {
-    background-color: #f8f9fc;
-    border-right: 0;
-}
-
-.input-group .form-control {
-    border-left: 0;
-}
-
-.input-group .form-control:focus {
-    border-color: #d1d3e2;
-    box-shadow: none;
-}
-
-.input-group-prepend + .form-control:focus {
-    border-left: 0;
-}
-</style>
 @endsection

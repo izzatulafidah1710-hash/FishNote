@@ -31,7 +31,14 @@ class PencatatanController extends Controller
 
         $pencatatan = $query->orderBy('tanggal', 'desc')->paginate(10);
 
-        return view('user.pencatatan.index', compact('pencatatan'));
+        $totalPencatatan = Pencatatan::where('user_id', auth()->id())->count();
+        $totalBiaya = Pencatatan::where('user_id', auth()->id())->sum('biaya');
+        $pencatatanBulanIni = Pencatatan::where('user_id', auth()->id())
+            ->whereMonth('tanggal', now()->month)
+            ->whereYear('tanggal', now()->year)
+            ->count();
+
+        return view('user.pencatatan.index', compact('pencatatan', 'totalPencatatan', 'totalBiaya', 'pencatatanBulanIni'));
     }
 
     /**
@@ -69,12 +76,23 @@ class PencatatanController extends Controller
         ]);
 
         $validated['user_id'] = auth()->id();
+        $validated['resident_id'] = auth()->user()->resident?->id;
 
         if ($request->hasFile('foto')) {
             $validated['foto'] = $request->file('foto')->store('pencatatan', 'public');
         }
 
-        Pencatatan::create($validated);
+        $item = Pencatatan::create($validated);
+
+        if (auth()->user()->resident) {
+            \App\Models\PeternakActivity::create([
+                'peternak_id'   => auth()->user()->resident->id,
+                'activity_type' => 'Pencatatan',
+                'description'   => 'Menambahkan pencatatan: ' . $item->jenis_kegiatan,
+                'related_module'=> 'pencatatan',
+                'related_id'    => $item->id,
+            ]);
+        }
 
         return redirect()->route('user.pencatatan.index')
             ->with('success', 'Data pencatatan berhasil ditambahkan');
@@ -132,6 +150,10 @@ class PencatatanController extends Controller
             'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
+        if (!empty(auth()->user()->resident?->id)) {
+            $validated['resident_id'] = auth()->user()->resident->id;
+        }
+
         if ($request->hasFile('foto')) {
             if ($pencatatan->foto) {
                 Storage::disk('public')->delete($pencatatan->foto);
@@ -140,6 +162,16 @@ class PencatatanController extends Controller
         }
 
         $pencatatan->update($validated);
+
+        if (auth()->user()->resident) {
+            \App\Models\PeternakActivity::create([
+                'peternak_id'   => auth()->user()->resident->id,
+                'activity_type' => 'Update',
+                'description'   => 'Mengubah pencatatan: ' . $pencatatan->jenis_kegiatan,
+                'related_module'=> 'pencatatan',
+                'related_id'    => $pencatatan->id,
+            ]);
+        }
 
         return redirect()->route('user.pencatatan.index')
             ->with('success', 'Data pencatatan berhasil diperbarui');
@@ -154,11 +186,22 @@ class PencatatanController extends Controller
             abort(403, 'Anda tidak memiliki akses ke data ini.');
         }
 
+        $kegiatan = $pencatatan->jenis_kegiatan;
         if ($pencatatan->foto) {
             Storage::disk('public')->delete($pencatatan->foto);
         }
 
         $pencatatan->delete();
+
+        if (auth()->user()->resident) {
+            \App\Models\PeternakActivity::create([
+                'peternak_id'   => auth()->user()->resident->id,
+                'activity_type' => 'Delete',
+                'description'   => 'Menghapus pencatatan: ' . $kegiatan,
+                'related_module'=> 'pencatatan',
+                'related_id'    => null,
+            ]);
+        }
 
         return redirect()->route('user.pencatatan.index')
             ->with('success', 'Data pencatatan berhasil dihapus');

@@ -120,7 +120,7 @@
                                          alt="Foto Panen" 
                                          class="img-fluid img-thumbnail" 
                                          style="max-height: 400px;"
-                                         onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300?text=Foto+Tidak+Tersedia';">
+                                         onerror="this.onerror=null; this.src='https://placehold.co/400x300?text=Foto+Tidak+Tersedia';">
                                     <div class="mt-2">
                                         <a href="{{ asset('storage/' . $panen->foto) }}" target="_blank" class="btn btn-sm btn-primary">
                                             <i class="fas fa-search-plus"></i> Lihat Full Size

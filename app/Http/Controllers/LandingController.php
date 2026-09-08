@@ -22,11 +22,15 @@ class LandingController extends Controller
     {
         $query = $request->input('q');
         
-        // Cari berdasarkan jenis ikan, lokasi, atau nama peternak
-        $promotions = Promosi::where('jenis_ikan', 'LIKE', "%{$query}%")
-                            ->orWhere('lokasi', 'LIKE', "%{$query}%")
-                            ->where('status', 'aktif')
-                            ->get();
+        // Cari berdasarkan jenis ikan, lokasi, atau nama promosi
+        $promotions = Promosi::where('status', 'Aktif')
+            ->where(function($q) use ($query) {
+                $q->where('jenis_ikan', 'LIKE', "%{$query}%")
+                  ->orWhere('lokasi', 'LIKE', "%{$query}%")
+                  ->orWhere('judul_promosi', 'LIKE', "%{$query}%");
+            })
+            ->orderBy('created_at', 'desc')
+            ->get();
         
         return view('landing', compact('promotions'));
     }

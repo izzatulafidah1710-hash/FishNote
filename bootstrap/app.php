@@ -15,6 +15,18 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin' => \App\Http\Middleware\AdminMiddleware::class,
             'peternak' => \App\Http\Middleware\PeternakMiddleware::class,
         ]);
+
+        $middleware->redirectTo(
+            guests: '/login',
+            users: function () {
+                if (auth()->check()) {
+                    return auth()->user()->role === 'admin'
+                        ? route('admin.dashboard')
+                        : route('user.dashboard');
+                }
+                return '/login';
+            }
+        );
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

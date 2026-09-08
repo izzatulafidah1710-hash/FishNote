@@ -68,6 +68,7 @@ class PromosiController extends Controller
         ]);
 
         $validated['user_id'] = auth()->id();
+        $validated['resident_id'] = auth()->user()->resident?->id;
         $validated['views'] = 0;
 
         // Upload foto jika ada
@@ -77,7 +78,17 @@ class PromosiController extends Controller
             $validated['foto'] = $file->storeAs('promosi', $filename, 'public');
         }
 
-        Promosi::create($validated);
+        $promosi = Promosi::create($validated);
+
+        if (auth()->user()->resident) {
+            \App\Models\PeternakActivity::create([
+                'peternak_id'   => auth()->user()->resident->id,
+                'activity_type' => 'Promosi',
+                'description'   => 'Menambahkan promosi baru: ' . $promosi->judul_promosi,
+                'related_module'=> 'promosi',
+                'related_id'    => $promosi->id,
+            ]);
+        }
 
         return redirect()->route('user.promosi.index')
             ->with('success', 'Promosi berhasil ditambahkan');
@@ -130,6 +141,10 @@ class PromosiController extends Controller
             'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
+        if (!empty(auth()->user()->resident?->id)) {
+            $validated['resident_id'] = auth()->user()->resident->id;
+        }
+
         if ($request->hasFile('foto')) {
             if ($promosi->foto) {
                 Storage::disk('public')->delete($promosi->foto);
@@ -140,6 +155,16 @@ class PromosiController extends Controller
         }
 
         $promosi->update($validated);
+
+        if (auth()->user()->resident) {
+            \App\Models\PeternakActivity::create([
+                'peternak_id'   => auth()->user()->resident->id,
+                'activity_type' => 'Update',
+                'description'   => 'Mengubah promosi: ' . $promosi->judul_promosi,
+                'related_module'=> 'promosi',
+                'related_id'    => $promosi->id,
+            ]);
+        }
 
         return redirect()->route('user.promosi.index')
             ->with('success', 'Promosi berhasil diupdate');
@@ -154,11 +179,22 @@ class PromosiController extends Controller
             abort(403, 'Anda tidak memiliki akses ke data ini.');
         }
 
+        $judul = $promosi->judul_promosi;
         if ($promosi->foto) {
             Storage::disk('public')->delete($promosi->foto);
         }
 
         $promosi->delete();
+
+        if (auth()->user()->resident) {
+            \App\Models\PeternakActivity::create([
+                'peternak_id'   => auth()->user()->resident->id,
+                'activity_type' => 'Delete',
+                'description'   => 'Menghapus promosi: ' . $judul,
+                'related_module'=> 'promosi',
+                'related_id'    => null,
+            ]);
+        }
 
         return redirect()->route('user.promosi.index')
             ->with('success', 'Promosi berhasil dihapus');

@@ -56,7 +56,7 @@
                                  alt="{{ $promosi->judul_promosi }}" 
                                  class="img-fluid rounded" 
                                  style="max-height: 350px; width: 100%; object-fit: contain;"
-                                 onerror="this.src='https://via.placeholder.com/400x300?text=Foto+Tidak+Tersedia';">
+                                 onerror="this.onerror=null; this.src='https://placehold.co/400x300?text=Foto+Tidak+Tersedia';">
                         </div>
                         <div class="text-center mt-2">
                             <a href="{{ asset('storage/' . $promosi->foto) }}" 

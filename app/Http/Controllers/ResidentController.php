@@ -21,7 +21,11 @@ class ResidentController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10);
 
-        return view('admin.resident.index', compact('residents'));
+        $totalResidents = Resident::count();
+        $activeResidents = Resident::where('status', 'aktif')->count();
+        $totalFarmArea = Resident::sum('luas_lahan');
+
+        return view('admin.resident.index', compact('residents', 'totalResidents', 'activeResidents', 'totalFarmArea'));
     }
 
     /**

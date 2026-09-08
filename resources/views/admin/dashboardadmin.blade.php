@@ -2,149 +2,184 @@
 
 @section('content')
 <div class="container-fluid px-4 py-3">
-    <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-tachometer-alt me-2 text-primary"></i>Dashboard Administrator</h1>
-        <span class="badge bg-primary px-3 py-2 text-white" style="font-size: 14px;">
-            <i class="fas fa-calendar-alt me-1"></i> {{ \Carbon\Carbon::now()->isoFormat('D MMMM Y') }}
-        </span>
+
+    <!-- Vizora Top Header Bar -->
+    <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-4 pb-2 border-bottom">
+        <div>
+            <h4 class="font-weight-bold text-dark mb-1" style="letter-spacing: -0.3px;">Dashboard Admin</h4>
+            <p class="text-muted small mb-0">Selamat datang kembali, <strong class="text-dark">{{ Auth::user()->name }}</strong> 👋</p>
+        </div>
+        <div class="d-flex align-items-center mt-3 mt-md-0">
+            <div class="d-none d-sm-flex align-items-center mr-3">
+                <span class="badge badge-pill badge-light border px-3 py-2 text-dark font-weight-bold mr-2">
+                    <i class="fas fa-calendar-alt text-primary mr-1"></i> {{ \Carbon\Carbon::now()->isoFormat('D MMMM Y') }}
+                </span>
+            </div>
+            <a href="{{ route('admin.datapeternak.create') }}" class="btn btn-primary font-weight-bold px-3 py-2 shadow-sm rounded-lg text-white" style="font-size: 0.85rem;">
+                <i class="fas fa-user-plus mr-1.5"></i> Tambah Peternak
+            </a>
+        </div>
     </div>
 
     @if(session('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <i class="fas fa-check-circle me-2"></i>{{ session('success') }}
+        <div class="alert alert-success border-0 shadow-sm rounded-lg alert-dismissible fade show mb-4 py-3" role="alert">
+            <i class="fas fa-check-circle mr-2 text-success"></i>
+            <strong>Berhasil!</strong> {{ session('success') }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
     @endif
 
-    <!-- Content Row - Cards -->
-    <div class="row">
-        <!-- Total Peternak Card -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Total Peternak</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ number_format($totalPeternak) }}</div>
-                            <small class="text-success"><i class="fas fa-user-check me-1"></i>{{ $peternakAktif }} Aktif</small>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-users fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Promosi Aktif Card -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                Promosi Aktif</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ number_format($promosiAktif) }}</div>
-                            <small class="text-muted">Dari {{ $totalPromosi }} total promosi</small>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-bullhorn fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Total Panen Bulan Ini Card -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Panen Bulan Ini
+    <!-- Metric Cards Grid (Vizora SaaS 4-Column Layout) -->
+    <div class="row mb-4">
+        <!-- Total Peternak -->
+        <div class="col-xl-3 col-md-6 mb-3 mb-xl-0">
+            <a href="{{ route('admin.datapeternak.index') }}" class="text-decoration-none text-reset d-block h-100">
+                <div class="stat-card-vizora h-100 d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <span class="text-xs font-weight-bold text-muted text-uppercase">Total Peternak</span>
+                            <div class="icon-square bg-primary-light">
+                                <i class="fas fa-users"></i>
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ number_format($totalBeratPanenBulanIni, 1) }} Kg</div>
-                            <small class="text-info"><i class="fas fa-boxes me-1"></i>{{ $totalPanenBulanIni }} Transaksi</small>
                         </div>
-                        <div class="col-auto">
-                            <i class="fas fa-fish fa-2x text-gray-300"></i>
+                        <div class="d-flex align-items-baseline mb-2">
+                            <h3 class="font-weight-bold text-dark mb-0 mr-2" style="font-size: 1.6rem;">{{ number_format($totalPeternak) }}</h3>
+                            <span class="trend-badge-success"><i class="fas fa-user-check mr-1"></i>{{ $peternakAktif }} Aktif</span>
                         </div>
                     </div>
+                    <div class="d-flex align-items-center justify-content-between pt-2 border-top text-muted small" style="font-size: 0.78rem;">
+                        <span>Terdaftar di sistem</span>
+                        <i class="fas fa-arrow-right text-primary"></i>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
 
-        <!-- Perputaran Nilai Panen Card -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                Nilai Hasil Panen</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">Rp {{ number_format($totalPendapatanPanenBulanIni, 0, ',', '.') }}</div>
-                            <small class="text-muted">Bulan ini</small>
+        <!-- Promosi Aktif -->
+        <div class="col-xl-3 col-md-6 mb-3 mb-xl-0">
+            <a href="{{ route('admin.datapromosi.index') }}" class="text-decoration-none text-reset d-block h-100">
+                <div class="stat-card-vizora h-100 d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <span class="text-xs font-weight-bold text-muted text-uppercase">Promosi Tayang</span>
+                            <div class="icon-square bg-success-light">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
                         </div>
-                        <div class="col-auto">
-                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                        <div class="d-flex align-items-baseline mb-2">
+                            <h3 class="font-weight-bold text-dark mb-0 mr-2" style="font-size: 1.6rem;">{{ number_format($promosiAktif) }}</h3>
+                            <span class="trend-badge-info">Dari {{ $totalPromosi }} Listing</span>
                         </div>
                     </div>
+                    <div class="d-flex align-items-center justify-content-between pt-2 border-top text-muted small" style="font-size: 0.78rem;">
+                        <span>Aktif di marketplace</span>
+                        <i class="fas fa-arrow-right text-success"></i>
+                    </div>
                 </div>
-            </div>
+            </a>
+        </div>
+
+        <!-- Panen Bulan Ini -->
+        <div class="col-xl-3 col-md-6 mb-3 mb-xl-0">
+            <a href="{{ route('admin.aktivitas.index') }}" class="text-decoration-none text-reset d-block h-100">
+                <div class="stat-card-vizora h-100 d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <span class="text-xs font-weight-bold text-muted text-uppercase">Panen Bulan Ini</span>
+                            <div class="icon-square bg-info-light">
+                                <i class="fas fa-fish"></i>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-baseline mb-2">
+                            <h3 class="font-weight-bold text-dark mb-0 mr-2" style="font-size: 1.6rem;">{{ number_format($totalBeratPanenBulanIni, 1) }} <small class="text-muted" style="font-size: 13px;">Kg</small></h3>
+                            <span class="trend-badge-warning">{{ $totalPanenBulanIni }} Panen</span>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between pt-2 border-top text-muted small" style="font-size: 0.78rem;">
+                        <span>Total tonase bulan ini</span>
+                        <i class="fas fa-arrow-right text-info"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Perputaran Nilai Panen -->
+        <div class="col-xl-3 col-md-6">
+            <a href="{{ route('admin.aktivitas.index') }}" class="text-decoration-none text-reset d-block h-100">
+                <div class="stat-card-vizora h-100 d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <span class="text-xs font-weight-bold text-muted text-uppercase">Nilai Hasil Panen</span>
+                            <div class="icon-square bg-warning-light">
+                                <i class="fas fa-coins"></i>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-baseline mb-2">
+                            <h3 class="font-weight-bold text-dark mb-0 mr-2" style="font-size: 1.35rem;">
+                                Rp {{ number_format($totalPendapatanPanenBulanIni, 0, ',', '.') }}
+                            </h3>
+                            <span class="trend-badge-success">Ekonomi</span>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between pt-2 border-top text-muted small" style="font-size: 0.78rem;">
+                        <span>Total transaksi panen</span>
+                        <i class="fas fa-arrow-right text-warning"></i>
+                    </div>
+                </div>
+            </a>
         </div>
     </div>
 
-    <!-- Content Row - Tables & Quick Actions -->
+    <!-- Data Tables & Lists (Vizora Split Layout) -->
     <div class="row">
-        <!-- Peternak Baru -->
+        <!-- Tabel Peternak Terbaru (Col-6) -->
         <div class="col-lg-6 mb-4">
-            <div class="card shadow mb-4">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-between">
-                    <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-user-plus me-2"></i>Peternak Terbaru</h6>
-                    <a href="{{ route('admin.datapeternak.index') }}" class="btn btn-sm btn-primary">Lihat Semua</a>
+            <div class="card border-0 shadow-sm rounded-lg h-100">
+                <div class="card-header bg-white py-3 px-4 d-flex align-items-center justify-content-between border-bottom">
+                    <h6 class="font-weight-bold text-dark m-0">Peternak Terbaru</h6>
+                    <a href="{{ route('admin.datapeternak.index') }}" class="btn btn-light btn-sm font-weight-bold rounded-pill px-3">
+                        Lihat Semua
+                    </a>
                 </div>
                 <div class="card-body p-0">
-                    <div class="table-responsive">
-                        <table class="table table-hover align-items-center mb-0">
-                            <thead class="thead-light">
+                    <div class="table-responsive border-0">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="bg-light text-muted small text-uppercase">
                                 <tr>
-                                    <th>Nama</th>
-                                    <th>Email</th>
+                                    <th>Peternak</th>
+                                    <th>Lokasi</th>
                                     <th>Status</th>
-                                    <th>Aksi</th>
+                                    <th class="text-right">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($recentPeternak as $resident)
-                                    <tr>
-                                        <td>
-                                            <strong>{{ $resident->name }}</strong>
-                                            @if($resident->farm_location)
-                                                <br><small class="text-muted"><i class="fas fa-map-marker-alt me-1"></i>{{ $resident->farm_location }}</small>
-                                            @endif
-                                        </td>
-                                        <td>{{ $resident->email }}</td>
-                                        <td>
-                                            @if($resident->status === 'aktif')
-                                                <span class="badge bg-success text-white">Aktif</span>
-                                            @else
-                                                <span class="badge bg-danger text-white">Nonaktif</span>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <a href="{{ route('admin.datapeternak.edit', $resident->id) }}" class="btn btn-sm btn-circle btn-info" title="Edit">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                @forelse($peternakTerbaru as $item)
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <img src="https://ui-avatars.com/api/?name={{ urlencode($item->name) }}&background=2563eb&color=fff&size=32" class="rounded-circle mr-2" style="width: 32px; height: 32px;">
+                                            <div>
+                                                <div class="font-weight-bold text-dark">{{ $item->name }}</div>
+                                                <small class="text-muted">{{ $item->email }}</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="small text-muted">{{ $item->farm_location ?: 'Belum diisi' }}</td>
+                                    <td>
+                                        <span class="badge badge-success px-2.5 py-1">Aktif</span>
+                                    </td>
+                                    <td class="text-right">
+                                        <a href="{{ route('admin.datapeternak.show', $item->id) }}" class="btn btn-sm btn-light text-primary border font-weight-bold">
+                                            Detail
+                                        </a>
+                                    </td>
+                                </tr>
                                 @empty
-                                    <tr>
-                                        <td colspan="4" class="text-center py-3 text-muted">Belum ada data peternak</td>
-                                    </tr>
+                                <tr>
+                                    <td colspan="4" class="text-center py-4 text-muted">Belum ada peternak terdaftar</td>
+                                </tr>
                                 @endforelse
                             </tbody>
                         </table>
@@ -153,47 +188,51 @@
             </div>
         </div>
 
-        <!-- Promosi Terbaru -->
+        <!-- Tabel Promosi Terbaru (Col-6) -->
         <div class="col-lg-6 mb-4">
-            <div class="card shadow mb-4">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-between">
-                    <h6 class="m-0 font-weight-bold text-success"><i class="fas fa-bullhorn me-2"></i>Promosi Terbaru</h6>
-                    <a href="{{ route('admin.datapromosi.index') }}" class="btn btn-sm btn-success">Lihat Semua</a>
+            <div class="card border-0 shadow-sm rounded-lg h-100">
+                <div class="card-header bg-white py-3 px-4 d-flex align-items-center justify-content-between border-bottom">
+                    <h6 class="font-weight-bold text-dark m-0">Promosi Terbaru</h6>
+                    <a href="{{ route('admin.datapromosi.index') }}" class="btn btn-light btn-sm font-weight-bold rounded-pill px-3">
+                        Lihat Semua
+                    </a>
                 </div>
                 <div class="card-body p-0">
-                    <div class="table-responsive">
-                        <table class="table table-hover align-items-center mb-0">
-                            <thead class="thead-light">
+                    <div class="table-responsive border-0">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="bg-light text-muted small text-uppercase">
                                 <tr>
-                                    <th>Judul Promosi</th>
-                                    <th>Peternak</th>
+                                    <th>Promosi</th>
                                     <th>Harga</th>
                                     <th>Status</th>
+                                    <th class="text-right">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($recentPromosi as $promosi)
-                                    <tr>
-                                        <td>
-                                            <strong>{{ $promosi->judul_promosi }}</strong>
-                                            <br><small class="text-muted">{{ $promosi->jenis_ikan }}</small>
-                                        </td>
-                                        <td>{{ $promosi->resident->name ?? ($promosi->user->name ?? 'N/A') }}</td>
-                                        <td>Rp {{ number_format($promosi->harga, 0, ',', '.') }}/{{ $promosi->satuan }}</td>
-                                        <td>
-                                            @if($promosi->status === 'Aktif')
-                                                <span class="badge bg-success text-white">Aktif</span>
-                                            @elseif($promosi->status === 'Habis')
-                                                <span class="badge bg-warning text-dark">Habis</span>
-                                            @else
-                                                <span class="badge bg-secondary text-white">Tidak Aktif</span>
-                                            @endif
-                                        </td>
-                                    </tr>
+                                @forelse($promosiTerbaru as $item)
+                                <tr>
+                                    <td>
+                                        <div class="font-weight-bold text-dark">{{ Str::limit($item->judul_promosi, 35) }}</div>
+                                        <small class="text-muted">{{ $item->jenis_ikan }}</small>
+                                    </td>
+                                    <td class="font-weight-bold text-success small">Rp {{ number_format($item->harga, 0, ',', '.') }}</td>
+                                    <td>
+                                        @if($item->status == 'Aktif')
+                                            <span class="badge badge-success px-2.5 py-1">Aktif</span>
+                                        @else
+                                            <span class="badge badge-secondary px-2.5 py-1">{{ $item->status }}</span>
+                                        @endif
+                                    </td>
+                                    <td class="text-right">
+                                        <a href="{{ route('admin.datapromosi.show', $item->id) }}" class="btn btn-sm btn-light text-info border font-weight-bold">
+                                            Detail
+                                        </a>
+                                    </td>
+                                </tr>
                                 @empty
-                                    <tr>
-                                        <td colspan="4" class="text-center py-3 text-muted">Belum ada promosi</td>
-                                    </tr>
+                                <tr>
+                                    <td colspan="4" class="text-center py-4 text-muted">Belum ada data promosi</td>
+                                </tr>
                                 @endforelse
                             </tbody>
                         </table>

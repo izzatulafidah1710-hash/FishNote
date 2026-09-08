@@ -1,1855 +1,1217 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FishNote - Platform Budidaya Perikanan</title>
+    <title>FishNote - Platform Budidaya Perikanan Indonesia</title>
+    <link rel="icon" type="image/png" href="{{ asset('template/img/logofishnote.png') }}">
+
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        /* Animasi Fade In Up */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
+        html { scroll-behavior: smooth; }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        @keyframes blob-morph {
+            0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+            100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+        }
+        .blob-img {
+            animation: blob-morph 10s ease-in-out infinite;
+            -webkit-mask-image: radial-gradient(ellipse at center, black 50%, transparent 95%);
+            mask-image: radial-gradient(ellipse at center, black 50%, transparent 95%);
         }
 
-        /* Animasi Fade In */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
         }
-
-        /* Animasi Scale Up */
-        @keyframes scaleUp {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        /* Animasi Float */
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-
-        /* Animasi Slide In Left */
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        /* Animasi Slide In Right */
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .animate-fadeInUp {
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .animate-fadeIn {
-            animation: fadeIn 1s ease-out;
-        }
-
-        .animate-scaleUp {
-            animation: scaleUp 0.6s ease-out;
-        }
-
-        .animate-float {
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .animate-slideInLeft {
-            animation: slideInLeft 0.8s ease-out;
-        }
-
-        .animate-slideInRight {
-            animation: slideInRight 0.8s ease-out;
-        }
-
-        /* Delay animations */
-        .delay-100 {
-            animation-delay: 0.1s;
-        }
-
-        .delay-200 {
-            animation-delay: 0.2s;
-        }
-
-        .delay-300 {
-            animation-delay: 0.3s;
-        }
-
-        .delay-400 {
-            animation-delay: 0.4s;
-        }
-
-        .delay-500 {
-            animation-delay: 0.5s;
-        }
-
-        /* Hover effects */
-        .card-hover {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-
-        /* Gradient animation */
-        @keyframes gradient {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        .animate-gradient {
-            background-size: 200% 200%;
-            animation: gradient 15s ease infinite;
-        }
-
-        /* Smooth scroll */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Loading state */
-        .opacity-0 {
-            opacity: 0;
-        }
-
-        .opacity-100 {
-            opacity: 1;
-        }
-
-        /* ========== HERO SLIDER STYLES ========== */
-        .hero-slider {
-            position: relative;
-            width: 100%;
-            height: 700px;
-            overflow: hidden;
-        }
-
-        .hero-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1.2s ease-in-out;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .hero-slide.active {
-            opacity: 1;
-        }
-
-        /* Overlay biru transparan untuk setiap slide */
-        .hero-slide::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.85) 0%, rgba(29, 78, 216, 0.75) 50%, rgba(30, 64, 175, 0.65) 100%);
-        }
-
-        /* Background images dari local storage */
-        .hero-slide-1 {
-            background-image: url('{{ asset('template/img/bg1.jpg') }}');
-        }
-
-        .hero-slide-2 {
-            background-image: url('{{ asset('template/img/bg2.jpg') }}');
-        }
-
-        .hero-slide-3 {
-            background-image: url('{{ asset('template/img/bg3.jpg') }}');
-        }
-
-        /* Slider Navigation Dots */
-        .slider-dots {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
+        .animate-marquee {
             display: flex;
-            gap: 12px;
-            z-index: 20;
+            width: fit-content;
+            animation: marquee 25s linear infinite;
+        }
+        .animate-marquee:hover {
+            animation-play-state: paused;
         }
 
-        .slider-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 10px 30px -10px rgba(37, 99, 235, 0.12), 0 1px 3px rgba(0, 0, 0, 0.04);
         }
 
-        .slider-dot:hover {
-            background: rgba(255, 255, 255, 0.8);
-            transform: scale(1.1);
+        .liquid-nav-link {
+            padding: 0.45rem 0.9rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #64748b;
+            transition: color 0.15s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .slider-dot.active {
-            background: white;
-            width: 32px;
-            border-radius: 6px;
+        .liquid-nav-link:hover {
+            color: #2563eb;
         }
 
-        /* Responsive untuk mobile */
-        @media (max-width: 768px) {
-            .hero-slider {
-                height: 550px;
-            }
+        .liquid-nav-active {
+            color: #1d4ed8 !important;
+            font-weight: 700 !important;
+            border-bottom: 2px solid #2563eb;
         }
 
-        @media (max-width: 640px) {
-            .hero-slider {
-                height: 500px;
-            }
-
-            .slider-dots {
-                bottom: 20px;
-            }
-
-            .slider-dot {
-                width: 10px;
-                height: 10px;
-            }
-
-            .slider-dot.active {
-                width: 24px;
-            }
+        .card-lumilearn {
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .card-lumilearn:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px -10px rgba(37, 99, 235, 0.14), 0 10px 15px -5px rgba(0, 0, 0, 0.03);
         }
 
-        /* Animasi saat scroll */
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* === STAT CARD ANIMATIONS === */
+        @keyframes floatCard1 {
+            0%   { transform: translateY(0px) rotate(-1.5deg); }
+            50%  { transform: translateY(-14px) rotate(1deg); }
+            100% { transform: translateY(0px) rotate(-1.5deg); }
         }
-
-        .animate-on-scroll {
-            animation: slideUp 0.8s ease-out forwards;
-            opacity: 0;
+        @keyframes floatCard2 {
+            0%   { transform: translateY(0px) rotate(1.5deg); }
+            50%  { transform: translateY(-10px) rotate(-1deg); }
+            100% { transform: translateY(0px) rotate(1.5deg); }
         }
-
-        /* Delay untuk setiap elemen */
-        .delay-0 {
-            animation-delay: 0s;
+        @keyframes floatCard3 {
+            0%   { transform: translateY(0px); }
+            50%  { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
         }
-
-        .delay-1 {
-            animation-delay: 0.1s;
+        @keyframes fadeSlideIn {
+            from { opacity: 0; transform: translateY(16px) scale(0.92); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
         }
-
-        .delay-2 {
-            animation-delay: 0.2s;
+        @keyframes glowPulse {
+            0%, 100% { box-shadow: 0 6px 20px -4px rgba(37,99,235,0.15), 0 2px 6px rgba(0,0,0,0.06); }
+            50%       { box-shadow: 0 14px 34px -4px rgba(37,99,235,0.28), 0 4px 10px rgba(0,0,0,0.08); }
         }
+        .animate-float     { animation: floatCard1 4s ease-in-out infinite, glowPulse 3s ease-in-out infinite; }
+        .animate-float-med { animation: floatCard2 3.4s ease-in-out infinite, glowPulse 3s ease-in-out infinite; }
 
-        .delay-3 {
-            animation-delay: 0.3s;
-        }
-
-        /* Animasi untuk fitur cards */
-        .feature-card {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .feature-card.animate-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .feature-card:nth-child(1) {
-            transition-delay: 0.2s;
-        }
-
-        .feature-card:nth-child(2) {
-            transition-delay: 0.4s;
-        }
-
-        .feature-card:nth-child(3) {
-            transition-delay: 0.6s;
-        }
-
-        .feature-card:nth-child(4) {
-            transition-delay: 0.8s;
-        }
-
-        /* Animasi untuk step cards */
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(60px) scale(0.95);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .step-card {
-            opacity: 0;
-            transform: translateY(60px) scale(0.95);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .step-card.animate-visible {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-
-        .step-card:nth-child(1) {
-            transition-delay: 0.1s;
-        }
-
-        .step-card:nth-child(2) {
-            transition-delay: 0.3s;
-        }
-
-        .step-card:nth-child(3) {
-            transition-delay: 0.5s;
-        }
-
-        /* Animasi untuk badge number */
-        .step-badge {
-            transition: transform 0.3s ease;
-        }
-
-        .step-card:hover .step-badge {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        /* Animasi untuk icon */
-        .step-icon-wrapper {
-            transition: transform 0.3s ease;
-        }
-
-        .step-card:hover .step-icon-wrapper {
-            transform: scale(1.1);
-        }
-
-        /* Animasi Parallax untuk Hero */
-        @keyframes parallaxFloat {
-
-            0%,
-            100% {
-                transform: translateY(0px) scale(1);
-            }
-
-            50% {
-                transform: translateY(-30px) scale(1.05);
-            }
-        }
-
-        /* Animasi Glow Effect */
-        @keyframes glow {
-
-            0%,
-            100% {
-                box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
-            }
-
-            50% {
-                box-shadow: 0 0 40px rgba(59, 130, 246, 0.8);
-            }
-        }
-
-        /* Animasi Wave untuk background */
-        @keyframes wave {
-            0% {
-                transform: translateX(0) translateZ(0) scaleY(1);
-            }
-
-            50% {
-                transform: translateX(-25%) translateZ(0) scaleY(0.55);
-            }
-
-            100% {
-                transform: translateX(-50%) translateZ(0) scaleY(1);
-            }
-        }
-
-        /* Card 3D Hover Effect */
-        .card-3d {
-            perspective: 1000px;
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
-        }
-
-        .card-3d:hover {
-            transform: translateY(-15px) rotateX(5deg);
-            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.25),
-                0 0 0 1px rgba(255, 255, 255, 0.08),
-                0 0 60px rgba(59, 130, 246, 0.3);
-        }
-
-        /* Magnetic Button Effect */
-        .btn-magnetic {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
-        }
-
-        .btn-magnetic::before {
-            content: '';
+        /* Stat floating card */
+        .stat-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            border-radius: 1.5rem;
+            padding: 1rem 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
+            z-index: 20;
+            min-width: 150px;
+            cursor: default;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 10px 30px -10px rgba(37, 99, 235, 0.15), inset 0 1px 0 rgba(255,255,255,0.8);
+        }
+        .stat-card:hover {
+            transform: scale(1.08) translateY(-6px) !important;
+            box-shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.25), inset 0 1px 0 rgba(255,255,255,1) !important;
+            background: rgba(255, 255, 255, 0.95);
+        }
+        .stat-card i {
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .stat-card:hover i {
+            transform: scale(1.25) rotate(5deg);
         }
 
-        .btn-magnetic:hover::before {
-            width: 300px;
-            height: 300px;
+        .star-rating i {
+            cursor: pointer;
+            transition: color 0.2s ease, transform 0.2s ease;
         }
-
-        .btn-magnetic:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.4);
-        }
-
-        /* Shimmer Loading Effect */
-        @keyframes shimmer {
-            0% {
-                background-position: -1000px 0;
-            }
-
-            100% {
-                background-position: 1000px 0;
-            }
-        }
-
-        .shimmer {
-            background: linear-gradient(90deg,
-                    rgba(255, 255, 255, 0) 0%,
-                    rgba(255, 255, 255, 0.3) 50%,
-                    rgba(255, 255, 255, 0) 100%);
-            background-size: 1000px 100%;
-            animation: shimmer 2s infinite;
-        }
-
-        /* Pulse Animation untuk Badge */
-        @keyframes pulse-ring {
-            0% {
-                transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
-            }
-
-            50% {
-                transform: scale(1);
-                box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
-            }
-
-            100% {
-                transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
-            }
-        }
-
-        .pulse-badge {
-            animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
-        }
-
-        /* Text Gradient Animation */
-        @keyframes textGradient {
-
-            0%,
-            100% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-        }
-
-        .text-gradient-animated {
-            background: linear-gradient(90deg, #2563eb, #3b82f6, #60a5fa, #3b82f6, #2563eb);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: textGradient 3s ease infinite;
-        }
-
-        /* Floating Elements */
-        .float-animation {
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .float-animation:nth-child(2) {
-            animation-delay: 1s;
-        }
-
-        .float-animation:nth-child(3) {
-            animation-delay: 2s;
-        }
-
-        /* Reveal Animation */
-        @keyframes reveal {
-            from {
-                opacity: 0;
-                transform: translateY(100px) scale(0.9);
-                filter: blur(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
-        }
-
-        .reveal-on-scroll {
-            opacity: 0;
-            animation: reveal 1s ease-out forwards;
-        }
-
-        /* Background Pattern Animation */
-        .animated-bg {
-            background:
-                linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px),
-                linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: movePattern 20s linear infinite;
-        }
-
-        @keyframes movePattern {
-            0% {
-                background-position: 0 0;
-            }
-
-            100% {
-                background-position: 50px 50px;
-            }
-        }
-
-        /* Typing Effect */
-        @keyframes typing {
-            from {
-                width: 0
-            }
-
-            to {
-                width: 100%
-            }
-        }
-
-        @keyframes blink {
-            50% {
-                border-color: transparent
-            }
-        }
-
-        .typing-effect {
-            overflow: hidden;
-            border-right: 3px solid #2563eb;
-            white-space: nowrap;
-            animation: typing 3.5s steps(40, end), blink 0.75s step-end infinite;
+        .star-rating i:hover, .star-rating i.active {
+            color: #f59e0b;
+            transform: scale(1.15);
         }
     </style>
-
-
 </head>
 
-<body class="bg-gray-50">
+<body class="bg-gradient-to-b from-sky-100/90 via-blue-50/50 to-slate-50 text-slate-800 font-sans antialiased selection:bg-blue-600 selection:text-white min-h-screen">
 
-    <!-- NAVBAR -->
-    <nav class="bg-white bg-opacity-70 backdrop-blur-lg shadow-sm fixed top-0 left-0 right-0 z-50 animate-fadeIn">
-        <div class="max-w-7xl mx-auto px-4">
+    <!-- NAVBAR (LumiLearn Clean White Style in Ocean Blue Theme with Liquid Glass Nav Links) -->
+    <nav class="glass-nav border-b border-slate-100 fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
-                <!-- Logo dengan Shadow Hover -->
-                <a href="{{ route('landing') }}" class="flex items-center space-x-3 animate-slideInLeft group">
-                    <img src="{{ asset('template/img/logo1.png') }}" alt="FishNote Logo"
-                        class="w-20 h-20 object-contain group-hover:scale-110 group-hover:drop-shadow-lg transition duration-300">
-                    <span
-                        class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent group-hover:from-blue-700 group-hover:to-blue-900 transition duration-300">
-                        Fishnote
-                    </span>
+                <!-- Brand Logo (New Custom FishNote Logo Image) -->
+                <a href="{{ route('landing') }}" class="flex items-center group py-1">
+                    <img src="{{ asset('template/img/logo1.png') }}?v={{ time() }}" 
+                         alt="FishNote Logo" 
+                         class="h-10 sm:h-12 w-auto object-contain group-hover:scale-105 transition-transform duration-300">
                 </a>
 
-                <!-- Menu Desktop -->
-                <div class="hidden md:flex items-center space-x-12 animate-fadeIn delay-200">
-                    <a href="{{ route('landing') }}"
-                        class="flex items-center space-x-2 text-blue-700 font-semibold transition duration-300 hover:scale-105 hover:text-blue-900 group">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
-                            </path>
-                        </svg>
-                        <span>Beranda</span>
-                    </a>
-                    <a href="{{ route('promosi') }}"
-                        class="flex items-center space-x-2 text-gray-700 hover:text-blue-700 font-medium transition duration-300 hover:scale-105 group">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
-                            </path>
-                        </svg>
-                        <span>Promosi</span>
-                    </a>
-                    <a href="{{ route('about') }}"
-                        class="flex items-center space-x-2 text-gray-700 hover:text-blue-700 font-medium transition duration-300 hover:scale-105 group">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                        <span>Tentang Kami</span>
-                    </a>
-                    <a href="{{ route('landing') }}#kontak"
-                        class="flex items-center space-x-2 text-gray-700 hover:text-blue-700 font-medium transition duration-300 hover:scale-105 group">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                            </path>
-                        </svg>
-                        <span>Kontak</span>
-                    </a>
+                <!-- Desktop Navigation Links & Action Buttons (Grouped on the right) -->
+                <div class="hidden md:flex items-center justify-end flex-1">
+                    <!-- Nav Links -->
+                    <div class="flex items-center space-x-2 text-sm mr-4 lg:mr-6">
+                        <a href="{{ route('landing') }}" class="liquid-nav-link liquid-nav-active">Beranda</a>
+                        <a href="{{ route('promosi') }}" class="liquid-nav-link">Promosi</a>
+                        <a href="{{ route('artikel.index') }}" class="liquid-nav-link">Artikel</a>
+                        <a href="{{ route('about') }}" class="liquid-nav-link">Tentang Kami</a>
+                        <a href="#kontak" class="liquid-nav-link">Kontak</a>
+                    </div>
+
+                    <!-- Search Menu -->
+                    <form action="{{ route('search') }}" method="GET" class="hidden lg:flex items-center relative mr-6 group">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fa-solid fa-magnifying-glass text-slate-400 text-xs group-focus-within:text-brand-500 transition-colors"></i>
+                        </div>
+                        <input type="text" name="q" placeholder="Cari produk..." 
+                            class="w-36 xl:w-48 pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 text-slate-700 text-xs rounded-full focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500 focus:bg-white focus:w-48 xl:focus:w-56 transition-all duration-300"
+                            value="{{ request('q') }}">
+                    </form>
+
+                    <!-- Action Buttons -->
+                    <div class="flex items-center space-x-3 border-l border-slate-200 pl-6">
+                        <a href="{{ route('login') }}" class="px-6 py-2 border-2 border-brand-600 text-brand-600 font-bold text-sm hover:bg-brand-50 rounded-full transition duration-200">
+                            Masuk
+                        </a>
+                        <a href="{{ route('register') }}" class="px-6 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm rounded-full shadow-lg shadow-brand-600/25 hover:shadow-brand-600/40 hover:-translate-y-0.5 transition duration-200 flex items-center gap-2">
+                            <span>Daftar Gratis</span>
+                        </a>
+                    </div>
                 </div>
 
-                <!-- Tombol Login & Register - STYLE BARU KEREN -->
-                <div class="hidden md:flex items-center space-x-3 animate-slideInRight">
-                    <a href="{{ route('login') }}"
-                        class="px-6 py-2.5 text-blue-600 font-semibold hover:bg-blue-50 rounded-xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-blue-200">
-                        Masuk
-                    </a>
-                    <a href="{{ route('register') }}"
-                        class="px-6 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
-                        Daftar Sekarang
-                    </a>
-                </div>
-
-                <!-- Menu Mobile (Hamburger) -->
-                <button class="md:hidden ml-auto text-gray-700" onclick="toggleMobileMenu()">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
+                <!-- Mobile Hamburger Button -->
+                <button class="md:hidden p-2 text-slate-600 hover:text-brand-600 rounded-xl" onclick="toggleMobileMenu()">
+                    <i class="fa-solid fa-bars text-xl"></i>
                 </button>
             </div>
         </div>
 
-        <!-- Mobile Menu -->
-        <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
-            <div class="px-4 py-3 space-y-3">
-                <a href="{{ route('landing') }}"
-                    class="block text-gray-700 hover:text-blue-600 font-medium">Beranda</a>
-                <a href="{{ route('promosi') }}"
-                    class="block text-gray-700 hover:text-blue-600 font-medium">Promosi</a>
-                <a href="{{ route('about') }}" class="block text-gray-700 hover:text-blue-600 font-medium">Tentang
-                    Kami</a>
-                <a href="{{ route('landing') }}#kontak"
-                    class="block text-gray-700 hover:text-blue-600 font-medium">Kontak</a>
-                <div class="flex flex-col space-y-2 pt-3 border-t">
-                    <a href="{{ route('login') }}"
-                        class="px-4 py-2 text-center text-blue-600 font-medium border border-blue-600 rounded-lg">Masuk</a>
-                    <a href="{{ route('register') }}"
-                        class="px-4 py-2 text-center bg-blue-600 text-white font-medium rounded-lg">Daftar</a>
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white/95 backdrop-blur-xl border-b border-slate-200 px-4 pt-3 pb-6 space-y-2">
+            <form action="{{ route('search') }}" method="GET" class="relative mb-3">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <i class="fa-solid fa-magnifying-glass text-slate-400 text-sm"></i>
                 </div>
+                <input type="text" name="q" placeholder="Cari jenis ikan atau lokasi..." 
+                    class="w-full pl-9 pr-4 py-2.5 bg-slate-50 border border-slate-200 text-slate-700 text-sm rounded-xl focus:outline-none focus:ring-1 focus:ring-brand-500 focus:bg-white transition-all duration-300"
+                    value="{{ request('q') }}">
+            </form>
+            <a href="{{ route('landing') }}" class="liquid-nav-link liquid-nav-active w-full text-left justify-start">Beranda</a>
+            <a href="{{ route('promosi') }}" class="liquid-nav-link w-full text-left justify-start">Promosi</a>
+            <a href="{{ route('artikel.index') }}" class="liquid-nav-link w-full text-left justify-start">Artikel</a>
+            <a href="{{ route('about') }}" class="liquid-nav-link w-full text-left justify-start">Tentang Kami</a>
+            <a href="#kontak" class="liquid-nav-link w-full text-left justify-start">Kontak</a>
+            <div class="pt-3 border-t border-slate-100 flex flex-col space-y-2">
+                <a href="{{ route('login') }}" class="w-full text-center py-2.5 font-bold text-brand-600 border border-brand-600/30 rounded-xl">Masuk</a>
+                <a href="{{ route('register') }}" class="w-full text-center py-2.5 font-bold text-white bg-brand-600 rounded-xl shadow-md">Daftar Gratis</a>
             </div>
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
-    <section id="beranda" class="relative overflow-hidden">
-        <!-- Hero Slider -->
-        <div class="hero-slider">
-            <!-- Slide 1 -->
-            <div class="hero-slide hero-slide-1 active">
-                <div class="max-w-7xl mx-auto px-4 py-20 relative z-10 h-full flex items-center">
-                    <div class="max-w-2xl">
-                        <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight text-white animate-slideInLeft">
-                            Platform Digital untuk Budidaya Perikanan Indonesia
-                        </h1>
-                        <p class="text-xl mb-8 text-white animate-slideInLeft delay-200">
-                            Temukan hasil perikanan berkualitas langsung dari peternak terpercaya. Mudah, cepat, dan
-                            terjangkau!
-                        </p>
-                        <div class="flex flex-col sm:flex-row gap-4 animate-fadeInUp delay-300">
-                            <a href="#promosi"
-                                class="px-8 py-3 bg-white text-blue-600 font-semibold rounded-lg text-center hover:bg-gray-100 transition duration-300 hover:scale-105 shadow-lg">
-                                Jelajahi Promosi
-                            </a>
-                            <a href="{{ route('register') }}"
-                                class="px-8 py-3 border-2 border-white text-white font-semibold rounded-lg text-center hover:bg-white hover:text-blue-600 transition duration-300 hover:scale-105">
-                                Daftar Sebagai Peternak
-                            </a>
-                        </div>
+    <!-- HERO SECTION (Clean Light Ocean-Blue Modern SaaS Hero with Isolated Cutout) -->
+    <section id="beranda" class="relative pt-28 lg:pt-36 pb-20 overflow-hidden bg-gradient-to-b from-sky-100/80 via-blue-50/60 to-transparent text-slate-800">
+        <!-- Soft Background Ambient Glows -->
+        <div class="absolute top-10 left-1/4 w-[30rem] h-[30rem] bg-sky-300/40 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-10 right-10 w-[28rem] h-[28rem] bg-blue-200/50 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+                
+                <!-- Left Column Text -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <!-- Main Headline -->
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight tracking-tight">
+                        Kelola & Pasarkan <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 via-blue-600 to-indigo-600">Budidaya Ikan</span> Dengan Cara Baru
+                    </h1>
+
+                    <!-- Subtitle -->
+                    <p class="text-slate-600 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0 font-normal">
+                        Platform digital yang membantu peternak ikan lokal mencatat panen, memantau operasional kolam, dan mempromosikan hasil perikanan secara langsung kepada pembeli.
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="{{ route('register') }}" class="w-full sm:w-auto px-8 py-4 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-2xl shadow-xl shadow-brand-600/30 hover:-translate-y-0.5 transition duration-200 text-center flex items-center justify-center gap-2 text-base">
+                            <span>Mulai Sekarang - Gratis</span>
+                        </a>
+                        <a href="{{ route('promosi') }}" class="w-full sm:w-auto px-8 py-4 bg-white hover:bg-slate-100 border border-slate-200 text-slate-800 font-bold rounded-2xl shadow-sm transition duration-200 text-center text-base">
+                            Jelajahi Promosi
+                        </a>
                     </div>
                 </div>
-            </div>
 
-            <!-- Slide 2 -->
-            <div class="hero-slide hero-slide-2">
-                <div class="max-w-7xl mx-auto px-4 py-20 relative z-10 h-full flex items-center">
-                    <div class="max-w-2xl">
-                        <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight text-white">
-                            Hasil Budidaya Berkualitas Tinggi
-                        </h1>
-                        <p class="text-xl mb-8 text-white">
-                            Dapatkan ikan segar langsung dari kolam peternak lokal dengan harga terbaik!
-                        </p>
-                        <div class="flex flex-col sm:flex-row gap-4">
-                            <a href="#promosi"
-                                class="px-8 py-3 bg-white text-blue-600 font-semibold rounded-lg text-center hover:bg-gray-100 transition duration-300 hover:scale-105 shadow-lg">
-                                Lihat Produk
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 3 -->
-            <div class="hero-slide hero-slide-3">
-                <div class="max-w-7xl mx-auto px-4 py-20 relative z-10 h-full flex items-center">
-                    <div class="max-w-2xl">
-                        <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight text-white">
-                            Bergabung dengan Komunitas Peternak
-                        </h1>
-                        <p class="text-xl mb-8 text-white">
-                            Kembangkan bisnis perikanan Anda bersama ribuan peternak di seluruh Indonesia!
-                        </p>
-                        <div class="flex flex-col sm:flex-row gap-4">
-                            <a href="{{ route('register') }}"
-                                class="px-8 py-3 bg-white text-blue-600 font-semibold rounded-lg text-center hover:bg-gray-100 transition duration-300 hover:scale-105 shadow-lg">
-                                Daftar Sekarang
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slider Dots -->
-            <div class="slider-dots">
-                <div class="slider-dot active" onclick="goToSlide(0)"></div>
-                <div class="slider-dot" onclick="goToSlide(1)"></div>
-                <div class="slider-dot" onclick="goToSlide(2)"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SEARCH BAR - PINDAH KE ATAS -->
-    <section class="bg-white py-8 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="animate-scaleUp">
-                <form action="{{ route('search') }}" method="GET" class="flex flex-col md:flex-row gap-4">
-                    <div class="flex-1 relative">
-                        <svg class="absolute left-3 top-3 text-gray-400 w-5 h-5" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                <!-- Right Column: Person Cutout + Organic Blue Blob Background + Floating White Glass Badges -->
+                <div class="lg:col-span-5 relative flex items-center justify-center min-h-[480px] py-6">
+                    
+                    <!-- Custom Network Nodes Background (from Screenshot) -->
+                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+                        <!-- Soft White/Blue Blob at bottom -->
+                        <div class="absolute w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] bg-sky-100/70 rounded-[40%_60%_70%_30%/40%_50%_60%_50%] bottom-0 -z-10 translate-y-10 filter blur-[2px]"></div>
+                        
+                        <!-- SVG Network Lines -->
+                        <svg class="absolute inset-0 w-full h-full text-slate-400 opacity-60" viewBox="0 0 500 500" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M120 220 L250 160 L380 200 L420 120" />
+                            <path d="M250 160 L180 100 L120 220" />
+                            <path d="M380 200 L450 280 L250 160" />
+                            <path d="M120 220 L80 320" />
+                            <path d="M80 320 L150 400" />
                         </svg>
-                        <input type="text" name="q" placeholder="Cari jenis ikan, lokasi, atau peternak..."
-                            class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-300"
-                            value="{{ request('q') }}">
+
+                        <!-- Floating Nodes (Circles) -->
+                        <div class="absolute w-full h-full">
+                            <!-- Node: List (Top Left) -->
+                            <div class="absolute top-[20%] left-[25%] w-10 h-10 bg-white rounded-full border-2 border-slate-300 shadow-sm flex items-center justify-center text-slate-600 animate-float" style="animation-delay: 1.5s;">
+                                <i class="fa-solid fa-list-check text-sm"></i>
+                            </div>
+
+                            <!-- Node: Briefcase (Top Right) -->
+                            <div class="absolute top-[25%] right-[20%] w-10 h-10 bg-white rounded-full border-2 border-slate-300 shadow-sm flex items-center justify-center text-slate-600 animate-float" style="animation-delay: 2.5s;">
+                                <i class="fa-solid fa-briefcase text-sm"></i>
+                            </div>
+                            <!-- Small Dot Nodes -->
+                            <div class="absolute top-[18%] left-[40%] w-3 h-3 bg-slate-300 rounded-full animate-pulse"></div>
+                            <div class="absolute top-[22%] right-[10%] w-3 h-3 bg-slate-300 rounded-full animate-pulse" style="animation-delay: 1s;"></div>
+                            <div class="absolute top-[40%] right-[5%] w-4 h-4 bg-slate-300 rounded-full animate-pulse" style="animation-delay: 2s;"></div>
+                            <div class="absolute bottom-[30%] left-[10%] w-4 h-4 bg-slate-300 rounded-full animate-pulse" style="animation-delay: 1.5s;"></div>
+                        </div>
                     </div>
-                    <button type="submit"
-                        class="px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition duration-300 hover:scale-105 shadow-md hover:shadow-lg">
-                        Cari
-                    </button>
-                </form>
+
+                    <!-- Isolated Subject Cutout (Person with Tablet) -->
+                    <div class="relative z-10 w-full max-w-[320px] sm:max-w-[380px] mx-auto flex justify-center">
+                        <img src="{{ asset('images/farmer_tablet_cutout.png') }}?v={{ time() }}" 
+                             onerror="this.onerror=null; this.src='{{ asset('template/img/logo1.png') }}';"
+                             alt="Peternak FishNote" 
+                             class="w-full h-auto max-h-[480px] object-contain hover:scale-105 transition-transform duration-500 drop-shadow-2xl">
+                    </div>
+
+                    <!-- Floating Card 1: Efisiensi Panen (Top Left) -->
+                    <div class="stat-card animate-float top-4 left-0 sm:-left-8" style="animation-delay: 0s;">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center text-lg flex-shrink-0" style="background: #f0f9ff; color: #0284c7; border: 1px solid #bae6fd;">
+                            <i class="fa-solid fa-stopwatch"></i>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="text-xl font-black text-slate-800 tracking-tight leading-none mb-1">75%</span>
+                            <span class="text-[11px] text-slate-500 font-semibold tracking-wide">Efisiensi Panen</span>
+                        </div>
+                    </div>
+
+                    <!-- Floating Card 2: Peternak Aktif (Top Right) -->
+                    <div class="stat-card animate-float-med top-4 right-0 sm:-right-8" style="animation-delay: 0.8s;">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center text-lg flex-shrink-0" style="background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0;">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="text-xl font-black text-slate-800 tracking-tight leading-none mb-1">500+</span>
+                            <span class="text-[11px] text-slate-500 font-semibold tracking-wide">Peternak Aktif</span>
+                        </div>
+                    </div>
+
+                    <!-- Floating Card 3: Keuntungan (Middle Left) -->
+                    <div class="stat-card animate-float top-1/3 left-0 sm:-left-12" style="animation-delay: 1.6s;">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center text-lg flex-shrink-0" style="background: #fdf2f8; color: #db2777; border: 1px solid #fbcfe8;">
+                            <i class="fa-solid fa-hand-holding-dollar"></i>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="text-xl font-black text-slate-800 tracking-tight leading-none mb-1">+20%</span>
+                            <span class="text-[11px] text-slate-500 font-semibold tracking-wide">Keuntungan</span>
+                        </div>
+                    </div>
+
+                    <!-- Floating Card 4: Total Kolam (Bottom Left) -->
+                    <div class="stat-card animate-float-med bottom-12 left-4 sm:-left-4" style="animation-delay: 2.4s;">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center text-lg flex-shrink-0" style="background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe;">
+                            <i class="fa-solid fa-box"></i>
+                        </div>
+                        <div class="flex flex-col justify-center">
+                            <span class="text-[13px] font-black text-slate-800 tracking-tight leading-tight">Total Kolam<br>Terkelola</span>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
         </div>
     </section>
 
-    <!-- SECTION PROMOSI -->
-    <section id="promosi" class="bg-gray-50 py-16">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 animate-fadeInUp">Promosi Terbaru</h2>
-                <p class="text-gray-600 text-lg animate-fadeInUp delay-100">Dapatkan penawaran terbaik dari peternak
-                    ikan lokal</p>
+    <!-- WHY CHOOSE FISHNOTE SECTION (Text Slider) -->
+    <section class="py-20 bg-transparent overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-xs font-extrabold text-brand-600 uppercase tracking-widest">Keunggulan Platform</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Mengapa Memilih FishNote?</h2>
+            </div>
+            
+            <div class="relative bg-gradient-to-b from-transparent to-white/80 backdrop-blur-md border-b border-white/60 shadow-none rounded-[3rem] p-8 sm:p-12 lg:p-16 overflow-hidden">
+                <div class="relative min-h-[450px] lg:min-h-[400px] flex items-center justify-start text-left">
+                    
+                    <!-- Benefit 1 -->
+                    <div class="benefit-slide absolute inset-0 transition-all duration-700 transform translate-x-0 opacity-100 flex items-center">
+                        <div class="grid lg:grid-cols-2 gap-12 items-center w-full">
+                            <!-- Left: Text -->
+                            <div class="pr-0 lg:pr-8">
+                                <h3 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight leading-tight">Pencatatan Panen Akurat</h3>
+                                <p class="text-slate-600 text-base sm:text-lg leading-relaxed font-normal mb-10">
+                                    Tinggalkan cara lama mencatat di buku yang mudah hilang. Dengan sistem terintegrasi kami, Anda bisa mendokumentasikan setiap siklus kolam, riwayat pemberian pakan harian, hingga kalkulasi tonase panen secara akurat. Semua data tersimpan dengan aman di cloud dan dapat diakses kapan saja dari perangkat apa pun.
+                                </p>
+                                <a href="{{ route('register') }}" class="inline-flex bg-brand-600 text-white px-8 py-3.5 rounded-full font-bold hover:bg-brand-700 transition shadow-lg shadow-brand-600/30">Coba Sekarang</a>
+                            </div>
+                            <!-- Right: Image -->
+                            <div class="relative h-64 lg:h-96 w-full hidden lg:flex items-center justify-center p-6">
+                                <div class="absolute inset-0 bg-brand-50/40 rounded-full blur-3xl"></div>
+                                <img src="{{ asset('template/img/bg1.jpg') }}" alt="Pencatatan Data" class="object-cover w-full h-full blob-img relative z-10 shadow-2xl">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Benefit 2 -->
+                    <div class="benefit-slide absolute inset-0 transition-all duration-700 transform translate-x-4 opacity-0 hidden flex items-center">
+                        <div class="grid lg:grid-cols-2 gap-12 items-center w-full">
+                            <div class="pr-0 lg:pr-8">
+                                <h3 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight leading-tight">Promosi Langsung WA</h3>
+                                <p class="text-slate-600 text-base sm:text-lg leading-relaxed font-normal mb-10">
+                                    Tidak perlu lagi bergantung pada tengkulak. Pembeli dari berbagai daerah dapat melihat katalog ikan Anda dan langsung menghubungi Anda melalui tombol WhatsApp yang tersedia. Transaksi terjadi secara mandiri, tanpa campur tangan pihak ketiga, dan tanpa potongan biaya perantara sepeserpun.
+                                </p>
+                                <a href="{{ route('promosi') }}" class="inline-flex bg-brand-600 text-white px-8 py-3.5 rounded-full font-bold hover:bg-brand-700 transition shadow-lg shadow-brand-600/30">Jelajahi Promosi</a>
+                            </div>
+                            <div class="relative h-64 lg:h-96 w-full hidden lg:flex items-center justify-center">
+                                <div class="absolute w-64 h-64 bg-[#25D366]/20 blur-3xl rounded-full mix-blend-multiply opacity-60"></div>
+                                <i class="fa-brands fa-whatsapp text-[#25D366] relative z-10 drop-shadow-2xl hover:scale-110 transition-transform duration-700" style="font-size: 14rem;"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Benefit 3 -->
+                    <div class="benefit-slide absolute inset-0 transition-all duration-700 transform translate-x-4 opacity-0 hidden flex items-center">
+                        <div class="grid lg:grid-cols-2 gap-12 items-center w-full">
+                            <div class="pr-0 lg:pr-8">
+                                <h3 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight leading-tight">Harga Transparan</h3>
+                                <p class="text-slate-600 text-base sm:text-lg leading-relaxed font-normal mb-10">
+                                    Ciptakan ekosistem pasar yang lebih sehat dengan keterbukaan informasi. Calon pembeli dapat melihat ketersediaan stok secara real-time dan patokan harga transparan langsung dari lokasi pembudidaya. Ini membantu meningkatkan kepercayaan konsumen dan meningkatkan daya saing produk perikanan lokal Anda.
+                                </p>
+                                <a href="{{ route('register') }}" class="inline-flex bg-brand-600 text-white px-8 py-3.5 rounded-full font-bold hover:bg-brand-700 transition shadow-lg shadow-brand-600/30">Daftar Gratis</a>
+                            </div>
+                            <div class="relative h-64 lg:h-96 w-full hidden lg:flex items-center justify-center p-6">
+                                <div class="absolute inset-0 bg-brand-50/40 rounded-full blur-3xl"></div>
+                                <img src="{{ asset('template/img/bg2.jpg') }}" alt="Harga Transparan" class="object-cover w-full h-full blob-img relative z-10 shadow-2xl">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Benefit 4 -->
+                    <div class="benefit-slide absolute inset-0 transition-all duration-700 transform translate-x-4 opacity-0 hidden flex items-center">
+                        <div class="grid lg:grid-cols-2 gap-12 items-center w-full">
+                            <div class="pr-0 lg:pr-8">
+                                <h3 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight leading-tight">Platform 100% Gratis</h3>
+                                <p class="text-slate-600 text-base sm:text-lg leading-relaxed font-normal mb-10">
+                                    Kami berkomitmen untuk memajukan industri perikanan Indonesia tanpa membebani para peternak. Anda dapat mendaftar, mengelola data operasional tambak, dan mempublikasikan promosi hasil panen Anda kepada ribuan calon pembeli sepenuhnya gratis tanpa biaya pendaftaran atau langganan bulanan.
+                                </p>
+                                <a href="{{ route('register') }}" class="inline-flex bg-brand-600 text-white px-8 py-3.5 rounded-full font-bold hover:bg-brand-700 transition shadow-lg shadow-brand-600/30">Gabung Sekarang</a>
+                            </div>
+                            <div class="relative h-64 lg:h-96 w-full hidden lg:flex items-center justify-center p-6">
+                                <div class="absolute inset-0 bg-brand-50/40 rounded-full blur-3xl"></div>
+                                <img src="{{ asset('template/img/catfish_feeding.png') }}" alt="Peternak Ikan" class="object-cover w-full h-full blob-img relative z-10 shadow-2xl">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
+    </section>
+
+    <!-- POPULAR PROMOTION SHOWCASE SECTION -->
+    <section id="promosi" class="py-20 bg-gradient-to-b from-blue-50/40 via-slate-50/70 to-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12">
+                <div>
+                    <span class="text-xs font-extrabold text-brand-600 uppercase tracking-widest">Katalog Perikanan</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Promosi Hasil Panen Terbaru</h2>
+                </div>
+                <a href="{{ route('promosi') }}" class="mt-4 sm:mt-0 text-brand-600 font-bold hover:text-brand-700 text-sm flex items-center gap-2 group">
+                    <span>Lihat Semua Promosi</span>
+                    <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                </a>
             </div>
 
-            <!-- GRID PROMOSI DARI DATABASE -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- PROMOTION GRID -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 @forelse($promotions as $index => $promo)
-                    <div class="group relative bg-white rounded-2xl overflow-hidden card-3d opacity-0 reveal-on-scroll"
-                        style="animation-delay: {{ $index * 0.15 }}s;">
-
-                        <!-- Shimmer Effect Overlay -->
-                        <div
-                            class="absolute inset-0 shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none">
-                        </div>
-
-                        <!-- Image Container dengan Parallax -->
-                        <div class="relative overflow-hidden h-56">
+                    <div class="bg-white rounded-none border border-slate-200/80 overflow-hidden card-lumilearn flex flex-col group">
+                        
+                        <!-- Image Container -->
+                        <div class="relative h-48 bg-slate-100 overflow-hidden">
                             @if ($promo->foto)
                                 <img src="{{ asset('storage/' . $promo->foto) }}" alt="{{ $promo->jenis_ikan }}"
-                                    class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:rotate-2">
+                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                             @else
-                                <div
-                                    class="w-full h-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
-                                    <svg class="w-20 h-20 text-white opacity-50" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
-                                        </path>
-                                    </svg>
+                                <div class="w-full h-full flex items-center justify-center text-slate-300">
+                                    <i class="fa-solid fa-fish text-5xl"></i>
                                 </div>
                             @endif
-
-                            <!-- Gradient Overlay -->
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                            </div>
-
-                            <!-- Badge Tersedia dengan Pulse -->
-                            <div class="absolute top-4 right-4 pulse-badge">
-                                <div
-                                    class="bg-gradient-to-r from-green-400 to-emerald-500 text-white px-4 py-1.5 rounded-full text-sm font-bold shadow-lg flex items-center space-x-1">
-                                    <span class="w-2 h-2 bg-white rounded-full animate-ping"></span>
-                                    <span>Tersedia</span>
-                                </div>
-                            </div>
-
-                            <!-- Quick View Button - Muncul saat hover -->
-                            <div
-                                class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
-                                <a href="{{ route('promosi.show', $promo->id) }}"
-                                    class="bg-white text-blue-600 px-6 py-2 rounded-full font-semibold shadow-xl hover:shadow-2xl transform hover:scale-110 transition-all duration-300">
-                                    Quick View
-                                </a>
-                            </div>
                         </div>
 
-                        <!-- Card Content -->
-                        <div class="p-6 relative">
-                            <!-- Animated Background Pattern -->
-                            <div
-                                class="absolute inset-0 animated-bg opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <!-- Card Body -->
+                        <div class="p-5 flex flex-col flex-1">
+                            <!-- Location -->
+                            <div class="flex items-center gap-1.5 text-[11px] text-slate-500 mb-2">
+                                <i class="fa-solid fa-location-dot text-brand-500"></i>
+                                <span class="font-medium">{{ $promo->lokasi ?? 'Bengkalis, Riau' }}</span>
                             </div>
+                            
+                            <!-- Title -->
+                            <h3 class="text-lg font-bold text-slate-900 mb-1.5 group-hover:text-brand-600 transition-colors line-clamp-1">
+                                {{ $promo->jenis_ikan }}
+                            </h3>
+                            
+                            <!-- Description -->
+                            <p class="text-slate-500 text-xs line-clamp-2 mb-5 leading-relaxed">
+                                {{ $promo->deskripsi ?: 'Produk hasil panen perikanan segar dari pembudidaya lokal terpercaya.' }}
+                            </p>
 
-                            <div class="relative z-10">
-                                <h3
-                                    class="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">
-                                    {{ $promo->jenis_ikan }}
-                                </h3>
-                                <p class="text-gray-600 text-sm mb-4 line-clamp-2">
-                                    {{ $promo->deskripsi }}
-                                </p>
-
-                                <!-- Lokasi -->
-                                <div
-                                    class="flex items-center text-gray-500 text-sm mb-4 group-hover:text-blue-600 transition-colors duration-300">
-                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
-                                        </path>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                    </svg>
-                                    <span class="font-medium">{{ $promo->lokasi ?? 'Riau' }}</span>
-                                </div>
-
-                                <!-- Price & Stock dengan animasi -->
-                                <div
-                                    class="flex items-center justify-between mb-5 p-3 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl group-hover:from-blue-100 group-hover:to-indigo-100 transition-all duration-300">
-                                    <div>
-                                        <p class="text-xs text-gray-500 mb-1">Harga</p>
-                                        <p class="text-lg font-bold text-gradient-animated">
-                                            Rp {{ number_format($promo->harga, 0, ',', '.') }}
-                                        </p>
-                                        <p class="text-xs text-gray-500">/kg</p>
-                                    </div>
-                                    <div class="text-right">
-                                        <p class="text-xs text-gray-500 mb-1">Stok</p>
-                                        <p class="text-2xl font-bold text-gray-900">{{ $promo->stok_tersedia }}</p>
-                                        <p class="text-xs text-gray-500">kg</p>
-                                    </div>
-                                </div>
-
-                                <!-- Button Detail dengan Magnetic Effect -->
-                                <a href="{{ route('promosi.show', $promo->id) }}"
-                                    class="block w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 rounded-xl font-semibold text-center btn-magnetic relative overflow-hidden group">
-                                    <span class="relative z-10 flex items-center justify-center">
-                                        Lihat Detail
-                                        <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-2 transition-transform duration-300"
-                                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                                        </svg>
+                            <!-- Price & Stock Container -->
+                            <div class="mt-auto flex items-end justify-between">
+                                <div>
+                                    <span class="text-lg font-extrabold text-brand-600 tracking-tight">
+                                        Rp {{ number_format($promo->harga, 0, ',', '.') }}<span class="text-[10px] text-slate-500 font-normal ml-1">/{{ $promo->satuan ?? 'kg' }}</span>
                                     </span>
-                                </a>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-[11px] font-medium text-slate-500 bg-slate-100 px-2 py-1 rounded-md">Stok: {{ number_format($promo->stok_tersedia) }}</span>
+                                </div>
                             </div>
                         </div>
-
-                        <!-- Decorative Corner -->
-                        <div
-                            class="absolute -bottom-2 -right-2 w-20 h-20 bg-blue-600 rounded-tl-full opacity-0 group-hover:opacity-10 transition-opacity duration-500">
-                        </div>
+                        
+                        <!-- Minimal Footer Action -->
+                        <a href="{{ route('promosi.show', $promo->id) }}" class="border-t border-slate-100 py-3.5 text-center text-[13px] font-bold text-brand-600 hover:text-brand-700 hover:bg-brand-50 transition-colors flex items-center justify-center gap-1.5">
+                            Lihat Detail <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </a>
                     </div>
                 @empty
-                    <!-- Empty State dengan animasi -->
-                    <div class="col-span-full">
-                        <div class="text-center py-16 reveal-on-scroll">
-                            <div
-                                class="inline-block p-12 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-3xl shadow-2xl relative overflow-hidden">
-                                <!-- Animated Background -->
-                                <div class="absolute inset-0 animated-bg opacity-50"></div>
-
-                                <div class="relative z-10">
-                                    <svg class="w-32 h-32 text-blue-400 mx-auto mb-6 float-animation" fill="none"
-                                        stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4">
-                                        </path>
-                                    </svg>
-                                    <h3 class="text-3xl font-bold text-gray-800 mb-3">Belum Ada Promosi</h3>
-                                    <p class="text-gray-600 mb-6 text-lg">Jadilah yang pertama mempromosikan produk
-                                        Anda!</p>
-                                    <a href="{{ route('register') }}"
-                                        class="inline-block px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold rounded-xl btn-magnetic">
-                                        Mulai Berpromosi Sekarang
-                                    </a>
-                                </div>
-                            </div>
+                    <div class="col-span-full py-16 text-center bg-white rounded-3xl border border-slate-200">
+                        <div class="w-16 h-16 bg-brand-50 text-brand-600 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl">
+                            <i class="fa-solid fa-box-open"></i>
                         </div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-1">Belum Ada Promosi Tayang</h3>
+                        <p class="text-slate-500 text-xs mb-4">Jadilah peternak pertama yang memasarkan produk perikanan di FishNote!</p>
+                        <a href="{{ route('register') }}" class="px-6 py-2.5 bg-brand-600 text-white font-bold text-xs rounded-xl inline-block shadow-md">
+                            Daftar Peternak Sekarang
+                        </a>
                     </div>
                 @endforelse
             </div>
-
-            <!-- Tombol Lihat Semua -->
-            @if ($promotions->count() > 0)
-                <div class="text-center mt-12 animate-fadeInUp delay-500">
-                    <a href="{{ route('promosi') }}"
-                        class="inline-block px-8 py-3 border-2 border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-600 hover:text-white transition duration-300 hover:scale-105">
-                        Lihat Semua Promosi →
-                    </a>
-                </div>
-            @endif
         </div>
     </section>
 
-    <!-- FITUR UNGGULAN SECTION -->
-    <section class="bg-white py-20">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 animate-fadeInUp">
-                    Mengapa Memilih FishNote?
-                </h2>
-                <p class="text-gray-600 text-lg animate-fadeInUp delay-100">
-                    Platform terlengkap untuk mengelola dan memasarkan hasil budidaya perikanan Anda
-                </p>
+    <!-- BECOME A PROMOTER BANNER SLIDER (Pond Background Photo + Interactive Slide Animation) -->
+    <section class="py-12 bg-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="relative min-h-[340px] flex flex-col justify-between py-12 text-slate-900">
+                <!-- Faded Background Image (Fades out at the edges to blend perfectly) -->
+                <div class="absolute inset-0 bg-cover bg-center opacity-30 pointer-events-none z-0" 
+                     style="background-image: url('{{ asset('template/img/bg3.jpg') }}'); 
+                            filter: blur(4px);
+                            -webkit-mask-image: radial-gradient(50% 50% at 50% 50%, black 50%, transparent 100%);
+                            mask-image: radial-gradient(50% 50% at 50% 50%, black 50%, transparent 100%);">
+                </div>
+
+                <!-- Slide Content Container -->
+                <div class="relative z-10 my-auto min-h-[160px] flex items-center">
+                    
+                    <!-- Slide 1 -->
+                    <div class="banner-slide transition-all duration-500 transform translate-x-0 opacity-100 space-y-4 max-w-3xl">
+                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+                            Ingin Memasarkan Hasil Panen Anda ke <span class="text-brand-600">Ribuan Pembeli?</span>
+                        </h2>
+                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl font-normal">
+                            Daftar gratis sebagai peternak di FishNote, catat perkembangan kolam Anda, dan publikasikan promosi ikan panen langsung tanpa dipungut biaya komisi.
+                        </p>
+                        <div class="pt-2">
+                            <a href="{{ route('register') }}" class="inline-flex items-center gap-2 px-8 py-3.5 bg-brand-600 text-white font-extrabold rounded-2xl hover:bg-brand-700 transition shadow-lg shadow-brand-600/30 text-sm sm:text-base hover:scale-105">
+                                <span>Daftar Sebagai Peternak Sekarang</span>
+                                <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="banner-slide hidden transition-all duration-500 transform translate-x-4 opacity-0 space-y-4 max-w-3xl">
+                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+                            Pencatatan Panen & Operasional <span class="text-brand-600">Kolam Mudah</span>
+                        </h2>
+                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl font-normal">
+                            Pantau stok pakan, siklus tebar bibit, dan hasil perkiraan tonase panen secara real-time langsung dari smartphone Anda.
+                        </p>
+                        <div class="pt-2">
+                            <a href="{{ route('promosi') }}" class="inline-flex items-center gap-2 px-8 py-3.5 bg-brand-600 text-white font-extrabold rounded-2xl hover:bg-brand-700 transition shadow-lg shadow-brand-600/30 text-sm sm:text-base hover:scale-105">
+                                <span>Jelajahi Promosi</span>
+                                <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Slide Indicator Dots (Center Bottom) -->
+                <div class="relative z-10 flex items-center justify-center space-x-2.5 pt-6">
+                    <button onclick="goToBannerSlide(0)" class="banner-dot w-8 h-2.5 bg-brand-600 rounded-full transition-all duration-300 shadow-sm" aria-label="Slide 1"></button>
+                    <button onclick="goToBannerSlide(1)" class="banner-dot w-2.5 h-2.5 bg-brand-600/30 hover:bg-brand-600/60 rounded-full transition-all duration-300" aria-label="Slide 2"></button>
+                </div>
+
             </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Fitur 1 -->
-                <div class="group relative p-8 bg-white rounded-2xl card-3d feature-card text-center">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    </div>
-
-                    <div class="relative z-10">
-                        <div
-                            class="w-24 h-24 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center mx-auto mb-6 float-animation group-hover:scale-110 transition-transform duration-500">
-                            <div
-                                class="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center">
-                                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <h3
-                            class="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
-                            Mudah Digunakan</h3>
-                        <p class="text-gray-600 leading-relaxed">Interface yang user-friendly memudahkan peternak dalam
-                            mengelola bisnis</p>
-
-                        <!-- Decorative Line -->
-                        <div
-                            class="mt-6 h-1 w-0 group-hover:w-full bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full mx-auto transition-all duration-500">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Fitur 2 -->
-                <div class="group relative p-8 bg-white rounded-2xl card-3d feature-card text-center">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    </div>
-
-                    <div class="relative z-10">
-                        <div class="w-24 h-24 bg-gradient-to-br from-green-100 to-green-200 rounded-full flex items-center justify-center mx-auto mb-6 float-animation group-hover:scale-110 transition-transform duration-500"
-                            style="animation-delay: 0.2s;">
-                            <div
-                                class="w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center">
-                                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
-                                    </path>
-                                </svg>
-                            </div>
-                        </div>
-                        <h3
-                            class="text-xl font-bold text-gray-900 mb-3 group-hover:text-green-600 transition-colors duration-300">
-                            Harga Kompetitif</h3>
-                        <p class="text-gray-600 leading-relaxed">Dapatkan harga terbaik langsung dari peternak tanpa
-                            perantara</p>
-
-                        <div
-                            class="mt-6 h-1 w-0 group-hover:w-full bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mx-auto transition-all duration-500">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Fitur 3 -->
-                <div class="group relative p-8 bg-white rounded-2xl card-3d feature-card text-center">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-br from-yellow-50 to-amber-50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    </div>
-
-                    <div class="relative z-10">
-                        <div class="w-24 h-24 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-full flex items-center justify-center mx-auto mb-6 float-animation group-hover:scale-110 transition-transform duration-500"
-                            style="animation-delay: 0.4s;">
-                            <div
-                                class="w-20 h-20 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center">
-                                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <h3
-                            class="text-xl font-bold text-gray-900 mb-3 group-hover:text-yellow-600 transition-colors duration-300">
-                            Proses Cepat</h3>
-                        <p class="text-gray-600 leading-relaxed">Transaksi dan pencatatan dilakukan secara real-time
-                            dan efisien</p>
-
-                        <div
-                            class="mt-6 h-1 w-0 group-hover:w-full bg-gradient-to-r from-yellow-500 to-amber-500 rounded-full mx-auto transition-all duration-500">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Fitur 4 -->
-                <div class="group relative p-8 bg-white rounded-2xl card-3d feature-card text-center">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    </div>
-
-                    <div class="relative z-10">
-                        <div class="w-24 h-24 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full flex items-center justify-center mx-auto mb-6 float-animation group-hover:scale-110 transition-transform duration-500"
-                            style="animation-delay: 0.6s;">
-                            <div
-                                class="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center">
-                                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
-                                    </path>
-                                </svg>
-                            </div>
-                        </div>
-                        <h3
-                            class="text-xl font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors duration-300">
-                            Aman & Terpercaya</h3>
-                        <p class="text-gray-600 leading-relaxed">Data dan transaksi Anda dijamin aman dengan sistem
-                            keamanan terbaik</p>
-
-                        <div
-                            class="mt-6 h-1 w-0 group-hover:w-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mx-auto transition-all duration-500">
-                        </div>
-                    </div>
-                </div>
-            </div>
+        </div>
     </section>
 
-    <!-- CARA KERJA SECTION -->
-    <section class="bg-gradient-to-b from-gray-50 to-white py-20">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 animate-fadeInUp">
-                    Cara Kerja FishNote
-                </h2>
-                <p class="text-gray-600 text-lg animate-fadeInUp delay-100">
-                    Mulai bisnis perikanan Anda hanya dengan 3 langkah mudah
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Step 1 -->
-                <div
-                    class="relative p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 step-card">
-                    <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 step-badge">
-                        <div
-                            class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold shadow-lg">
-                            1
-                        </div>
-                    </div>
-                    <div class="text-center mt-6">
-                        <div
-                            class="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6 step-icon-wrapper">
-                            <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z">
-                                </path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Daftar Gratis</h3>
-                        <p class="text-gray-600">Buat akun FishNote secara gratis dalam hitungan menit. Tidak ada biaya
-                            tersembunyi!</p>
-                    </div>
+    <!-- ARTIKEL & BLOG TERBARU SECTION -->
+    <section id="artikel" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12">
+                <div>
+                    <span class="text-xs font-extrabold text-brand-600 uppercase tracking-widest">Edukasi & Tips</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Artikel Terbaru FishNote</h2>
+                    <p class="text-slate-500 text-sm mt-2 max-w-2xl">Baca panduan terbaru seputar budidaya ikan, tips menjaga kualitas air, dan strategi pemasaran hasil panen.</p>
                 </div>
-
-                <!-- Step 2 -->
-                <div
-                    class="relative p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 step-card">
-                    <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 step-badge">
-                        <div
-                            class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold shadow-lg">
-                            2
-                        </div>
-                    </div>
-                    <div class="text-center mt-6">
-                        <div
-                            class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 step-icon-wrapper">
-                            <svg class="w-12 h-12 text-green-600" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
-                                </path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Kelola Data</h3>
-                        <p class="text-gray-600">Catat hasil budidaya, kelola stok, dan pantau perkembangan bisnis Anda
-                            dengan mudah</p>
-                    </div>
-                </div>
-
-                <!-- Step 3 -->
-                <div
-                    class="relative p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 step-card">
-                    <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 step-badge">
-                        <div
-                            class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold shadow-lg">
-                            3
-                        </div>
-                    </div>
-                    <div class="text-center mt-6">
-                        <div
-                            class="w-24 h-24 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6 step-icon-wrapper">
-                            <svg class="w-12 h-12 text-yellow-600" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
-                                </path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Pasarkan Produk</h3>
-                        <p class="text-gray-600">Buat promosi dan jangkau ribuan pembeli potensial di seluruh Indonesia
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-center mt-12">
-                <a href="{{ route('register') }}"
-                    class="inline-block px-8 py-4 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition duration-300 shadow-lg hover:shadow-xl hover:scale-105">
-                    Mulai Sekarang →
+                <a href="{{ route('artikel.index') }}" class="mt-4 sm:mt-0 text-brand-600 font-bold hover:text-brand-700 text-sm flex items-center gap-2 group">
+                    <span>Lihat Semua Artikel</span>
+                    <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
                 </a>
             </div>
-        </div>
-    </section>
 
-    <!-- STATISTIK SECTION -->
-    <section class="bg-blue-600 text-white py-20">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 animate-fadeInUp">
-                    Dipercaya oleh Ribuan Peternak
-                </h2>
-                <p class="text-blue-100 text-lg animate-fadeInUp delay-100">
-                    Bergabunglah dengan komunitas peternak ikan terbesar di Indonesia
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-4 gap-8">
-                <!-- Stat 1 -->
-                <div class="text-center animate-fadeInUp">
-                    <div class="text-5xl font-bold mb-2">500+</div>
-                    <div class="text-blue-100">Peternak Aktif</div>
-                </div>
-
-                <!-- Stat 2 -->
-                <div class="text-center animate-fadeInUp delay-100">
-                    <div class="text-5xl font-bold mb-2">10K+</div>
-                    <div class="text-blue-100">Transaksi Sukses</div>
-                </div>
-
-                <!-- Stat 3 -->
-                <div class="text-center animate-fadeInUp delay-200">
-                    <div class="text-5xl font-bold mb-2">50+</div>
-                    <div class="text-blue-100">Jenis Ikan</div>
-                </div>
-
-                <!-- Stat 4 -->
-                <div class="text-center animate-fadeInUp delay-300">
-                    <div class="text-5xl font-bold mb-2">98%</div>
-                    <div class="text-blue-100">Kepuasan Pengguna</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- TESTIMONI SECTION -->
-    <section class="bg-white py-20">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 animate-fadeInUp">
-                    Apa Kata Mereka?
-                </h2>
-                <p class="text-gray-600 text-lg animate-fadeInUp delay-100">
-                    Testimoni dari peternak yang telah sukses menggunakan FishNote
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Testimoni 1 -->
-                <div
-                    class="bg-gray-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 animate-fadeInUp">
-                    <div class="flex items-center mb-4">
-                        <div class="flex text-yellow-400">
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
-                                <path
-                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                            </svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
-                                <path
-                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                            </svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
-                                <path
-                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                            </svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
-                                <path
-                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                            </svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
-                                <path
-                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                            </svg>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 mb-6 italic">
-                        "FishNote sangat membantu saya dalam mengelola budidaya lele. Sekarang semua data tersimpan rapi
-                        dan saya bisa promosi langsung ke pembeli!"
-                    </p>
-                    <div class="flex items-center">
-                        <div
-                            class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold mr-4">
-                            AA
-                        </div>
-                        <div>
-                            <div class="font-bold text-gray-900">Aidil Ardiansyah</div>
-                            <div class="text-sm text-gray-500">Peternak Lele - Bengkalis</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Testimoni 2 -->
-                <div
-                    class="bg-gray-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 animate-fadeInUp delay-100">
-                    <div class="flex items-center mb-4">
-                        <div class="flex text-yellow-400">
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
-                                <path
-                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                            </svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
-                                <path
-                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                            </svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
-                                <path
-                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                            </svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
-                                <path
-                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                            </svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
-                                <path
-                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                            </svg>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 mb-6 italic">
-                        "Platform yang sangat user-friendly! Penjualan ikan nila saya meningkat 40% sejak menggunakan
-                        FishNote. Highly recommended!"
-                    </p>
-                    <div class="flex items-center">
-                        <div
-                            class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white font-bold mr-4">
-                            UJ
-                        </div>
-                        <div>
-                            <div class="font-bold text-gray-900">Ujang</div>
-                            <div class="text-sm text-gray-500">Peternak Nila - Bengkalis</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Testimoni 3 -->
-                <div
-                    class="bg-gray-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 animate-fadeInUp delay-200">
-                    <div class="flex items-center mb-4">
-                        <div class="flex text-yellow-400">
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
-                                <path
-                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                            </svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
-                                <path
-                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                            </svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
-                                <path
-                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                            </svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
-                                <path
-                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                            </svg>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
-                                <path
-                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                            </svg>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 mb-6 italic">
-                        "Fitur pencatatan dan laporan sangat membantu untuk menganalisis bisnis. FishNote adalah solusi
-                        terbaik untuk peternak modern!"
-                    </p>
-                    <div class="flex items-center">
-                        <div
-                            class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold mr-4">
-                            MM
-                        </div>
-                        <div>
-                            <div class="font-bold text-gray-900">Mamat</div>
-                            <div class="text-sm text-gray-500">Peternak Gurame - Bengkalis</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ SECTION -->
-    <section class="bg-gray-50 py-20">
-        <div class="max-w-4xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 animate-fadeInUp">
-                    Pertanyaan yang Sering Ditanyakan
-                </h2>
-                <p class="text-gray-600 text-lg animate-fadeInUp delay-100">
-                    Temukan jawaban untuk pertanyaan umum tentang FishNote
-                </p>
-            </div>
-
-            <div class="space-y-4">
-                <!-- FAQ 1 -->
-                <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition duration-300 animate-fadeInUp">
-                    <button class="w-full px-6 py-5 text-left flex justify-between items-center"
-                        onclick="toggleFAQ(1)">
-                        <span class="font-bold text-gray-900">Apakah FishNote gratis?</span>
-                        <svg id="faq-icon-1" class="w-6 h-6 text-blue-600 transform transition-transform duration-300"
-                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
-                            </path>
-                        </svg>
-                    </button>
-                    <div id="faq-content-1" class="hidden px-6 pb-5 text-gray-600">
-                        Ya, FishNote sepenuhnya gratis untuk semua peternak. Anda dapat mendaftar, mengelola data, dan
-                        membuat promosi tanpa biaya apapun.
-                    </div>
-                </div>
-
-                <!-- FAQ 2 -->
-                <div
-                    class="bg-white rounded-xl shadow-md hover:shadow-lg transition duration-300 animate-fadeInUp delay-100">
-                    <button class="w-full px-6 py-5 text-left flex justify-between items-center"
-                        onclick="toggleFAQ(2)">
-                        <span class="font-bold text-gray-900">Bagaimana cara membuat promosi?</span>
-                        <svg id="faq-icon-2" class="w-6 h-6 text-blue-600 transform transition-transform duration-300"
-                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
-                            </path>
-                        </svg>
-                    </button>
-                    <div id="faq-content-2" class="hidden px-6 pb-5 text-gray-600">
-                        Setelah mendaftar, Anda dapat masuk ke dashboard peternak dan pilih menu "Promosi". Isi detail
-                        produk, upload foto, dan promosi Anda akan langsung tayang di halaman utama.
-                    </div>
-                </div>
-
-                <!-- FAQ 3 -->
-                <div
-                    class="bg-white rounded-xl shadow-md hover:shadow-lg transition duration-300 animate-fadeInUp delay-200">
-                    <button class="w-full px-6 py-5 text-left flex justify-between items-center"
-                        onclick="toggleFAQ(3)">
-                        <span class="font-bold text-gray-900">Apakah data saya aman?</span>
-                        <svg id="faq-icon-3" class="w-6 h-6 text-blue-600 transform transition-transform duration-300"
-                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
-                            </path>
-                        </svg>
-                    </button>
-                    <div id="faq-content-3" class="hidden px-6 pb-5 text-gray-600">
-                        Tentu! Kami menggunakan sistem keamanan tingkat enterprise dengan enkripsi data. Semua informasi
-                        pribadi dan bisnis Anda dijamin aman.
-                    </div>
-                </div>
-
-                <!-- FAQ 4 -->
-                <div
-                    class="bg-white rounded-xl shadow-md hover:shadow-lg transition duration-300 animate-fadeInUp delay-300">
-                    <button class="w-full px-6 py-5 text-left flex justify-between items-center"
-                        onclick="toggleFAQ(4)">
-                        <span class="font-bold text-gray-900">Bagaimana cara menghubungi pembeli?</span>
-                        <svg id="faq-icon-4" class="w-6 h-6 text-blue-600 transform transition-transform duration-300"
-                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
-                            </path>
-                        </svg>
-                    </button>
-                    <div id="faq-content-4" class="hidden px-6 pb-5 text-gray-600">
-                        Pembeli yang tertarik akan menghubungi Anda melalui nomor kontak yang Anda cantumkan di promosi.
-                        Anda juga bisa melihat statistik views untuk setiap promosi.
-                    </div>
-                </div>
-    </section>
-
-    <!-- CTA SECTION -->
-    <section class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16 animate-gradient">
-        <div class="max-w-4xl mx-auto px-4 text-center animate-fadeInUp">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6">
-                Siap Memulai Bisnis Perikanan Anda?
-            </h2>
-            <p class="text-xl mb-8 text-blue-100">
-                Bergabunglah dengan ribuan peternak yang telah sukses memasarkan produk mereka di FishNote
-            </p>
-            <a href="{{ route('register') }}"
-                class="inline-block px-8 py-4 bg-white text-blue-600 font-bold rounded-lg hover:bg-gray-100 transition duration-300 shadow-2xl hover:scale-105 text-lg">
-                Daftar Sekarang - Gratis!
-            </a>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer id="kontak" class="bg-gray-900 text-white py-16">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="grid md:grid-cols-4 gap-12">
-                <!-- Kolom 1 - Logo & Deskripsi -->
-                <div class="animate-fadeInUp">
-                    <div class="flex items-center space-x-3 mb-6">
-                        <img src="{{ asset('template/img/logo1.png') }}" alt="FishNote Logo"
-                            class="w-16 h-16 object-contain">
-                        <span class="text-3xl font-bold text-white">
-                            Fishnote
-                        </span>
-                    </div>
-                    <p class="text-gray-400 text-base leading-relaxed">
-                        Platform digital untuk budidaya perikanan Indonesia yang modern dan terpercaya
-                    </p>
-                    <!-- Social Media -->
-                    <div class="flex space-x-4 mt-6">
-                        <a href="#"
-                            class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition duration-300">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                            </svg>
+            <!-- Grid Artikel -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Artikel 1 -->
+                <article class="bg-white rounded-none border border-slate-200/80 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 card-lumilearn group flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors z-10"></div>
+                        <a href="{{ route('artikel.show', 'cara-efektif-menjaga-kualitas-air') }}" class="block w-full h-full">
+                            <img src="{{ asset('template/img/nila.jpg') }}" alt="Kolam Ikan Nila" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </a>
-                        <a href="#"
-                            class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-400 transition duration-300">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
-                            </svg>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <div class="flex items-center gap-3 text-[11px] text-slate-500 font-semibold mb-3">
+                            <span class="flex items-center gap-1.5"><i class="fa-regular fa-calendar"></i> 12 Sep 2026</span>
+                            <span>•</span>
+                            <span class="flex items-center gap-1.5"><i class="fa-regular fa-clock"></i> 5 Min Baca</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-3 group-hover:text-brand-600 transition-colors line-clamp-2">
+                            <a href="{{ route('artikel.show', 'cara-efektif-menjaga-kualitas-air') }}">Cara Efektif Menjaga Kualitas Air Kolam Nila Agar Ikan Cepat Besar</a>
+                        </h3>
+                        <p class="text-slate-500 text-xs leading-relaxed mb-5 line-clamp-3">
+                            Kualitas air adalah kunci sukses budidaya ikan nila. Pelajari cara mengukur pH, mengatur sirkulasi, dan menjaga kadar oksigen tetap optimal di segala cuaca.
+                        </p>
+                        <div class="mt-auto pt-4 border-t border-slate-100 flex items-center justify-end">
+                            <a href="{{ route('artikel.show', 'cara-efektif-menjaga-kualitas-air') }}" class="text-brand-600 hover:text-brand-700 font-bold text-xs">Baca Artikel &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Artikel 2 -->
+                <article class="bg-white rounded-none border border-slate-200/80 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 card-lumilearn group flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors z-10"></div>
+                        <a href="{{ route('artikel.show', 'strategi-pemberian-pakan-lele') }}" class="block w-full h-full">
+                            <img src="{{ asset('template/img/catfish_feeding.png') }}" alt="Pemberian Pakan Ikan" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </a>
-                        <a href="#"
-                            class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-pink-600 transition duration-300">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z" />
-                                <path
-                                    d="M12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                            </svg>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <div class="flex items-center gap-3 text-[11px] text-slate-500 font-semibold mb-3">
+                            <span class="flex items-center gap-1.5"><i class="fa-regular fa-calendar"></i> 05 Sep 2026</span>
+                            <span>•</span>
+                            <span class="flex items-center gap-1.5"><i class="fa-regular fa-clock"></i> 4 Min Baca</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-3 group-hover:text-emerald-600 transition-colors line-clamp-2">
+                            <a href="{{ route('artikel.show', 'strategi-pemberian-pakan-lele') }}">Strategi Pemberian Pakan Lele untuk Menekan FCR dan Menghemat Biaya</a>
+                        </h3>
+                        <p class="text-slate-500 text-xs leading-relaxed mb-5 line-clamp-3">
+                            Menekan biaya pakan (FCR) sangat penting dalam budidaya lele. Simak takaran pakan ideal dan alternatif pakan tambahan untuk memaksimalkan keuntungan Anda.
+                        </p>
+                        <div class="mt-auto pt-4 border-t border-slate-100 flex items-center justify-end">
+                            <a href="{{ route('artikel.show', 'strategi-pemberian-pakan-lele') }}" class="text-emerald-600 hover:text-emerald-700 font-bold text-xs">Baca Artikel &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Artikel 3 -->
+                <article class="bg-white rounded-none border border-slate-200/80 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 card-lumilearn group flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors z-10"></div>
+                        <a href="{{ route('artikel.show', 'menjual-hasil-panen-langsung') }}" class="block w-full h-full">
+                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Transaksi Pasar Ikan" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </a>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <div class="flex items-center gap-3 text-[11px] text-slate-500 font-semibold mb-3">
+                            <span class="flex items-center gap-1.5"><i class="fa-regular fa-calendar"></i> 28 Agu 2026</span>
+                            <span>•</span>
+                            <span class="flex items-center gap-1.5"><i class="fa-regular fa-clock"></i> 6 Min Baca</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors line-clamp-2">
+                            <a href="{{ route('artikel.show', 'menjual-hasil-panen-langsung') }}">Cara Menjual Hasil Panen Langsung ke Pembeli dengan FishNote</a>
+                        </h3>
+                        <p class="text-slate-500 text-xs leading-relaxed mb-5 line-clamp-3">
+                            Bosan dengan tengkulak? Inilah saatnya Anda mengontrol harga jual hasil panen. Pelajari cara membuat promosi menarik di FishNote yang langsung dilirik restoran dan pasar.
+                        </p>
+                        <div class="mt-auto pt-4 border-t border-slate-100 flex items-center justify-end">
+                            <a href="{{ route('artikel.show', 'menjual-hasil-panen-langsung') }}" class="text-indigo-600 hover:text-indigo-700 font-bold text-xs">Baca Artikel &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Artikel 4 -->
+                <article class="bg-white rounded-none border border-slate-200/80 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 card-lumilearn group flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors z-10"></div>
+                        <a href="{{ route('artikel.show', 'pemilihan-bibit-unggul') }}" class="block w-full h-full">
+                            <img src="{{ asset('template/img/lele.jpg') }}" alt="Bibit Ikan" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </a>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <div class="flex items-center gap-3 text-[11px] text-slate-500 font-semibold mb-3">
+                            <span class="flex items-center gap-1.5"><i class="fa-regular fa-calendar"></i> 20 Agu 2026</span>
+                            <span>•</span>
+                            <span class="flex items-center gap-1.5"><i class="fa-regular fa-clock"></i> 4 Min Baca</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-3 group-hover:text-brand-600 transition-colors line-clamp-2">
+                            <a href="{{ route('artikel.show', 'pemilihan-bibit-unggul') }}">Tips Memilih Bibit Unggul untuk Panen Maksimal</a>
+                        </h3>
+                        <p class="text-slate-500 text-xs leading-relaxed mb-5 line-clamp-3">
+                            Memulai dengan bibit yang tepat adalah setengah dari keberhasilan. Pahami ciri-ciri fisik bibit unggul dan tahan penyakit sebelum menebarnya di kolam Anda.
+                        </p>
+                        <div class="mt-auto pt-4 border-t border-slate-100 flex items-center justify-end">
+                            <a href="{{ route('artikel.show', 'pemilihan-bibit-unggul') }}" class="text-brand-600 hover:text-brand-700 font-bold text-xs">Baca Artikel &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Artikel 5 -->
+                <article class="bg-white rounded-none border border-slate-200/80 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 card-lumilearn group flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors z-10"></div>
+                        <a href="{{ route('artikel.show', 'mencegah-penyakit-ikan') }}" class="block w-full h-full">
+                            <img src="{{ asset('template/img/patin.jpg') }}" alt="Ikan Sehat" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </a>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <div class="flex items-center gap-3 text-[11px] text-slate-500 font-semibold mb-3">
+                            <span class="flex items-center gap-1.5"><i class="fa-regular fa-calendar"></i> 15 Agu 2026</span>
+                            <span>•</span>
+                            <span class="flex items-center gap-1.5"><i class="fa-regular fa-clock"></i> 5 Min Baca</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-3 group-hover:text-brand-600 transition-colors line-clamp-2">
+                            <a href="{{ route('artikel.show', 'mencegah-penyakit-ikan') }}">Mencegah Wabah Penyakit di Musim Penghujan</a>
+                        </h3>
+                        <p class="text-slate-500 text-xs leading-relaxed mb-5 line-clamp-3">
+                            Perubahan cuaca drastis sangat rawan bagi ikan. Simak langkah-langkah preventif pemberian vitamin dan penyesuaian pakan saat musim hujan tiba.
+                        </p>
+                        <div class="mt-auto pt-4 border-t border-slate-100 flex items-center justify-end">
+                            <a href="{{ route('artikel.show', 'mencegah-penyakit-ikan') }}" class="text-brand-600 hover:text-brand-700 font-bold text-xs">Baca Artikel &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Artikel 6 -->
+                <article class="bg-white rounded-none border border-slate-200/80 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 card-lumilearn group flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors z-10"></div>
+                        <a href="{{ route('artikel.show', 'sistem-bioflok-modern') }}" class="block w-full h-full">
+                            <img src="{{ asset('template/img/gurame.jpg') }}" alt="Sistem Bioflok" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </a>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <div class="flex items-center gap-3 text-[11px] text-slate-500 font-semibold mb-3">
+                            <span class="flex items-center gap-1.5"><i class="fa-regular fa-calendar"></i> 02 Agu 2026</span>
+                            <span>•</span>
+                            <span class="flex items-center gap-1.5"><i class="fa-regular fa-clock"></i> 7 Min Baca</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-3 group-hover:text-brand-600 transition-colors line-clamp-2">
+                            <a href="{{ route('artikel.show', 'sistem-bioflok-modern') }}">Mengenal Sistem Bioflok: Hemat Pakan, Lahan Minim</a>
+                        </h3>
+                        <p class="text-slate-500 text-xs leading-relaxed mb-5 line-clamp-3">
+                            Punya lahan terbatas tapi ingin panen melimpah? Sistem bioflok bisa jadi solusinya. Ketahui cara kerja dan persiapan awal membuat kolam bioflok Anda sendiri.
+                        </p>
+                        <div class="mt-auto pt-4 border-t border-slate-100 flex items-center justify-end">
+                            <a href="{{ route('artikel.show', 'sistem-bioflok-modern') }}" class="text-brand-600 hover:text-brand-700 font-bold text-xs">Baca Artikel &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONI & MANUAL RATING SECTION (LumiLearn Style) -->
+    <section class="py-20 bg-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12">
+                <div>
+                    <span class="text-xs font-extrabold text-brand-600 uppercase tracking-widest">Ulasan Pengunjung</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Apa Kata Peternak & Pembeli</h2>
+                </div>
+                <button onclick="openRatingModal()" class="mt-4 sm:mt-0 px-6 py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-2xl shadow-lg shadow-brand-600/30 hover:scale-105 transition flex items-center gap-2 text-sm">
+                    <i class="fa-solid fa-star text-amber-300"></i>
+                    <span>+ Beri Ulasan & Rating</span>
+                </button>
+            </div>
+            <!-- Filter Ulasan -->
+            <div class="mb-8 flex flex-wrap items-center gap-2 sm:gap-3">
+                <button onclick="setReviewFilter('semua')" id="btnFilter-semua" class="filter-btn px-4 py-2 bg-brand-600 text-white rounded-full text-[11px] sm:text-xs font-bold transition">Semua</button>
+                <button onclick="setReviewFilter('baik')" id="btnFilter-baik" class="filter-btn px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-full text-[11px] sm:text-xs font-bold transition">Penilaian Baik (4-5)</button>
+                <button onclick="setReviewFilter('buruk')" id="btnFilter-buruk" class="filter-btn px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-full text-[11px] sm:text-xs font-bold transition">Penilaian Buruk (1-3)</button>
+                <div class="hidden sm:block h-6 w-px bg-slate-200 mx-1"></div>
+                <button onclick="setReviewFilter(5)" id="btnFilter-5" class="filter-btn px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-full text-[11px] sm:text-xs font-bold transition flex items-center gap-1.5"><i class="fa-solid fa-star text-amber-400"></i> 5</button>
+                <button onclick="setReviewFilter(4)" id="btnFilter-4" class="filter-btn px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-full text-[11px] sm:text-xs font-bold transition flex items-center gap-1.5"><i class="fa-solid fa-star text-amber-400"></i> 4</button>
+                <button onclick="setReviewFilter(3)" id="btnFilter-3" class="filter-btn px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-full text-[11px] sm:text-xs font-bold transition flex items-center gap-1.5"><i class="fa-solid fa-star text-amber-400"></i> 3</button>
+                <button onclick="setReviewFilter(2)" id="btnFilter-2" class="filter-btn px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-full text-[11px] sm:text-xs font-bold transition flex items-center gap-1.5"><i class="fa-solid fa-star text-amber-400"></i> 2</button>
+                <button onclick="setReviewFilter(1)" id="btnFilter-1" class="filter-btn px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-full text-[11px] sm:text-xs font-bold transition flex items-center gap-1.5"><i class="fa-solid fa-star text-amber-400"></i> 1</button>
+            </div>
+
+            <!-- Grid Testimoni -->
+            <div id="testimonialGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                <!-- Testimonials injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL INPUT RATING MANUAL INTERAKTIF -->
+    <div id="ratingModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative">
+            <button onclick="closeRatingModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 p-2">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <div class="w-14 h-14 bg-amber-50 text-amber-500 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-3">
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <h3 class="text-xl font-extrabold text-slate-900">Beri Ulasan & Rating</h3>
+                <p class="text-slate-500 text-xs">Bagikan pengalaman Anda menggunakan platform FishNote</p>
+            </div>
+
+            <form id="ratingForm" onsubmit="submitRating(event)" class="space-y-4">
+                <div class="text-center mb-4">
+                    <label class="block text-xs font-bold text-slate-600 uppercase mb-2">Pilih Bintang Rating</label>
+                    <div class="star-rating flex items-center justify-center space-x-2 text-3xl text-slate-300">
+                        <i class="fa-solid fa-star" onclick="setRating(1)" onmouseenter="highlightStars(1)" onmouseleave="resetStars()"></i>
+                        <i class="fa-solid fa-star" onclick="setRating(2)" onmouseenter="highlightStars(2)" onmouseleave="resetStars()"></i>
+                        <i class="fa-solid fa-star" onclick="setRating(3)" onmouseenter="highlightStars(3)" onmouseleave="resetStars()"></i>
+                        <i class="fa-solid fa-star" onclick="setRating(4)" onmouseenter="highlightStars(4)" onmouseleave="resetStars()"></i>
+                        <i class="fa-solid fa-star" onclick="setRating(5)" onmouseenter="highlightStars(5)" onmouseleave="resetStars()"></i>
+                    </div>
+                    <input type="hidden" id="selectedRating" value="5" required>
+                    <span id="ratingText" class="text-xs font-bold text-amber-500 mt-1 block">5.0 / 5.0 (Sangat Bagus!)</span>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nama Lengkap <span class="text-rose-500">*</span></label>
+                    <input type="text" id="reviewerName" required placeholder="Contoh: Aidil Ardiansyah"
+                        class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold focus:bg-white focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Profesi & Lokasi <span class="text-rose-500">*</span></label>
+                    <input type="text" id="reviewerRole" required placeholder="Contoh: Pembudidaya Lele - Bengkalis"
+                        class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold focus:bg-white focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Ulasan / Testimoni <span class="text-rose-500">*</span></label>
+                    <textarea id="reviewerMessage" rows="3" required placeholder="Tuliskan pendapat Anda tentang layanan FishNote..."
+                        class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:bg-white focus:ring-2 focus:ring-brand-500 focus:outline-none"></textarea>
+                </div>
+
+                <button type="submit" class="w-full py-3.5 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl shadow-lg shadow-brand-600/30 transition text-sm">
+                    Kirim Ulasan Sekarang
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- FOOTER SECTION (Clean Dark Footer) -->
+    <footer id="kontak" class="bg-slate-950 text-white pt-16 pb-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-12">
+                <!-- Col 1: Brand -->
+                <div class="space-y-4">
+                    <a href="{{ route('landing') }}" class="inline-flex items-center group hover:scale-105 transition-transform">
+                        <img src="{{ asset('template/img/logo1.png') }}?v={{ time() }}" 
+                             alt="FishNote Logo" 
+                             class="h-10 w-auto object-contain">
+                    </a>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Platform pencatatan digital dan promosi hasil budidaya perikanan modern terintegrasi di Indonesia.
+                    </p>
+                    <div class="flex items-center space-x-3 pt-2">
+                        <a href="#" class="w-9 h-9 rounded-xl bg-slate-900 hover:bg-brand-600 text-slate-400 hover:text-white flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-facebook-f text-sm"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-xl bg-slate-900 hover:bg-sky-500 text-slate-400 hover:text-white flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-twitter text-sm"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-xl bg-slate-900 hover:bg-pink-600 text-slate-400 hover:text-white flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-instagram text-sm"></i>
                         </a>
                     </div>
                 </div>
 
-                <!-- Kolom 2 - Menu -->
-                <div class="animate-fadeInUp delay-100">
-                    <h3 class="text-xl font-bold mb-6 text-white">Menu</h3>
-                    <ul class="space-y-4">
-                        <li>
-                            <a href="{{ route('landing') }}"
-                                class="text-gray-400 hover:text-white transition duration-300 text-base flex items-center group">
-                                <span class="mr-2 group-hover:mr-3 transition-all"></span>
-                                Beranda
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('promosi') }}"
-                                class="text-gray-400 hover:text-white transition duration-300 text-base flex items-center group">
-                                <span class="mr-2 group-hover:mr-3 transition-all"></span>
-                                Promosi
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('about') }}"
-                                class="text-gray-400 hover:text-white transition duration-300 text-base flex items-center group">
-                                <span class="mr-2 group-hover:mr-3 transition-all"></span>
-                                Tentang Kami
-                            </a>
-                        </li>
+                <!-- Col 2: Navigation -->
+                <div>
+                    <h4 class="text-base font-bold text-white mb-4">Navigasi Utama</h4>
+                    <ul class="space-y-2.5 text-sm text-slate-400">
+                        <li><a href="{{ route('landing') }}" class="hover:text-brand-400 transition-colors flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brand-500"></i> Beranda</a></li>
+                        <li><a href="{{ route('promosi') }}" class="hover:text-brand-400 transition-colors flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brand-500"></i> Katalog Promosi</a></li>
+                        <li><a href="{{ route('about') }}" class="hover:text-brand-400 transition-colors flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brand-500"></i> Tentang Kami</a></li>
+                        <li><a href="{{ route('login') }}" class="hover:text-brand-400 transition-colors flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brand-500"></i> Masuk Akun</a></li>
                     </ul>
                 </div>
 
-                <!-- Kolom 3 - Bantuan -->
-                <div class="animate-fadeInUp delay-200">
-                    <h3 class="text-xl font-bold mb-6 text-white">Bantuan</h3>
-                    <ul class="space-y-4">
-                        <li>
-                            <a href="#"
-                                class="text-gray-400 hover:text-white transition duration-300 text-base flex items-center group">
-                                <span class="mr-2 group-hover:mr-3 transition-all"></span>
-                                Cara Berjualan
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="text-gray-400 hover:text-white transition duration-300 text-base flex items-center group">
-                                <span class="mr-2 group-hover:mr-3 transition-all"></span>
-                                Cara Membeli
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="text-gray-400 hover:text-white transition duration-300 text-base flex items-center group">
-                                <span class="mr-2 group-hover:mr-3 transition-all"></span>
-                                FAQ
-                            </a>
-                        </li>
+                <!-- Col 3: Support -->
+                <div>
+                    <h4 class="text-base font-bold text-white mb-4">Pusat Bantuan</h4>
+                    <ul class="space-y-2.5 text-sm text-slate-400">
+                        <li><a href="#" class="hover:text-brand-400 transition-colors flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brand-500"></i> Panduan Peternak</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brand-500"></i> Cara Membeli</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brand-500"></i> Syarat & Ketentuan</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brand-500"></i> Kebijakan Privasi</a></li>
                     </ul>
                 </div>
 
-                <!-- Kolom 4 - Kontak -->
-                <div class="animate-fadeInUp delay-300">
-                    <h3 class="text-xl font-bold mb-6 text-white">Kontak</h3>
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <svg class="w-6 h-6 text-blue-500 mr-3 flex-shrink-0 mt-1" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                                </path>
-                            </svg>
-                            <span class="text-gray-400 text-base">admin@fishnote.com</span>
+                <!-- Col 4: Contact -->
+                <div>
+                    <h4 class="text-base font-bold text-white mb-4">Hubungi Kami</h4>
+                    <ul class="space-y-3 text-sm text-slate-400">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-envelope text-brand-500 mt-1"></i>
+                            <span>admin@fishnote.com</span>
                         </li>
-                        <li class="flex items-start">
-                            <svg class="w-6 h-6 text-blue-500 mr-3 flex-shrink-0 mt-1" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
-                                </path>
-                            </svg>
-                            <span class="text-gray-400 text-base">+62 831-6759-1147</span>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-phone text-brand-500 mt-1"></i>
+                            <span>+62 831-6759-1147</span>
                         </li>
-                        <li class="flex items-start">
-                            <svg class="w-6 h-6 text-blue-500 mr-3 flex-shrink-0 mt-1" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
-                                </path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                            </svg>
-                            <span class="text-gray-400 text-base">Bengkalis, Riau<br>Indonesia</span>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-location-dot text-brand-500 mt-1"></i>
+                            <span>Bengkalis, Riau, Indonesia</span>
                         </li>
                     </ul>
                 </div>
             </div>
 
-            <!-- Bottom Footer -->
-            <div class="border-t border-gray-800 mt-12 pt-8">
-                <div class="flex flex-col md:flex-row justify-between items-center">
-                    <p class="text-gray-400 text-base mb-4 md:mb-0">
-                        &copy; 2025 FishNote. All rights reserved.
-                    </p>
-                    <div class="flex space-x-6">
-                        <a href="#"
-                            class="text-gray-400 hover:text-white transition duration-300 text-base">Privacy Policy</a>
-                        <a href="#"
-                            class="text-gray-400 hover:text-white transition duration-300 text-base">Terms of
-                            Service</a>
-                        <a href="#"
-                            class="text-gray-400 hover:text-white transition duration-300 text-base">Cookie Policy</a>
-                    </div>
+            <div class="pt-8 border-t border-slate-900 text-center text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <p>&copy; 2025 FishNote Indonesia. All Rights Reserved.</p>
+                <div class="flex space-x-6 text-slate-400">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
                 </div>
             </div>
         </div>
     </footer>
 
+    <!-- JAVASCRIPT LOGIC -->
     <script>
+        // Mobile Menu Toggle
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('hidden');
         }
 
-        // Smooth scroll untuk anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+        // Quick Filter Search helper
+        function setFilter(term) {
+            const input = document.getElementById('searchInput');
+            if (input) {
+                input.value = term;
+                input.form.submit();
+            }
+        }
+
+        // Testimonial & Manual Rating System
+        const defaultReviews = [
+            {
+                name: "Aidil Ardiansyah",
+                role: "Peternak Lele - Bengkalis",
+                rating: 5,
+                message: "FishNote sangat membantu saya dalam mengelola budidaya lele. Sekarang semua data tersimpan rapi dan saya bisa promosi langsung ke pembeli!"
+            },
+            {
+                name: "Yuniarti Mulansari",
+                role: "Peternak Nila - Bengkalis",
+                rating: 5,
+                message: "Platform yang sangat intuitif dan bersih! Penjualan ikan nila saya meningkat drastis sejak dipromosikan di FishNote. Sangat direkomendasikan!"
+            },
+            {
+                name: "Izzatul Afidah",
+                role: "Pembeli Ikan Segar - Riau",
+                rating: 5,
+                message: "Sangat mudah menemukan pasokan ikan segar berkualitas langsung dari peternak lokal tanpa biaya perantara. Luar biasa!"
+            }
+        ];
+
+        function getReviews() {
+            const stored = localStorage.getItem('fishnote_user_reviews');
+            if (stored) {
+                try {
+                    return JSON.parse(stored);
+                } catch(e) {
+                    return defaultReviews;
+                }
+            }
+            return defaultReviews;
+        }
+
+        let currentReviewFilter = 'semua';
+
+        function setReviewFilter(filterValue) {
+            currentReviewFilter = filterValue;
+            
+            // Update UI Buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-brand-600', 'text-white');
+                btn.classList.add('bg-slate-100', 'text-slate-600');
+            });
+            
+            const activeBtn = document.getElementById('btnFilter-' + filterValue);
+            if(activeBtn) {
+                activeBtn.classList.remove('bg-slate-100', 'text-slate-600');
+                activeBtn.classList.add('bg-brand-600', 'text-white');
+            }
+
+            renderTestimonials();
+        }
+
+        function renderTestimonials() {
+            const container = document.getElementById('testimonialGrid');
+            if (!container) return;
+
+            let reviews = getReviews();
+            
+            // Apply Filters
+            if (currentReviewFilter === 'baik') {
+                reviews = reviews.filter(r => r.rating >= 4);
+            } else if (currentReviewFilter === 'buruk') {
+                reviews = reviews.filter(r => r.rating <= 3);
+            } else if (typeof currentReviewFilter === 'number') {
+                reviews = reviews.filter(r => r.rating === currentReviewFilter);
+            }
+
+            if(reviews.length === 0) {
+                container.innerHTML = `<div class="col-span-full text-center py-12 text-slate-500 font-medium bg-slate-50 rounded-3xl border border-dashed border-slate-300">Tidak ada ulasan untuk filter ini.</div>`;
+                return;
+            }
+
+            container.innerHTML = reviews.map(r => {
+                const initials = r.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+                const starsHtml = Array.from({length: 5}, (_, i) => 
+                    `<i class="fa-solid fa-star ${i < r.rating ? 'text-amber-400' : 'text-slate-200'}"></i>`
+                ).join('');
+
+                return `
+                    <div class="p-5 rounded-2xl bg-gradient-to-t from-white via-white/80 to-blue-50/20 backdrop-blur-sm ring-1 ring-white/50 shadow-[0_4px_15px_-5px_rgba(59,130,246,0.05)] hover:-translate-y-1 hover:shadow-[0_8px_20px_-5px_rgba(59,130,246,0.1)] transition-all duration-300 flex flex-col justify-between group relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <div class="relative z-10">
+                            <div class="flex items-center space-x-3 mb-3 pb-3 border-b border-brand-100/50">
+                                <div class="w-8 h-8 bg-gradient-to-br from-brand-500 to-brand-600 rounded-full flex items-center justify-center text-white font-bold text-[10px] shadow-sm flex-shrink-0 group-hover:scale-105 transition-transform">
+                                    ${initials}
+                                </div>
+                                <div class="flex flex-col">
+                                    <h4 class="font-semibold text-slate-800 text-[11px] sm:text-xs">${r.name}</h4>
+                                    <div class="flex items-center space-x-0.5 text-[9px] sm:text-[10px] mt-0.5">
+                                        ${starsHtml}
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-slate-600 text-[11px] sm:text-xs leading-relaxed line-clamp-4">
+                                ${r.message}
+                            </p>
+                        </div>
+                        <p class="text-[10px] text-brand-600/70 mt-4 font-medium relative z-10">
+                            ${r.role}
+                        </p>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Modal Rating Handlers
+        let selectedStars = 5;
+
+        function openRatingModal() {
+            document.getElementById('ratingModal').classList.remove('hidden');
+            setRating(5);
+        }
+
+        function closeRatingModal() {
+            document.getElementById('ratingModal').classList.add('hidden');
+        }
+
+        function highlightStars(count) {
+            const stars = document.querySelectorAll('.star-rating i');
+            stars.forEach((star, idx) => {
+                if (idx < count) {
+                    star.classList.add('text-amber-400');
+                    star.classList.remove('text-slate-300');
+                } else {
+                    star.classList.remove('text-amber-400');
+                    star.classList.add('text-slate-300');
                 }
             });
-        });
-
-        // Hero Slider
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.hero-slide');
-        const dots = document.querySelectorAll('.slider-dot');
-        const totalSlides = slides.length;
-
-        function showSlide(index) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
-
-            slides[index].classList.add('active');
-            dots[index].classList.add('active');
         }
 
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            showSlide(currentSlide);
+        function resetStars() {
+            highlightStars(selectedStars);
         }
 
-        function goToSlide(index) {
-            currentSlide = index;
-            showSlide(currentSlide);
+        function setRating(val) {
+            selectedStars = val;
+            document.getElementById('selectedRating').value = val;
+            const labels = ["", "1.0 / 5.0 (Buruk)", "2.0 / 5.0 (Cukup)", "3.0 / 5.0 (Bagus)", "4.0 / 5.0 (Sangat Bagus)", "5.0 / 5.0 (Sangat Memuaskan!)"];
+            document.getElementById('ratingText').innerText = labels[val];
+            highlightStars(val);
         }
 
-        // Auto slide every 5 seconds
-        setInterval(nextSlide, 5000);
-    </script>
+        function submitRating(e) {
+            e.preventDefault();
+            const name = document.getElementById('reviewerName').value.trim();
+            const role = document.getElementById('reviewerRole').value.trim();
+            const message = document.getElementById('reviewerMessage').value.trim();
+            const rating = parseInt(selectedStars);
 
-    <script>
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('hidden');
+            if (!name || !role || !message) return;
+
+            const newReview = { name, role, rating, message };
+            const reviews = getReviews();
+            reviews.unshift(newReview);
+
+            localStorage.setItem('fishnote_user_reviews', JSON.stringify(reviews));
+            renderTestimonials();
+            closeRatingModal();
+            document.getElementById('ratingForm').reset();
+            
+            alert('Terima kasih! Ulasan dan rating Anda telah berhasil ditambahkan.');
         }
-    </script>
 
-    <script>
-        function toggleFAQ(id) {
-            const content = document.getElementById(`faq-content-${id}`);
-            const icon = document.getElementById(`faq-icon-${id}`);
+        // Banner Slider Interactive Logic
+        let currentBannerSlide = 0;
+        let bannerTimer = null;
 
-            content.classList.toggle('hidden');
-            icon.classList.toggle('rotate-180');
+        function goToBannerSlide(index) {
+            const slides = document.querySelectorAll('.banner-slide');
+            const dots = document.querySelectorAll('.banner-dot');
+            if (!slides.length || !dots.length) return;
+
+            currentBannerSlide = index % slides.length;
+
+            slides.forEach((slide, idx) => {
+                if (idx === currentBannerSlide) {
+                    slide.classList.remove('hidden');
+                    setTimeout(() => {
+                        slide.classList.remove('translate-x-4', 'opacity-0');
+                        slide.classList.add('translate-x-0', 'opacity-100');
+                    }, 50);
+                } else {
+                    slide.classList.add('translate-x-4', 'opacity-0');
+                    slide.classList.remove('translate-x-0', 'opacity-100');
+                    slide.classList.add('hidden');
+                }
+            });
+
+            dots.forEach((dot, idx) => {
+                if (idx === currentBannerSlide) {
+                    dot.className = 'banner-dot w-8 h-2.5 bg-brand-600 rounded-full transition-all duration-300 shadow-sm';
+                } else {
+                    dot.className = 'banner-dot w-2.5 h-2.5 bg-brand-600/30 hover:bg-brand-600/60 rounded-full transition-all duration-300';
+                }
+            });
+
+            // Reset timer on manual click
+            if (bannerTimer) clearInterval(bannerTimer);
+            bannerTimer = setInterval(() => {
+                goToBannerSlide(currentBannerSlide + 1);
+            }, 4500);
         }
-    </script>
 
-    <script>
-        // Intersection Observer untuk animasi saat scroll
-        document.addEventListener('DOMContentLoaded', function() {
-            const observerOptions = {
-                threshold: 0.2,
-                rootMargin: '0px 0px -100px 0px'
-            };
+        // Benefit Slider Logic
+        let currentBenefitSlide = 0;
+        let benefitTimer = null;
 
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate-visible');
-                    }
-                });
-            }, observerOptions);
+        function goToBenefitSlide(index) {
+            const slides = document.querySelectorAll('.benefit-slide');
+            if (!slides.length) return;
 
-            // Observe semua feature cards
-            const featureCards = document.querySelectorAll('.feature-card');
-            featureCards.forEach(card => {
-                observer.observe(card);
+            currentBenefitSlide = index % slides.length;
+
+            slides.forEach((slide, idx) => {
+                if (idx === currentBenefitSlide) {
+                    slide.classList.remove('hidden', '-translate-x-4');
+                    slide.classList.add('translate-x-4');
+                    setTimeout(() => {
+                        slide.classList.remove('translate-x-4', 'opacity-0');
+                        slide.classList.add('translate-x-0', 'opacity-100');
+                    }, 50);
+                } else {
+                    slide.classList.add('-translate-x-4', 'opacity-0');
+                    slide.classList.remove('translate-x-0', 'opacity-100', 'translate-x-4');
+                    setTimeout(() => { slide.classList.add('hidden'); }, 700);
+                }
             });
+
+
+
+            if (benefitTimer) clearInterval(benefitTimer);
+            benefitTimer = setInterval(() => {
+                goToBenefitSlide(currentBenefitSlide + 1);
+            }, 4000);
+        }
+
+        // Initial render & auto-slider
+        document.addEventListener('DOMContentLoaded', () => {
+            renderTestimonials();
+            
+            // Start auto slide timer
+            bannerTimer = setInterval(() => {
+                goToBannerSlide(currentBannerSlide + 1);
+            }, 4500);
+
+            benefitTimer = setInterval(() => {
+                goToBenefitSlide(currentBenefitSlide + 1);
+            }, 4000);
         });
     </script>
-
-    <script>
-        // Intersection Observer untuk animasi saat scroll
-        document.addEventListener('DOMContentLoaded', function() {
-            const observerOptions = {
-                threshold: 0.2,
-                rootMargin: '0px 0px -100px 0px'
-            };
-
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate-visible');
-                    }
-                });
-            }, observerOptions);
-
-            // Observe semua feature cards
-            const featureCards = document.querySelectorAll('.feature-card');
-            featureCards.forEach(card => {
-                observer.observe(card);
-            });
-
-            // Observe semua step cards
-            const stepCards = document.querySelectorAll('.step-card');
-            stepCards.forEach(card => {
-                observer.observe(card);
-            });
-        });
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const revealElements = document.querySelectorAll('.reveal-on-scroll');
-
-            const revealObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.animation = 'reveal 1s ease-out forwards';
-                    }
-                });
-            }, {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            });
-
-            revealElements.forEach(element => {
-                revealObserver.observe(element);
-            });
-
-            // Feature Cards Animation
-            const featureCards = document.querySelectorAll('.feature-card');
-            const cardObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate-visible');
-                    }
-                });
-            }, {
-                threshold: 0.2
-            });
-
-            featureCards.forEach(card => {
-                cardObserver.observe(card);
-            });
-
-            // Step Cards Animation
-            const stepCards = document.querySelectorAll('.step-card');
-            stepCards.forEach(card => {
-                cardObserver.observe(card);
-            });
-        });
-
-        // Magnetic Button Effect untuk semua button dengan class btn-magnetic
-        document.querySelectorAll('.btn-magnetic').forEach(button => {
-            button.addEventListener('mousemove', (e) => {
-                const rect = button.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-
-                button.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px) scale(1.05)`;
-            });
-
-            button.addEventListener('mouseleave', () => {
-                button.style.transform = 'translate(0, 0) scale(1)';
-            });
-        });
-    </script>
-
 </body>
 
 </html>

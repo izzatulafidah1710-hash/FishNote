@@ -7,7 +7,6 @@ use App\Models\Resident;
 use App\Models\Promosi;
 use App\Models\Pencatatan;
 use App\Models\DataPanen;
-use App\Models\PeternakActivity;
 use Carbon\Carbon;
 
 class DashboardController extends Controller
@@ -20,14 +19,14 @@ class DashboardController extends Controller
         // Stat Cards
         $totalPeternak = Resident::count();
         $peternakAktif = Resident::where('status', 'aktif')->count();
-        
+
         $totalPromosi = Promosi::count();
         $promosiAktif = Promosi::where('status', 'Aktif')->count();
 
         $totalPanenBulanIni = DataPanen::whereMonth('tanggal_panen', $bulanIni)
             ->whereYear('tanggal_panen', $tahunIni)
             ->count();
-        
+
         $totalBeratPanenBulanIni = DataPanen::whereMonth('tanggal_panen', $bulanIni)
             ->whereYear('tanggal_panen', $tahunIni)
             ->sum('berat_total') ?? 0;
@@ -36,21 +35,12 @@ class DashboardController extends Controller
             ->whereYear('tanggal_panen', $tahunIni)
             ->sum('total_pendapatan') ?? 0;
 
-        $aktivitasHariIni = PeternakActivity::whereDate('created_at', Carbon::today())->count();
-
-        // Data Terbaru
-        $recentPeternak = Resident::with('user')
-            ->orderBy('created_at', 'desc')
+        // Data Terbaru (nama variabel sesuai dengan view)
+        $peternakTerbaru = Resident::orderBy('created_at', 'desc')
             ->limit(5)
             ->get();
 
-        $recentPromosi = Promosi::with(['resident', 'user'])
-            ->orderBy('created_at', 'desc')
-            ->limit(5)
-            ->get();
-
-        $recentActivities = PeternakActivity::with('peternak')
-            ->orderBy('created_at', 'desc')
+        $promosiTerbaru = Promosi::orderBy('created_at', 'desc')
             ->limit(5)
             ->get();
 
@@ -62,10 +52,8 @@ class DashboardController extends Controller
             'totalPanenBulanIni',
             'totalBeratPanenBulanIni',
             'totalPendapatanPanenBulanIni',
-            'aktivitasHariIni',
-            'recentPeternak',
-            'recentPromosi',
-            'recentActivities'
+            'peternakTerbaru',
+            'promosiTerbaru'
         ));
     }
 }

@@ -1,0 +1,435 @@
+/* ==========================================================================
+   FishNote Custom Modern & Clean UI Stylesheet
+   ========================================================================== */
+
+:root {
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+    --secondary-color: #64748b;
+    --success-color: #10b981;
+    --info-color: #06b6d4;
+    --warning-color: #f59e0b;
+    --danger-color: #ef4444;
+    --bg-light: #f8fafc;
+    --card-bg: #ffffff;
+    --text-main: #334155;
+    --text-muted: #64748b;
+    --border-color: #cbd5e1;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --shadow-subtle: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.05);
+    --shadow-card: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+    --shadow-hover: 0 0.5rem 2rem 0 rgba(58, 59, 69, 0.15);
+}
+
+body {
+    background: linear-gradient(180deg, #e0f2fe 0%, #f0f9ff 35%, #f8fafc 100%) !important;
+    background-attachment: fixed !important;
+    color: var(--text-main);
+    font-family: 'Plus Jakarta Sans', 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+#content-wrapper {
+    background: linear-gradient(180deg, #e0f2fe 0%, #f0f9ff 35%, #f8fafc 100%) !important;
+    background-attachment: fixed !important;
+    min-height: 100vh;
+}
+
+#content {
+    background-color: transparent !important;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6,
+.sidebar,
+.navbar,
+.btn,
+.card,
+.form-control,
+.table,
+p, span, a, label, input, select, textarea {
+    font-family: 'Plus Jakarta Sans', 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Universal Color Overrides */
+.bg-gradient-primary { background: linear-gradient(180deg, #dbeafe 0%, #eff6ff 40%, #f8fafc 100%) !important; }
+.bg-gradient-secondary { background-color: #475569 !important; background-image: none !important; }
+.bg-gradient-success { background-color: #10b981 !important; background-image: none !important; }
+.bg-gradient-info { background-color: #0284c7 !important; background-image: none !important; }
+.bg-gradient-warning { background-color: #f59e0b !important; background-image: none !important; }
+.bg-gradient-danger { background-color: #ef4444 !important; background-image: none !important; }
+.bg-gradient-light { background-color: #f8fafc !important; background-image: none !important; }
+.bg-gradient-dark { background: linear-gradient(180deg, #1d4ed8 0%, #1e40af 100%) !important; }
+
+/* ============================================================
+   SIDEBAR — Light Water-Blue Gradient Style (Matching Homepage)
+   ============================================================ */
+.sidebar {
+    background: linear-gradient(180deg, #dbeafe 0%, #eff6ff 40%, #f8fafc 100%) !important;
+    border-right: 1px solid rgba(191, 219, 254, 0.8) !important;
+    box-shadow: 4px 0 24px rgba(37, 99, 235, 0.08) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100vh;
+}
+
+.sidebar .sidebar-brand {
+    padding: 1.1rem 1rem 1rem;
+    font-weight: 800;
+    font-size: 1rem;
+    color: #1e3a8a !important;
+    border-bottom: 1px solid rgba(191, 219, 254, 0.8);
+    flex-shrink: 0;
+    text-decoration: none !important;
+}
+
+.sidebar .sidebar-brand .sidebar-brand-text {
+    color: #1e3a8a !important;
+}
+
+/* Section headings inside sidebar */
+.sidebar-heading {
+    color: #2563eb !important;
+    font-size: 0.68rem !important;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 800;
+    padding: 1rem 1rem 0.35rem !important;
+    margin: 0 !important;
+    display: block;
+    opacity: 0.95;
+}
+
+/* Nav items */
+.sidebar .nav-item {
+    margin: 4px 8px;
+    list-style: none;
+}
+
+.sidebar .nav-item .nav-link {
+    padding: 0.65rem 0.85rem;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: #334155 !important;
+    border-radius: 10px;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none !important;
+    border: 1px solid transparent;
+}
+
+.sidebar .nav-item .nav-link i {
+    font-size: 0.95rem !important;
+    width: 20px;
+    margin-right: 8px !important;
+    text-align: center;
+    color: #2563eb;
+    flex-shrink: 0;
+    transition: color 0.18s;
+}
+
+.sidebar .nav-item:hover > .nav-link {
+    color: #1d4ed8 !important;
+    background: rgba(255, 255, 255, 0.85) !important;
+    border-color: rgba(191, 219, 254, 0.9) !important;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08) !important;
+}
+
+.sidebar .nav-item:hover > .nav-link i {
+    color: #1d4ed8 !important;
+}
+
+/* Active item — Light Blue Glass Active Pill */
+.sidebar .nav-item.active > .nav-link {
+    color: #1d4ed8 !important;
+    background: linear-gradient(135deg, #ffffff 0%, #eff6ff 100%) !important;
+    border: 1px solid rgba(59, 130, 246, 0.35) !important;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.14), inset 0 1px 1px #ffffff !important;
+    font-weight: 800 !important;
+}
+
+.sidebar .nav-item.active > .nav-link i {
+    color: #2563eb !important;
+}
+
+/* Bottom user footer */
+.sidebar-user-footer {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid rgba(191, 219, 254, 0.8);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px);
+    margin-top: auto;
+    flex-shrink: 0;
+}
+
+.sidebar-user-footer .text-white {
+    color: #0f172a !important;
+}
+
+/* Topbar Clean Styling */
+.topbar {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02) !important;
+    height: 4.25rem;
+}
+
+.topbar .nav-item .nav-link {
+    color: var(--text-muted);
+}
+
+.topbar .dropdown-menu {
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-card);
+    border-radius: var(--radius-md);
+    padding: 0.5rem;
+}
+
+.topbar .dropdown-item {
+    border-radius: var(--radius-sm);
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.topbar .dropdown-item:hover {
+    background-color: var(--bg-light);
+    color: var(--primary-color);
+}
+
+/* Cards & Widgets */
+.card {
+    border: 1px solid #cbd5e1 !important;
+    border-radius: var(--radius-md) !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03) !important;
+    background-color: #ffffff;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-bottom: 1.5rem;
+}
+
+.card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04) !important;
+}
+
+.card-header {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #cbd5e1 !important;
+    padding: 1rem 1.25rem;
+    font-weight: 800;
+    color: #0f172a;
+    border-top-left-radius: var(--radius-md) !important;
+    border-top-right-radius: var(--radius-md) !important;
+}
+
+.card-body {
+    padding: 1.25rem 1.5rem;
+}
+
+/* Border Left Accent Cards (Stat Cards) */
+.border-left-primary { border-left: 5px solid #2563eb !important; }
+.border-left-success { border-left: 5px solid #10b981 !important; }
+.border-left-info { border-left: 5px solid #0284c7 !important; }
+.border-left-warning { border-left: 5px solid #f59e0b !important; }
+.border-left-danger { border-left: 5px solid #ef4444 !important; }
+
+/* Stat Card Typography & Icon Boxes (Vizora SaaS Style) */
+.stat-card-vizora {
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 12px !important;
+    background-color: #ffffff;
+    padding: 1.1rem 1.25rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02) !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.stat-card-vizora .fa-arrow-right {
+    transition: transform 0.2s ease;
+}
+.stat-card-vizora:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.06) !important;
+}
+.stat-card-vizora:hover .fa-arrow-right {
+    transform: translateX(5px);
+}
+
+.icon-square {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.trend-badge-success {
+    background-color: #ecfdf5;
+    color: #10b981;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.2rem 0.55rem;
+    border-radius: 20px;
+}
+.trend-badge-danger {
+    background-color: #fef2f2;
+    color: #ef4444;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.2rem 0.55rem;
+    border-radius: 20px;
+}
+.trend-badge-info {
+    background-color: #f0f9ff;
+    color: #0284c7;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.2rem 0.55rem;
+    border-radius: 20px;
+}
+.trend-badge-warning {
+    background-color: #fffbeb;
+    color: #d97706;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.2rem 0.55rem;
+    border-radius: 20px;
+}
+
+.bg-primary-light { background-color: #dbeafe !important; color: #1d4ed8 !important; }
+.bg-success-light { background-color: #d1fae5 !important; color: #047857 !important; }
+.bg-info-light { background-color: #e0f2fe !important; color: #0369a1 !important; }
+.bg-warning-light { background-color: #fef3c7 !important; color: #b45309 !important; }
+.bg-danger-light { background-color: #fee2e2 !important; color: #b91c1c !important; }
+
+.text-xs {
+    font-size: 0.72rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.h5 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+/* Tables Clean & Crisp */
+.table-responsive {
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    background-color: #ffffff;
+}
+
+.table {
+    margin-bottom: 0;
+    color: var(--text-main);
+}
+
+.table thead th {
+    background-color: #f1f5f9;
+    color: #475569;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--border-color);
+    padding: 0.85rem 1rem;
+    vertical-align: middle;
+}
+
+.table td {
+    padding: 0.85rem 1rem;
+    vertical-align: middle;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.9rem;
+}
+
+.table tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+/* Buttons - Modern Flat Pill/Subtle Rounded */
+.btn {
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    padding: 0.45rem 1rem;
+    font-size: 0.875rem;
+    transition: all 0.2s ease-in-out;
+    box-shadow: none !important;
+}
+
+.btn-primary {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover) !important;
+    border-color: var(--primary-hover) !important;
+}
+
+.btn-success {
+    background-color: var(--success-color) !important;
+    border-color: var(--success-color) !important;
+}
+
+.btn-info {
+    background-color: var(--info-color) !important;
+    border-color: var(--info-color) !important;
+}
+
+.btn-warning {
+    background-color: var(--warning-color) !important;
+    border-color: var(--warning-color) !important;
+    color: #ffffff !important;
+}
+
+.btn-danger {
+    background-color: var(--danger-color) !important;
+    border-color: var(--danger-color) !important;
+}
+
+.btn-light {
+    background-color: #f1f5f9 !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-main) !important;
+}
+
+/* Badges Modern Subtle */
+.badge {
+    padding: 0.35em 0.75em;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 50rem;
+    letter-spacing: 0.3px;
+}
+
+.badge-success, .badge.bg-success { background-color: #d1fae5 !important; color: #065f46 !important; }
+.badge-info, .badge.bg-info { background-color: #e0f2fe !important; color: #075985 !important; }
+.badge-warning, .badge.bg-warning { background-color: #fef3c7 !important; color: #92400e !important; }
+.badge-danger, .badge.bg-danger { background-color: #fee2e2 !important; color: #991b1b !important; }
+.badge-secondary, .badge.bg-secondary { background-color: #f1f5f9 !important; color: #475569 !important; }
+
+/* Page Titles */
+h1.h3, h2:not(.text-white), h3:not(.text-white) {
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.3px;
+}
+
+/* Icon decluttering: soften background icon opacity in stat cards */
+.col-auto i.fa-2x {
+    opacity: 0.25 !important;
+    color: var(--secondary-color) !important;
+    transition: opacity 0.2s ease;
+}
+
+.card:hover .col-auto i.fa-2x {
+    opacity: 0.45 !important;
+}

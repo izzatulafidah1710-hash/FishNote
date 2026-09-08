@@ -153,7 +153,7 @@
                                      alt="Foto Panen" 
                                      class="img-thumbnail" 
                                      width="200"
-                                     onerror="this.onerror=null; this.src='https://via.placeholder.com/200x150?text=Foto+Error';">
+                                     onerror="this.onerror=null; this.src='https://placehold.co/200x150?text=Foto+Error';">
                                 <p class="text-muted small">Foto saat ini</p>
                             </div>
                             @endif

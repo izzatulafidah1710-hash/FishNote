@@ -36,9 +36,11 @@ class ProfileController extends Controller
         $user = Auth::user();
         $resident = $user->resident;
 
+        $residentId = $resident ? $resident->id : 'NULL';
+
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $user->id . '|unique:residents,email,' . $resident->id,
+            'email' => 'required|email|unique:users,email,' . $user->id . '|unique:residents,email,' . $residentId,
             'phone' => 'nullable|string|max:20',
             'address' => 'nullable|string',
             'farm_location' => 'nullable|string',
@@ -52,14 +54,26 @@ class ProfileController extends Controller
                 'email' => $request->email,
             ]);
 
-            // Update resident
-            $resident->update([
-                'name' => $request->name,
-                'email' => $request->email,
-                'phone' => $request->phone,
-                'address' => $request->address,
-                'farm_location' => $request->farm_location,
-            ]);
+            // Update or create resident
+            if ($resident) {
+                $resident->update([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'phone' => $request->phone,
+                    'address' => $request->address,
+                    'farm_location' => $request->farm_location,
+                ]);
+            } else {
+                Resident::create([
+                    'user_id' => $user->id,
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'phone' => $request->phone ?? '-',
+                    'address' => $request->address,
+                    'farm_location' => $request->farm_location,
+                    'status' => 'aktif',
+                ]);
+            }
 
             DB::commit();
 

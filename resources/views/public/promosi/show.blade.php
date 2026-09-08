@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $promosi->judul_promosi }} - FishNote</title>
+    <link rel="icon" type="image/png" href="{{ asset('template/img/logofishnote.png') }}">
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -223,7 +224,7 @@
                 <img src="{{ asset('storage/' . $promosi->foto) }}" 
                      alt="{{ $promosi->judul_promosi }}" 
                      class="product-image mb-4"
-                     onerror="this.onerror=null; this.src='https://via.placeholder.com/800x500?text=Foto+Produk';">
+                     onerror="this.onerror=null; this.src='https://placehold.co/800x500?text=Foto+Produk';">
                 @else
                 <div class="d-flex align-items-center justify-content-center bg-light product-image mb-4">
                     <div class="text-center">
