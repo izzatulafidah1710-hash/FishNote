@@ -1,0 +1,8 @@
+---
+deployment:
+  tasks:
+    # Ganti 'username_cpanel' dengan username cPanel asli Anda
+    # Jika web di-host di domain utama, gunakan /home/username_cpanel/public_html
+    # Jika di subdomain atau folder lain, sesuaikan path-nya
+    - export DEPLOYPATH=/home/username_cpanel/public_html/
+    - /bin/cp -R * $DEPLOYPATH
