@@ -17,8 +17,8 @@ use App\Http\Controllers\User\DaftarPromosiController;
 use App\Http\Controllers\User\LaporanController;
 use App\Http\Controllers\User\RiwayatController;
 use App\Http\Controllers\User\ProfileController as UserProfile;
-
 use App\Http\Controllers\InfoAkunController;
+use App\Http\Controllers\ChatAssistantController;
 
 /*
 |--------------------------------------------------------------------------
@@ -107,6 +107,9 @@ Route::get('/artikel/{slug}', function ($slug) {
 Route::get('/promosi', [PromosiPublicController::class, 'index'])->name('promosi');
 Route::get('/promosi/{id}', [PromosiPublicController::class, 'show'])->name('promosi.show');
 Route::get('/search', [PromosiPublicController::class, 'search'])->name('search');
+
+// Chat Assistant API
+Route::post('/api/ai-chat', [ChatAssistantController::class, 'chat'])->name('api.ai-chat');
 
 // Serving public storage files safely
 Route::get('/file/{fotoPath}', function ($fotoPath) {

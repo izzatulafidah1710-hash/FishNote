@@ -55,7 +55,8 @@
             position: sticky !important;
             top: 0 !important;
             z-index: 999 !important;
-            background-color: #fff !important;
+            background-color: transparent !important;
+            border-bottom: none !important;
         }
 
         /* Custom Scrollbar */

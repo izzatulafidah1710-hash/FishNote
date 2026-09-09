@@ -392,39 +392,81 @@
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Aidil -->
+                <!-- Anggota 1 -->
                 <div class="card-lumilearn bg-white/90 backdrop-blur-sm rounded-3xl border border-slate-200/80 overflow-hidden text-center p-6 flex flex-col items-center shadow-sm">
-                    <div class="w-44 h-56 rounded-2xl overflow-hidden shadow-md mb-6 bg-slate-100">
-                        <img src="{{ asset('images/foto tim, aidil.png') }}" alt="Aidil Ardiansyah" class="w-full h-full object-cover">
+                    <div class="w-44 h-56 rounded-2xl overflow-hidden shadow-md mb-6 bg-slate-100 flex items-center justify-center text-slate-400">
+                        <img src="{{ asset('images/tim-1.jpeg') }}" alt="Aidil Ardiansyah" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <i class="fa-solid fa-user text-5xl hidden"></i>
                     </div>
                     <h3 class="text-xl font-bold text-slate-900 mb-1">Aidil Ardiansyah</h3>
-                    <span class="inline-block px-3 py-1 bg-blue-100 text-brand-700 text-xs font-bold rounded-full mb-3">Back-End Developer</span>
+                    <span class="inline-block px-3 py-1 bg-blue-100 text-brand-700 text-xs font-bold rounded-full mb-3">Project Manager</span>
+                    <p class="text-slate-500 text-xs leading-relaxed mb-6">
+                        Memimpin dan mengkoordinasikan proyek pengembangan platform agar berjalan sesuai rencana.
+                    </p>
+                </div>
+
+                <!-- Anggota 2 -->
+                <div class="card-lumilearn bg-white/90 backdrop-blur-sm rounded-3xl border border-slate-200/80 overflow-hidden text-center p-6 flex flex-col items-center shadow-sm">
+                    <div class="w-44 h-56 rounded-2xl overflow-hidden shadow-md mb-6 bg-slate-100 flex items-center justify-center text-slate-400">
+                        <img src="{{ asset('images/tim-5.jpeg') }}" alt="Izzatul Afidah" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <i class="fa-solid fa-user text-5xl hidden"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-1">Izzatul Afidah</h3>
+                    <span class="inline-block px-3 py-1 bg-blue-100 text-brand-700 text-xs font-bold rounded-full mb-3">Analysis Manager</span>
+                    <p class="text-slate-500 text-xs leading-relaxed mb-6">
+                        Menganalisis data, meriset kebutuhan pengguna, serta menyusun strategi pengembangan produk.
+                    </p>
+                </div>
+
+                <!-- Anggota 3 -->
+                <div class="card-lumilearn bg-white/90 backdrop-blur-sm rounded-3xl border border-slate-200/80 overflow-hidden text-center p-6 flex flex-col items-center shadow-sm">
+                    <div class="w-44 h-56 rounded-2xl overflow-hidden shadow-md mb-6 bg-slate-100 flex items-center justify-center text-slate-400">
+                        <img src="{{ asset('images/tim-2.jpeg') }}" alt="Khairul Ikhsan" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <i class="fa-solid fa-user text-5xl hidden"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-1">Khairul Ikhsan</h3>
+                    <span class="inline-block px-3 py-1 bg-blue-100 text-brand-700 text-xs font-bold rounded-full mb-3">AI Engineer</span>
+                    <p class="text-slate-500 text-xs leading-relaxed mb-6">
+                        Mengembangkan dan mengintegrasikan solusi kecerdasan buatan untuk mendukung fitur cerdas di platform.
+                    </p>
+                </div>
+
+                <!-- Anggota 4 -->
+                <div class="card-lumilearn bg-white/90 backdrop-blur-sm rounded-3xl border border-slate-200/80 overflow-hidden text-center p-6 flex flex-col items-center shadow-sm">
+                    <div class="w-44 h-56 rounded-2xl overflow-hidden shadow-md mb-6 bg-slate-100 flex items-center justify-center text-slate-400">
+                        <img src="{{ asset('images/tim-3.jpeg') }}" alt="M.Ferdi Fadhillah" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <i class="fa-solid fa-user text-5xl hidden"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-1">M.Ferdi Fadhillah</h3>
+                    <span class="inline-block px-3 py-1 bg-blue-100 text-brand-700 text-xs font-bold rounded-full mb-3">Backend Developer</span>
                     <p class="text-slate-500 text-xs leading-relaxed mb-6">
                         Merancang arsitektur sistem backend dan logika database untuk memastikan performa pencatatan terpercaya.
                     </p>
                 </div>
 
-                <!-- Yuniarti -->
+                <!-- Anggota 5 -->
                 <div class="card-lumilearn bg-white/90 backdrop-blur-sm rounded-3xl border border-slate-200/80 overflow-hidden text-center p-6 flex flex-col items-center shadow-sm">
-                    <div class="w-44 h-56 rounded-2xl overflow-hidden shadow-md mb-6 bg-slate-100">
-                        <img src="{{ asset('images/foto tim, mulan.jpg') }}" alt="Yuniarti Mulansari" class="w-full h-full object-cover">
+                    <div class="w-44 h-56 rounded-2xl overflow-hidden shadow-md mb-6 bg-slate-100 flex items-center justify-center text-slate-400">
+                        <img src="{{ asset('images/tim-4.jpeg') }}" alt="M.Aidil Fitriansyah" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <i class="fa-solid fa-user text-5xl hidden"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-1">Yuniarti Mulansari</h3>
-                    <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-bold rounded-full mb-3">UI/UX Designer</span>
+                    <h3 class="text-xl font-bold text-slate-900 mb-1">M.Aidil Fitriansyah</h3>
+                    <span class="inline-block px-3 py-1 bg-blue-100 text-brand-700 text-xs font-bold rounded-full mb-3">Frontend Developer</span>
                     <p class="text-slate-500 text-xs leading-relaxed mb-6">
-                        Bertanggung jawab atas riset pengalaman pengguna serta antarmuka intuitif bagi peternak dan pengunjung.
+                        Pengembangan antarmuka publik dan dashboard modern dengan fokus pada kecepatan dan responsivitas.
                     </p>
                 </div>
 
-                <!-- Izzatul -->
+                <!-- Anggota 6 -->
                 <div class="card-lumilearn bg-white/90 backdrop-blur-sm rounded-3xl border border-slate-200/80 overflow-hidden text-center p-6 flex flex-col items-center shadow-sm">
-                    <div class="w-44 h-56 rounded-2xl overflow-hidden shadow-md mb-6 bg-slate-100">
-                        <img src="{{ asset('images/foto tim, izza.jpg') }}" alt="Izzatul Afidah" class="w-full h-full object-cover">
+                    <div class="w-44 h-56 rounded-2xl overflow-hidden shadow-md mb-6 bg-slate-100 flex items-center justify-center text-slate-400">
+                        <img src="{{ asset('images/tim-6.jpeg') }}" alt="Yuniarti Mulansari" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <i class="fa-solid fa-user text-5xl hidden"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-1">Izzatul Afidah</h3>
-                    <span class="inline-block px-3 py-1 bg-sky-100 text-sky-700 text-xs font-bold rounded-full mb-3">Front-End Developer</span>
+                    <h3 class="text-xl font-bold text-slate-900 mb-1">Yuniarti Mulansari</h3>
+                    <span class="inline-block px-3 py-1 bg-blue-100 text-brand-700 text-xs font-bold rounded-full mb-3">UI/UX Designer</span>
                     <p class="text-slate-500 text-xs leading-relaxed mb-6">
-                        Pengembangan antarmuka publik dan dashboard modern dengan fokus pada kecepatan dan responsivitas.
+                        Bertanggung jawab atas riset pengalaman pengguna serta antarmuka intuitif bagi peternak dan pengunjung.
                     </p>
                 </div>
             </div>

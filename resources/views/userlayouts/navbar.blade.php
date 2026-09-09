@@ -1,5 +1,5 @@
 <!-- Topbar / Navbar User -->
-<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+<nav class="navbar navbar-expand navbar-light topbar mb-4 static-top" style="background-color: transparent !important; box-shadow: none !important;">
 
     <!-- Sidebar Toggle (Mobile) -->
     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -9,9 +9,9 @@
     <!-- Topbar Search (Optional) -->
     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
         <div class="input-group">
-            <input type="text" class="form-control bg-light border-0 small" placeholder="Cari..." aria-label="Search">
+            <input type="text" class="form-control bg-light border-0 small" placeholder="Cari..." aria-label="Search" style="border-top-left-radius: 25px; border-bottom-left-radius: 25px; padding-left: 1.25rem;">
             <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
+                <button class="btn btn-primary" type="button" style="border-top-right-radius: 25px; border-bottom-right-radius: 25px; padding-right: 1.25rem;">
                     <i class="fas fa-search fa-sm"></i>
                 </button>
             </div>
@@ -74,8 +74,6 @@
                 <a class="dropdown-item text-center small text-gray-500" href="#">Lihat Semua Pesan</a>
             </div>
         </li>
-
-        <div class="topbar-divider d-none d-sm-block"></div>
 
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">

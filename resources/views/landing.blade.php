@@ -1212,6 +1212,279 @@
             }, 4000);
         });
     </script>
-</body>
+    <style>
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.3s ease-out forwards;
+        }
+        /* Custom scrollbar for chat */
+        #ai-chat-body::-webkit-scrollbar { width: 6px; }
+        #ai-chat-body::-webkit-scrollbar-track { background: transparent; }
+        #ai-chat-body::-webkit-scrollbar-thumb { background-color: rgba(203, 213, 225, 0.5); border-radius: 20px; }
+    </style>
+    
+    <!-- AI Assistant Widget -->
+    <div id="ai-widget-container" class="fixed bottom-6 right-6 z-[100] flex flex-col items-end" style="touch-action: none;">
+        <!-- Chat Modal -->
+        <div id="ai-chat-modal" class="hidden w-80 sm:w-96 bg-white/80 backdrop-blur-xl rounded-3xl shadow-[0_10px_40px_rgb(0,0,0,0.15)] border border-white/50 mb-4 overflow-hidden flex flex-col h-[480px] transition-all duration-300 transform scale-95 opacity-0 origin-bottom-right">
+            <!-- Header -->
+            <div class="bg-gradient-to-r from-blue-600/95 to-cyan-500/95 backdrop-blur-md text-white p-4 flex items-center justify-between cursor-default border-b border-white/20">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-full flex items-center justify-center bg-white/20 p-[2px] shadow-inner border border-white/30">
+                        <img src="{{ asset('images/fishbot_avatar.png') }}" class="w-full h-full rounded-full object-cover" alt="FishBot">
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm">FishBot Assistant</h3>
+                        <p class="text-[10px] text-brand-100">Pakar Budidaya Ikan AI</p>
+                    </div>
+                </div>
+                <button id="ai-close-btn" class="text-white/70 hover:text-white transition focus:outline-none">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            
+            <!-- Chat Body -->
+            <div id="ai-chat-body" class="flex-1 p-4 overflow-y-auto bg-slate-50/40 space-y-4 text-sm scroll-smooth">
+                <!-- Initial Message -->
+                <div class="flex items-start gap-2 max-w-[85%] animate-fade-in-up">
+                    <div class="w-8 h-8 rounded-full flex flex-shrink-0 items-center justify-center p-[2px] shadow-sm border border-brand-200 bg-white">
+                        <img src="{{ asset('images/fishbot_avatar.png') }}" class="w-full h-full rounded-full object-cover" alt="FishBot">
+                    </div>
+                    <div class="bg-white/95 backdrop-blur-sm border border-slate-200/60 p-3 rounded-2xl rounded-tl-sm shadow-sm text-slate-700 leading-relaxed">
+                        Halo! Saya FishBot 🐟. Ada yang ingin Anda tanyakan seputar pengalaman budidaya ikan atau masalah kolam?
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Input Area -->
+            <div class="p-3 bg-white/90 backdrop-blur-md border-t border-slate-100/80 flex items-center gap-2">
+                <input type="text" id="ai-chat-input" placeholder="Tanya tentang budidaya..." class="flex-1 bg-slate-100/70 border border-slate-200/50 rounded-full px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition shadow-inner" autocomplete="off">
+                <button id="ai-send-btn" class="w-10 h-10 bg-gradient-to-tr from-blue-600 to-cyan-500 text-white rounded-full flex items-center justify-center hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/30 transition-all disabled:opacity-50 disabled:hover:scale-100 focus:outline-none">
+                    <i class="fa-solid fa-paper-plane text-xs relative -left-[1px]"></i>
+                </button>
+            </div>
+        </div>
 
+        <!-- Floating Button (Draggable) -->
+        <div id="ai-fab" class="relative group cursor-grab active:cursor-grabbing">
+            <!-- Ping animation -->
+            <div class="absolute inset-0 bg-cyan-400 rounded-full animate-ping opacity-75"></div>
+            <!-- Main Button -->
+            <button class="relative w-[68px] h-[68px] bg-gradient-to-tr from-blue-600 to-cyan-400 rounded-full shadow-[0_8px_25px_rgba(6,182,212,0.5)] flex items-center justify-center hover:scale-110 transition-transform border-[3px] border-white p-[3px] pointer-events-none">
+                <img src="{{ asset('images/fishbot_avatar.png') }}" class="w-full h-full rounded-full object-cover shadow-inner" alt="FishBot">
+            </button>
+            <!-- Tooltip -->
+            <div class="absolute right-full mr-4 top-1/2 -translate-y-1/2 bg-slate-800 text-white text-xs px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition pointer-events-none hidden sm:block">
+                Tanya Pakar Ikan AI
+                <!-- triangle -->
+                <div class="absolute top-1/2 left-full -translate-y-1/2 border-4 border-transparent border-l-slate-800"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const fab = document.getElementById('ai-fab');
+            const widgetContainer = document.getElementById('ai-widget-container');
+            const chatModal = document.getElementById('ai-chat-modal');
+            const closeBtn = document.getElementById('ai-close-btn');
+            const chatBody = document.getElementById('ai-chat-body');
+            const chatInput = document.getElementById('ai-chat-input');
+            const sendBtn = document.getElementById('ai-send-btn');
+            
+            let isDragging = false;
+            let currentX;
+            let currentY;
+            let initialX;
+            let initialY;
+            let xOffset = 0;
+            let yOffset = 0;
+            let isChatOpen = false;
+
+            // --- DRAG LOGIC ---
+            fab.addEventListener("mousedown", dragStart);
+            document.addEventListener("mouseup", dragEnd);
+            document.addEventListener("mousemove", drag);
+
+            fab.addEventListener("touchstart", dragStart, {passive: false});
+            document.addEventListener("touchend", dragEnd);
+            document.addEventListener("touchmove", drag, {passive: false});
+
+            function dragStart(e) {
+                if (e.type === "touchstart") {
+                    initialX = e.touches[0].clientX - xOffset;
+                    initialY = e.touches[0].clientY - yOffset;
+                } else {
+                    initialX = e.clientX - xOffset;
+                    initialY = e.clientY - yOffset;
+                }
+
+                if (e.target === fab || fab.contains(e.target)) {
+                    isDragging = true;
+                }
+            }
+
+            function dragEnd(e) {
+                if(!isDragging) return;
+                initialX = currentX;
+                initialY = currentY;
+                isDragging = false;
+                
+                // If the drag was very small, treat as a click to open chat
+                const dx = currentX !== undefined ? currentX - (xOffset || 0) : 0;
+                const dy = currentY !== undefined ? currentY - (yOffset || 0) : 0;
+                const dragDistance = Math.abs(dx) + Math.abs(dy);
+                
+                // If practically no movement, then it's a click
+                if (dragDistance < 5) {
+                   toggleChat();
+                }
+            }
+
+            function drag(e) {
+                if (isDragging) {
+                    e.preventDefault();
+                    if (e.type === "touchmove") {
+                        currentX = e.touches[0].clientX - initialX;
+                        currentY = e.touches[0].clientY - initialY;
+                    } else {
+                        currentX = e.clientX - initialX;
+                        currentY = e.clientY - initialY;
+                    }
+                    xOffset = currentX;
+                    yOffset = currentY;
+                    setTranslate(currentX, currentY, widgetContainer);
+                }
+            }
+
+            function setTranslate(xPos, yPos, el) {
+                el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0)`;
+            }
+
+            // --- CHAT UI LOGIC ---
+            function toggleChat() {
+                isChatOpen = !isChatOpen;
+                if(isChatOpen) {
+                    chatModal.classList.remove('hidden');
+                    // slight delay for animation
+                    setTimeout(() => {
+                        chatModal.classList.remove('scale-95', 'opacity-0');
+                        chatModal.classList.add('scale-100', 'opacity-100');
+                        chatInput.focus();
+                    }, 10);
+                } else {
+                    chatModal.classList.remove('scale-100', 'opacity-100');
+                    chatModal.classList.add('scale-95', 'opacity-0');
+                    setTimeout(() => {
+                        chatModal.classList.add('hidden');
+                    }, 300);
+                }
+            }
+
+            closeBtn.addEventListener('click', toggleChat);
+
+            function appendMessage(sender, text) {
+                const msgDiv = document.createElement('div');
+                msgDiv.className = `flex items-start gap-2 max-w-[85%] ${sender === 'user' ? 'ml-auto flex-row-reverse' : ''}`;
+                
+                let avatar = sender === 'user' 
+                    ? `<div class="w-8 h-8 bg-gradient-to-tr from-slate-200 to-slate-100 rounded-full flex flex-shrink-0 items-center justify-center text-slate-500 shadow-sm"><i class="fa-solid fa-user text-xs"></i></div>`
+                    : `<div class="w-8 h-8 rounded-full flex flex-shrink-0 items-center justify-center p-[2px] shadow-sm border border-brand-200 bg-white"><img src="{{ asset('images/fishbot_avatar.png') }}" class="w-full h-full rounded-full object-cover"></div>`;
+                
+                let bubbleClass = sender === 'user'
+                    ? `bg-gradient-to-tr from-blue-600 to-cyan-500 text-white p-3 rounded-2xl rounded-tr-sm shadow-md`
+                    : `bg-white/95 backdrop-blur-sm border border-slate-200/60 p-3 rounded-2xl rounded-tl-sm shadow-sm text-slate-700 leading-relaxed`;
+                
+                // Escape HTML tags to prevent innerHTML from breaking on '<' or '>'
+                let escapedText = text.replace(/&/g, '&amp;')
+                                      .replace(/</g, '&lt;')
+                                      .replace(/>/g, '&gt;');
+                
+                // Format text (simple markdown bold/newlines)
+                let formattedText = escapedText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+
+                msgDiv.innerHTML = `
+                    ${avatar}
+                    <div class="${bubbleClass}">
+                        ${formattedText}
+                    </div>
+                `;
+                
+                chatBody.appendChild(msgDiv);
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }
+
+            function addTypingIndicator() {
+                const typingId = 'typing-' + Date.now();
+                const msgDiv = document.createElement('div');
+                msgDiv.id = typingId;
+                msgDiv.className = `flex items-start gap-2 max-w-[85%] animate-fade-in-up`;
+                msgDiv.innerHTML = `
+                    <div class="w-8 h-8 rounded-full flex flex-shrink-0 items-center justify-center p-[2px] shadow-sm border border-brand-200 bg-white"><img src="{{ asset('images/fishbot_avatar.png') }}" class="w-full h-full rounded-full object-cover"></div>
+                    <div class="bg-white/95 backdrop-blur-sm border border-slate-200/60 p-3 rounded-2xl rounded-tl-sm shadow-sm text-slate-500 flex items-center gap-1.5 h-10">
+                        <div class="w-1.5 h-1.5 bg-cyan-500 rounded-full animate-bounce" style="animation-delay: 0ms;"></div>
+                        <div class="w-1.5 h-1.5 bg-blue-500 rounded-full animate-bounce" style="animation-delay: 150ms;"></div>
+                        <div class="w-1.5 h-1.5 bg-indigo-500 rounded-full animate-bounce" style="animation-delay: 300ms;"></div>
+                    </div>
+                `;
+                chatBody.appendChild(msgDiv);
+                chatBody.scrollTop = chatBody.scrollHeight;
+                return typingId;
+            }
+
+            function removeTypingIndicator(id) {
+                const el = document.getElementById(id);
+                if(el) el.remove();
+            }
+
+            async function sendMessage() {
+                const text = chatInput.value.trim();
+                if(!text) return;
+                
+                appendMessage('user', text);
+                chatInput.value = '';
+                chatInput.disabled = true;
+                sendBtn.disabled = true;
+                
+                const typingId = addTypingIndicator();
+                
+                try {
+                    const response = await fetch('/api/ai-chat', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        body: JSON.stringify({ message: text })
+                    });
+                    
+                    const data = await response.json();
+                    removeTypingIndicator(typingId);
+                    
+                    if (response.ok) {
+                        appendMessage('ai', data.reply);
+                    } else {
+                        appendMessage('ai', data.error || 'Terjadi kesalahan sistem.');
+                    }
+                } catch (error) {
+                    removeTypingIndicator(typingId);
+                    appendMessage('ai', 'Gagal menghubungi server. Periksa koneksi internet Anda.');
+                }
+                
+                chatInput.disabled = false;
+                sendBtn.disabled = false;
+                chatInput.focus();
+            }
+
+            sendBtn.addEventListener('click', sendMessage);
+            chatInput.addEventListener('keypress', (e) => {
+                if(e.key === 'Enter') sendMessage();
+            });
+        });
+    </script>
+</body>
 </html>

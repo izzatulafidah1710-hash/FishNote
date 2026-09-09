@@ -196,15 +196,15 @@
     <div class="row">
         <!-- Callout Action Card (Col-4) -->
         <div class="col-xl-4 col-lg-5 mb-4 mb-xl-0">
-            <div class="card border-0 shadow-sm rounded-lg text-white h-100" style="background-color: #1e3a8a;">
+            <div class="card border-0 shadow-sm rounded-lg bg-white h-100">
                 <div class="card-body p-4 d-flex flex-column justify-content-between">
                     <div>
                         <div class="d-flex align-items-center justify-content-between mb-3">
                             <span class="badge badge-primary px-3 py-1 font-weight-bold">Aksi Cepat</span>
-                            <i class="fas fa-seedling text-info" style="font-size: 1.5rem;"></i>
+                            <i class="fas fa-seedling text-primary" style="font-size: 1.5rem;"></i>
                         </div>
-                        <h4 class="font-weight-bold text-white mb-2">Kelola Budidaya Ikan</h4>
-                        <p class="text-white-50 small mb-4" style="line-height: 1.6;">
+                        <h4 class="font-weight-bold text-dark mb-2">Kelola Budidaya Ikan</h4>
+                        <p class="text-muted small mb-4" style="line-height: 1.6;">
                             Dokumentasikan setiap pemberian pakan, pengeluaran operasional, dan hasil panen kolam secara real-time.
                         </p>
                     </div>
@@ -212,7 +212,7 @@
                         <a href="{{ route('user.pencatatan.create') }}" class="btn btn-primary btn-block font-weight-bold mb-2 py-2 shadow-sm">
                             <i class="fas fa-clipboard-list mr-1.5"></i> Catat Aktivitas Baru
                         </a>
-                        <a href="{{ route('user.panen.create') }}" class="btn btn-outline-light btn-block font-weight-bold py-2">
+                        <a href="{{ route('user.panen.create') }}" class="btn btn-outline-primary btn-block font-weight-bold py-2">
                             <i class="fas fa-box mr-1.5"></i> Input Data Panen
                         </a>
                     </div>

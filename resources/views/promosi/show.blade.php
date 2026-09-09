@@ -167,17 +167,20 @@
     </div>
 
     <!-- MAIN PRODUCT DETAIL CONTENT -->
-    <main class="py-10 lg:py-14">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-3 gap-8">
+    <main class="py-8 lg:py-12 relative">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- SINGLE UNIFIED GLASS CARD -->
+            <div class="relative bg-gradient-to-b from-white/40 to-white/90 backdrop-blur-xl shadow-2xl shadow-brand-900/5 rounded-none p-5 sm:p-8 lg:p-10 overflow-hidden">
                 
-                <!-- LEFT COLUMN: Images & Details (2/3 width) -->
-                <div class="lg:col-span-2">
-                    <div class="bg-white rounded-3xl border border-slate-200/80 shadow-sm overflow-hidden">
+                <div class="grid lg:grid-cols-3 gap-8 lg:gap-10">
+                    
+                    <!-- LEFT COLUMN: Images & Details (2/3 width) -->
+                    <div class="lg:col-span-2">
                         
                         <!-- Main Product Image -->
                         @if($promosi->foto)
-                            <div class="relative group cursor-pointer overflow-hidden bg-slate-100 aspect-video sm:h-[480px] w-full" onclick="openModal('{{ asset('storage/' . $promosi->foto) }}')">
+                            <div class="relative group cursor-pointer overflow-hidden rounded-none shadow-sm bg-slate-100 aspect-video w-full mb-6" onclick="openModal('{{ asset('storage/' . $promosi->foto) }}')">
                                 <img src="{{ asset('storage/' . $promosi->foto) }}" 
                                      alt="{{ $promosi->jenis_ikan }}"
                                      class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
@@ -187,64 +190,61 @@
                                 </div>
                             </div>
                         @else
-                            <div class="w-full aspect-video sm:h-[480px] bg-gradient-to-br from-slate-50 to-slate-100 flex flex-col items-center justify-center text-slate-300">
+                            <div class="w-full aspect-video rounded-none bg-gradient-to-br from-slate-50 to-slate-100 flex flex-col items-center justify-center text-slate-300 mb-6 border border-slate-200/50">
                                 <i class="fa-solid fa-fish text-6xl mb-4"></i>
                                 <span class="text-sm font-medium text-slate-400">Tidak ada foto</span>
                             </div>
                         @endif
 
-                        <!-- Content wrapper -->
-                        <div class="p-8 sm:p-10">
-                            <!-- Header & Title -->
-                            <div class="mb-10">
-                                <div class="flex flex-wrap items-center gap-2 mb-4">
-                                    <span class="px-3 py-1 bg-brand-50 text-brand-600 font-bold uppercase tracking-wider text-[11px] rounded-md">{{ $promosi->jenis_ikan }}</span>
-                                    <span class="px-3 py-1 bg-slate-50 text-slate-600 font-medium text-[11px] rounded-md flex items-center gap-1.5 border border-slate-100">
-                                        <i class="fa-solid fa-location-dot text-rose-500"></i> {{ $promosi->lokasi }}
-                                    </span>
-                                </div>
-                                <h1 class="text-3xl sm:text-4xl font-black text-slate-900 leading-tight mb-5 tracking-tight">
-                                    {{ $promosi->judul_promosi }}
-                                </h1>
-                                <div class="flex flex-wrap items-center gap-5 text-sm text-slate-500 font-medium">
-                                    <span class="flex items-center gap-2"><i class="fa-regular fa-eye text-slate-400"></i> {{ number_format($promosi->views) }} tayangan</span>
-                                    <span class="flex items-center gap-2"><i class="fa-regular fa-calendar text-slate-400"></i> Berakhir: {{ $promosi->tanggal_berakhir->format('d M Y') }}</span>
-                                </div>
+                        <!-- Header & Title -->
+                        <div class="mb-6">
+                            <div class="flex flex-wrap items-center gap-2 mb-3">
+                                <span class="px-3 py-1 bg-brand-100 text-brand-700 font-bold uppercase tracking-wider text-[11px] rounded-md">{{ $promosi->jenis_ikan }}</span>
+                                <span class="px-3 py-1 bg-white/60 text-slate-600 font-medium text-[11px] rounded-md flex items-center gap-1.5 border border-slate-200/60">
+                                    <i class="fa-solid fa-location-dot text-rose-500"></i> {{ $promosi->lokasi }}
+                                </span>
                             </div>
-
-                            <hr class="border-slate-100 mb-10">
-
-                            <!-- Description -->
-                            <div class="mb-10">
-                                <h2 class="text-xl font-bold text-slate-900 mb-5 flex items-center gap-2.5">
-                                    <i class="fa-solid fa-align-left text-brand-500"></i>
-                                    <span>Deskripsi Produk</span>
-                                </h2>
-                                <div class="text-slate-600 leading-relaxed text-[15px] whitespace-pre-wrap">{{ $promosi->deskripsi }}</div>
+                            <h1 class="text-3xl sm:text-4xl font-black text-slate-900 leading-tight mb-3 tracking-tight">
+                                {{ $promosi->judul_promosi }}
+                            </h1>
+                            <div class="flex flex-wrap items-center gap-4 text-sm text-slate-500 font-medium">
+                                <span class="flex items-center gap-2"><i class="fa-regular fa-eye text-slate-400"></i> {{ number_format($promosi->views) }} tayangan</span>
+                                <span class="flex items-center gap-2"><i class="fa-regular fa-calendar text-slate-400"></i> Berakhir: {{ $promosi->tanggal_berakhir->format('d M Y') }}</span>
                             </div>
+                        </div>
 
-                            <hr class="border-slate-100 mb-10">
+                        <div class="mb-4"></div>
 
-                            <!-- Specifications -->
-                            <div>
-                                <h2 class="text-xl font-bold text-slate-900 mb-5 flex items-center gap-2.5">
-                                    <i class="fa-solid fa-list-check text-brand-500"></i>
-                                    <span>Spesifikasi Promosi</span>
-                                </h2>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-                                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100/50">
+                        <!-- Description -->
+                        <div class="mb-6">
+                            <h2 class="text-xl font-bold text-slate-900 mb-3">
+                                Deskripsi Produk
+                            </h2>
+                            <div class="bg-white/50 backdrop-blur-sm rounded-2xl p-5 shadow-sm text-slate-600 leading-relaxed text-[15px] whitespace-pre-wrap">{{ $promosi->deskripsi }}</div>
+                        </div>
+
+                        <div class="mb-4"></div>
+
+                        <!-- Specifications -->
+                        <div>
+                            <h2 class="text-xl font-bold text-slate-900 mb-4">
+                                Spesifikasi Promosi
+                            </h2>
+                            <div class="bg-white/50 backdrop-blur-sm rounded-2xl p-5 shadow-sm">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm">
+                                    <div>
                                         <span class="text-slate-500 block mb-1 text-[11px] uppercase tracking-wider font-semibold">Jenis Ikan</span>
                                         <span class="font-bold text-slate-900 text-base">{{ $promosi->jenis_ikan }}</span>
                                     </div>
-                                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100/50">
+                                    <div>
                                         <span class="text-slate-500 block mb-1 text-[11px] uppercase tracking-wider font-semibold">Lokasi Pembudidaya</span>
                                         <span class="font-bold text-slate-900 text-base">{{ $promosi->lokasi }}</span>
                                     </div>
-                                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100/50">
+                                    <div>
                                         <span class="text-slate-500 block mb-1 text-[11px] uppercase tracking-wider font-semibold">Satuan Penjualan</span>
                                         <span class="font-bold text-slate-900 text-base">{{ $promosi->satuan }}</span>
                                     </div>
-                                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100/50">
+                                    <div>
                                         <span class="text-slate-500 block mb-1 text-[11px] uppercase tracking-wider font-semibold">Masa Aktif</span>
                                         <span class="font-bold text-slate-900 text-base">
                                             @if($promosi->sisa_hari > 0)
@@ -259,34 +259,32 @@
                         </div>
 
                     </div>
-                </div>
 
-                <!-- RIGHT COLUMN: Price & Contact Card (1/3 width) -->
-                <div class="lg:col-span-1">
-                    <div class="bg-white rounded-3xl border border-slate-200/80 shadow-lg p-6 lg:p-8 sticky top-28 space-y-6">
+                    <!-- RIGHT COLUMN: Price & Contact Card (1/3 width) -->
+                    <div class="lg:col-span-1 pt-6 lg:pt-0 lg:pl-8 space-y-6">
                         
                         <!-- Status Tag -->
                         <div class="flex items-center justify-between">
                             <span class="inline-flex items-center gap-1.5 text-emerald-600 text-[13px] font-bold">
                                 <i class="fa-solid fa-circle-check"></i> {{ $promosi->status ?? 'Tersedia' }}
                             </span>
-                            <span class="text-xs text-slate-400 font-medium">ID: #{{ $promosi->id }}</span>
+                            <span class="text-xs text-slate-400 font-medium bg-white/50 px-2 py-1 rounded-md border border-slate-100">ID: #{{ $promosi->id }}</span>
                         </div>
 
                         <!-- Price & Stock Box -->
-                        <div class="pb-6 border-b border-slate-100">
-                            <span class="text-xs text-slate-500 font-medium block mb-1">Harga Penawaran</span>
+                        <div class="pb-6">
+                            <span class="text-xs text-slate-500 font-bold uppercase tracking-widest block mb-2">Harga Penawaran</span>
                             <div class="text-4xl font-black text-slate-900 tracking-tight">
                                 Rp {{ number_format($promosi->harga, 0, ',', '.') }}
-                                <span class="text-base font-medium text-slate-500">/{{ $promosi->satuan }}</span>
+                                <span class="text-sm font-bold text-slate-500">/{{ $promosi->satuan }}</span>
                             </div>
                             
-                            <div class="mt-4 flex items-center justify-between bg-slate-50 p-3 rounded-xl border border-slate-100">
+                            <div class="mt-5 flex items-center justify-between bg-white/60 p-3.5 rounded-xl border border-white shadow-sm">
                                 <span class="text-[13px] font-medium text-slate-600">Stok Tersedia</span>
                                 <span class="text-sm font-bold text-slate-900">{{ number_format($promosi->stok_tersedia) }} {{ $promosi->satuan }}</span>
                             </div>
                             @if($promosi->stok_tersedia <= 10)
-                                <div class="mt-2 text-amber-600 text-[11px] font-medium flex items-center gap-1.5 bg-amber-50 p-2 rounded-lg">
+                                <div class="mt-3 text-amber-700 text-[11px] font-medium flex items-center gap-2 bg-amber-100/50 p-2.5 rounded-lg border border-amber-200/50">
                                     <i class="fa-solid fa-triangle-exclamation"></i> Stok terbatas, segera hubungi penjual!
                                 </div>
                             @endif
@@ -296,59 +294,58 @@
                         <div>
                             <a href="https://wa.me/62{{ ltrim($promosi->kontak, '0') }}?text=Halo, saya tertarik dengan promosi {{ urlencode($promosi->judul_promosi) }} di FishNote." 
                                target="_blank"
-                               class="w-full py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold rounded-2xl transition-all duration-300 shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-2 text-base hover:-translate-y-0.5">
+                               class="w-full py-4 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-extrabold rounded-2xl transition-all duration-300 shadow-xl shadow-emerald-600/30 flex items-center justify-center gap-2 text-base hover:-translate-y-1">
                                 <i class="fa-brands fa-whatsapp text-xl"></i>
                                 <span>Hubungi Penjual</span>
                             </a>
-                            <p class="text-center text-[11px] text-slate-400 mt-2">
+                            <p class="text-center text-[11px] text-slate-400 mt-3 font-medium">
                                 Langsung terhubung via WhatsApp
                             </p>
                         </div>
 
                         <!-- Contact Details -->
-                        <div class="p-4 bg-slate-50 rounded-2xl text-xs space-y-2">
-                            <div class="flex justify-between text-slate-600">
-                                <span>Nomor Whatsapp:</span>
+                        <div class="p-4 bg-white/50 backdrop-blur-sm border border-white shadow-sm rounded-2xl text-xs space-y-2">
+                            <div class="flex justify-between items-center text-slate-600">
+                                <span>Nomor WhatsApp:</span>
                                 <span class="font-bold text-slate-900">{{ $promosi->kontak }}</span>
                             </div>
                         </div>
 
                         <!-- Social Share -->
                         <div class="pt-2">
-                            <span class="text-xs font-bold text-slate-700 block mb-2">Bagikan Promosi Ini:</span>
+                            <span class="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-3">Bagikan Promosi</span>
                             <div class="grid grid-cols-3 gap-2">
-                                <button onclick="shareWA()" class="py-2.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-bold rounded-xl text-xs flex items-center justify-center gap-1.5 transition-colors">
+                                <button onclick="shareWA()" class="py-2.5 bg-emerald-50/80 hover:bg-emerald-100 text-emerald-700 font-bold rounded-xl text-xs flex items-center justify-center gap-1.5 transition-colors border border-emerald-100">
                                     <i class="fa-brands fa-whatsapp"></i> WA
                                 </button>
-                                <button onclick="shareFB()" class="py-2.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold rounded-xl text-xs flex items-center justify-center gap-1.5 transition-colors">
+                                <button onclick="shareFB()" class="py-2.5 bg-indigo-50/80 hover:bg-indigo-100 text-indigo-700 font-bold rounded-xl text-xs flex items-center justify-center gap-1.5 transition-colors border border-indigo-100">
                                     <i class="fa-brands fa-facebook"></i> FB
                                 </button>
-                                <button onclick="copyURL()" class="py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-xs flex items-center justify-center gap-1.5 transition-colors">
+                                <button onclick="copyURL()" class="py-2.5 bg-white hover:bg-slate-50 text-slate-700 font-bold rounded-xl text-xs flex items-center justify-center gap-1.5 transition-colors border border-slate-200">
                                     <i class="fa-solid fa-link"></i> Salin
                                 </button>
                             </div>
                         </div>
 
                         <!-- Safe Transaction Banner -->
-                        <div class="p-4 bg-amber-50/70 border border-amber-200/60 rounded-2xl text-xs text-amber-900 space-y-1">
+                        <div class="p-4 bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200/60 rounded-2xl text-xs text-amber-900 space-y-2 shadow-sm">
                             <span class="font-bold flex items-center gap-1.5">
-                                <i class="fa-solid fa-shield-halved text-amber-600"></i> Tips Panduan Aman
+                                <i class="fa-solid fa-shield-halved text-amber-600"></i> Tips Transaksi Aman
                             </span>
-                            <ul class="list-disc list-inside space-y-0.5 text-[11px] text-amber-800/90 pl-1">
-                                <li>Konfirmasi detail pesanan langsung dengan penjual.</li>
-                                <li>Pastikan barang diperiksa sebelum penyelesaian pembayaran.</li>
+                            <ul class="list-disc list-inside space-y-1 text-[11px] text-amber-800/90 pl-1 leading-relaxed">
+                                <li>Konfirmasi pesanan via WhatsApp.</li>
+                                <li>Pastikan periksa barang langsung sebelum bayar.</li>
                             </ul>
                         </div>
 
                     </div>
                 </div>
-
             </div>
 
-            <div class="mt-12 text-center">
-                <a href="{{ route('promosi') }}" class="inline-flex items-center gap-2 px-6 py-3 bg-white border border-slate-200 text-slate-700 hover:text-brand-600 font-bold rounded-xl hover:bg-slate-50 transition shadow-sm text-sm">
+            <div class="mt-8 text-center">
+                <a href="{{ route('promosi') }}" class="inline-flex items-center gap-2 px-6 py-3 bg-white/60 backdrop-blur-md border border-white/80 text-slate-700 hover:text-brand-600 hover:bg-white font-bold rounded-full transition-all shadow-sm text-sm">
                     <i class="fa-solid fa-arrow-left"></i>
-                    <span>Kembali ke Katalog Promosi</span>
+                    <span>Kembali ke Katalog</span>
                 </a>
             </div>
         </div>
