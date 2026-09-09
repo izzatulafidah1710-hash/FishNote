@@ -83,7 +83,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex items-center justify-between h-20">
                     <div class="flex items-center group py-1">
-                        <img src="{{ asset('template/img/logo1.png') }}" alt="FishNote Logo" class="h-10 sm:h-12 w-auto object-contain">
+                        <img src="{{ asset('images/logo.png') }}" alt="FishNote Logo" class="h-10 sm:h-12 w-auto object-contain">
                     </div>
                     <div class="hidden md:flex items-center justify-end flex-1 space-x-2 text-sm text-slate-600">
                         <span class="px-3 py-2 text-brand-600 font-bold">Beranda</span>
@@ -113,7 +113,7 @@
                     </div>
                     <div class="lg:col-span-5 relative flex items-center justify-center min-h-[480px]">
                         <div class="absolute w-[300px] h-[300px] bg-sky-100/70 rounded-[40%_60%_70%_30%/40%_50%_60%_50%] bottom-0 -z-10 translate-y-10 filter blur-[2px]"></div>
-                        <img src="{{ asset('images/farmer_tablet_cutout.png') }}" onerror="this.onerror=null; this.src='{{ asset('template/img/logo1.png') }}';" alt="Peternak FishNote" class="w-full h-auto max-h-[480px] object-contain drop-shadow-2xl">
+                        <img src="{{ asset('images/farmer_tablet_cutout.png') }}" onerror="this.onerror=null; this.src='{{ asset('images/logo.png') }}';" alt="Peternak FishNote" class="w-full h-auto max-h-[480px] object-contain drop-shadow-2xl">
                     </div>
                 </div>
             </div>

@@ -181,7 +181,7 @@
             <div class="flex items-center justify-between h-20">
                 <!-- Brand Logo (New Custom FishNote Logo Image) -->
                 <a href="{{ route('landing') }}" class="flex items-center group py-1">
-                    <img src="{{ asset('template/img/logo1.png') }}?v={{ time() }}" 
+                    <img src="{{ asset('images/logo.png') }}?v={{ time() }}" 
                          alt="FishNote Logo" 
                          class="h-10 sm:h-12 w-auto object-contain group-hover:scale-105 transition-transform duration-300">
                 </a>
@@ -318,7 +318,7 @@
                     <!-- Isolated Subject Cutout (Person with Tablet) -->
                     <div class="relative z-10 w-full max-w-[320px] sm:max-w-[380px] mx-auto flex justify-center">
                         <img src="{{ asset('images/farmer_tablet_cutout.png') }}?v={{ time() }}" 
-                             onerror="this.onerror=null; this.src='{{ asset('template/img/logo1.png') }}';"
+                             onerror="this.onerror=null; this.src='{{ asset('images/logo.png') }}';"
                              alt="Peternak FishNote" 
                              class="w-full h-auto max-h-[480px] object-contain hover:scale-105 transition-transform duration-500 drop-shadow-2xl">
                     </div>
@@ -871,7 +871,7 @@
                 <!-- Col 1: Brand -->
                 <div class="space-y-4">
                     <a href="{{ route('landing') }}" class="inline-flex items-center group hover:scale-105 transition-transform">
-                        <img src="{{ asset('template/img/logo1.png') }}?v={{ time() }}" 
+                        <img src="{{ asset('images/logo.png') }}?v={{ time() }}" 
                              alt="FishNote Logo" 
                              class="h-10 w-auto object-contain">
                     </a>

@@ -97,7 +97,7 @@
             <div class="flex items-center justify-between h-20">
                 <!-- Brand Logo (New Custom FishNote Logo Image) -->
                 <a href="{{ route('landing') }}" class="flex items-center group py-1">
-                    <img src="{{ asset('template/img/logo1.png') }}?v={{ time() }}" 
+                    <img src="{{ asset('images/logo.png') }}?v={{ time() }}" 
                          alt="FishNote Logo" 
                          class="h-10 sm:h-12 w-auto object-contain group-hover:scale-105 transition-transform duration-300">
                 </a>
@@ -254,7 +254,7 @@
                     <!-- Centered Logo Card Cutout -->
                     <div class="relative z-10 w-full max-w-[280px] sm:max-w-[320px] mx-auto flex justify-center">
                         <div class="text-center hover:scale-105 transition-transform duration-500">
-                            <img src="{{ asset('template/img/logo1.png') }}" alt="FishNote Logo" class="max-w-[200px] mx-auto drop-shadow-xl">
+                            <img src="{{ asset('images/logo.png') }}" alt="FishNote Logo" class="max-w-[200px] mx-auto drop-shadow-xl">
                         </div>
                     </div>
 
@@ -305,7 +305,7 @@
                 <div class="relative">
                     <div class="bg-gradient-to-b from-transparent to-white/80 backdrop-blur-md p-8 sm:p-12 rounded-3xl border-b border-white/60 shadow-none flex items-center justify-center relative overflow-hidden">
                         <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none"></div>
-                        <img src="{{ asset('template/img/logo1.png') }}" alt="FishNote Logo" class="max-w-xs mx-auto relative z-10 hover:scale-105 transition-transform duration-500">
+                        <img src="{{ asset('images/logo.png') }}" alt="FishNote Logo" class="max-w-xs mx-auto relative z-10 hover:scale-105 transition-transform duration-500">
                     </div>
                 </div>
 
@@ -539,7 +539,7 @@
                 <!-- Col 1: Brand -->
                 <div class="space-y-4">
                     <a href="{{ route('landing') }}" class="inline-flex items-center group hover:scale-105 transition-transform">
-                        <img src="{{ asset('template/img/logo1.png') }}?v={{ time() }}" 
+                        <img src="{{ asset('images/logo.png') }}?v={{ time() }}" 
                              alt="FishNote Logo" 
                              class="h-10 w-auto object-contain">
                     </a>

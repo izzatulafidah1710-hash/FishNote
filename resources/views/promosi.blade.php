@@ -91,7 +91,7 @@
             <div class="flex items-center justify-between h-20">
                 <!-- Brand Logo (New Custom FishNote Logo Image) -->
                 <a href="{{ route('landing') }}" class="flex items-center group py-1">
-                    <img src="{{ asset('template/img/logo1.png') }}?v={{ time() }}" 
+                    <img src="{{ asset('images/logo.png') }}?v={{ time() }}" 
                          alt="FishNote Logo" 
                          class="h-10 sm:h-12 w-auto object-contain group-hover:scale-105 transition-transform duration-300">
                 </a>
@@ -302,7 +302,7 @@
                 <!-- Col 1: Brand -->
                 <div class="space-y-4">
                     <a href="{{ route('landing') }}" class="inline-flex items-center group hover:scale-105 transition-transform">
-                        <img src="{{ asset('template/img/logo1.png') }}?v={{ time() }}" 
+                        <img src="{{ asset('images/logo.png') }}?v={{ time() }}" 
                              alt="FishNote Logo" 
                              class="h-10 w-auto object-contain">
                     </a>
