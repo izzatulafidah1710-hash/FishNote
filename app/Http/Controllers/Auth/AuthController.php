@@ -9,7 +9,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Validation\ValidationException;
+use App\Notifications\NewUserNotification;
 
 class AuthController extends Controller
 {
@@ -138,6 +140,10 @@ class AuthController extends Controller
                 'farm_location' => $request->farm_location,
                 'status' => 'aktif', // Default status aktif
             ]);
+
+            // Notify all admins
+            $admins = User::where('role', 'admin')->get();
+            Notification::send($admins, new NewUserNotification($user));
 
             DB::commit();
 

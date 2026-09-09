@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Promosi; // GANTI dari Promotion ke Promosi
 use App\Models\Resident;
+use App\Notifications\PromotionDeletedNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -190,6 +191,12 @@ class PromotionController extends Controller
         // Hapus foto jika ada
         if ($promotion->foto && Storage::disk('public')->exists($promotion->foto)) {
             Storage::disk('public')->delete($promotion->foto);
+        }
+
+        // Kirim notifikasi ke user pemilik promosi sebelum dihapus
+        $user = \App\Models\User::find($promotion->user_id);
+        if ($user) {
+            $user->notify(new PromotionDeletedNotification($promotion->judul_promosi));
         }
 
         $promotion->delete();

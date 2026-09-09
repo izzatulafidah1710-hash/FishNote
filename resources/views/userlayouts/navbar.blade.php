@@ -6,126 +6,51 @@
         <i class="fa fa-bars"></i>
     </button>
 
-    <!-- Topbar Search (Optional) -->
-    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-        <div class="input-group">
-            <input type="text" class="form-control bg-light border-0 small" placeholder="Cari..." aria-label="Search" style="border-top-left-radius: 25px; border-bottom-left-radius: 25px; padding-left: 1.25rem;">
-            <div class="input-group-append">
-                <button class="btn btn-primary" type="button" style="border-top-right-radius: 25px; border-bottom-right-radius: 25px; padding-right: 1.25rem;">
-                    <i class="fas fa-search fa-sm"></i>
-                </button>
-            </div>
-        </div>
-    </form>
+    <!-- Topbar Search is moved to Sidebar -->
 
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
 
-        <!-- Nav Item - Notifications (Optional) -->
+        <!-- Nav Item - Notifications -->
         <li class="nav-item dropdown no-arrow mx-1">
             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown">
                 <i class="fas fa-bell fa-fw"></i>
                 <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">1</span>
+                @if(auth()->user()->unreadNotifications->count() > 0)
+                    <span class="badge badge-danger badge-counter">{{ auth()->user()->unreadNotifications->count() }}</span>
+                @endif
             </a>
             <!-- Dropdown - Alerts -->
             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
-                    Notifikasi
+                    Notifikasi Terbaru
                 </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                    <div class="mr-3">
-                        <div class="icon-circle bg-primary">
-                            <i class="fas fa-bullhorn text-white"></i>
+                
+                @forelse(auth()->user()->unreadNotifications->take(5) as $notification)
+                    <a class="dropdown-item d-flex align-items-center" href="{{ route('user.notifications.read', $notification->id) }}">
+                        <div class="mr-3">
+                            <div class="icon-circle bg-{{ $notification->data['type'] ?? 'primary' }}">
+                                <i class="{{ $notification->data['icon'] ?? 'fas fa-bell' }} text-white"></i>
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <div class="small text-gray-500">12 Desember 2024</div>
-                        <span class="font-weight-bold">Promosi Anda telah dilihat 50 kali!</span>
-                    </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Lihat Semua Notifikasi</a>
+                        <div>
+                            <div class="small text-gray-500">{{ $notification->created_at->diffForHumans() }}</div>
+                            <span class="font-weight-bold">{{ $notification->data['message'] }}</span>
+                        </div>
+                    </a>
+                @empty
+                    <a class="dropdown-item text-center small text-gray-500" href="#">Tidak ada notifikasi baru</a>
+                @endforelse
+                <a class="dropdown-item text-center small text-gray-500" href="{{ route('user.notifications.readAll') }}">Tandai semua dibaca</a>
             </div>
         </li>
 
-        <!-- Nav Item - Messages (Optional) -->
+        <!-- Nav Item - Messages (Sembunyikan sementara) -->
+        <!-- 
         <li class="nav-item dropdown no-arrow mx-1">
-            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown">
-                <i class="fas fa-envelope fa-fw"></i>
-                <!-- Counter - Messages -->
-                <span class="badge badge-danger badge-counter">1</span>
-            </a>
-            <!-- Dropdown - Messages -->
-            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
-                <h6 class="dropdown-header">
-                    Pesan
-                </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                    <div class="mr-3">
-                        <div class="icon-circle bg-success">
-                            <i class="fas fa-user text-white"></i>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="small text-gray-500">Admin • 58m</div>
-                        Promosi Anda telah disetujui!
-                    </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Lihat Semua Pesan</a>
-            </div>
-        </li>
-
-        <!-- Nav Item - User Information -->
-        <li class="nav-item dropdown no-arrow">
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <!-- User Name -->
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                    <strong>{{ Auth::user()->name }}</strong>
-                    <br>
-                    <small class="text-muted">Peternak</small>
-                </span>
-                <!-- User Avatar -->
-                <img class="img-profile rounded-circle" src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=4e73df&color=fff&size=40" alt="{{ Auth::user()->name }}">
-            </a>
-            
-            <!-- Dropdown - User Information -->
-            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <!-- Profile Info -->
-                <div class="dropdown-header">
-                    <strong>{{ Auth::user()->name }}</strong>
-                    <br>
-                    <small class="text-muted">{{ Auth::user()->email }}</small>
-                </div>
-                
-                <div class="dropdown-divider"></div>
-                
-                <!-- Menu Profile -->
-                <a class="dropdown-item" href="{{ route('user.profile') }}">
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Profile Saya
-                </a>
-                
-                {{-- <!-- Menu Settings -->
-                <a class="dropdown-item" href="#">
-                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Pengaturan
-                </a>
-                
-                <!-- Menu Activity Log -->
-                <a class="dropdown-item" href="#">
-                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Aktivitas Saya
-                </a>
-                
-                <div class="dropdown-divider"></div>
-                
-                <!-- Logout -->
-                <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Logout
-                </a> --}}
-            </div>
-        </li>
+           ...
+        </li> 
+        -->
 
     </ul>
 

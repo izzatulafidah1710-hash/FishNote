@@ -1,6 +1,6 @@
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboarduser">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('user.dashboard') }}">
                 <div class="sidebar-brand-icon">
                     <img src="{{ asset('images/logo.png') }}" width="80" class="img-fluid">
                 </div>
@@ -11,10 +11,11 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item {{ request()->is('dashboarduser') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('user.dashboarduser') }}">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Dashboard Peternak</span></a>
+            <li class="nav-item {{ request()->routeIs('user.dashboard') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('user.dashboard') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard Peternak</span>
+                </a>
             </li>
 
             <!-- Divider -->
@@ -77,14 +78,25 @@
                 Kelola Akun
             </div>
 
-            <!-- Nav Item - keluar akun -->
-            <!-- Menu Keluar dengan Konfirmasi SweetAlert -->
-            <li class="nav-item">
-                <a class="nav-link" href="#" onclick="event.preventDefault(); confirmLogout();">
-                    <i class="fas fa-fw fa-sign-out-alt"></i>
-                    <span>Keluar</span>
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block" style="margin-top: 1rem; margin-bottom: 0;">
+
+            <!-- Bottom User Profile & Logout -->
+            <div class="sidebar-user-footer">
+                <a href="{{ route('user.profile') }}" class="sidebar-profile-box" style="text-decoration: none;">
+                    <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name ?? 'Peternak') }}&background=f1f5f9&color=475569&size=40" alt="Avatar">
+                    <div class="sidebar-profile-info">
+                        <span class="sidebar-profile-name">{{ Auth::user()->name ?? 'Peternak' }}</span>
+                        <span class="sidebar-profile-email">{{ Auth::user()->email ?? 'peternak@fishnote.com' }}</span>
+                    </div>
+                    <i class="fas fa-chevron-right" style="color: #cbd5e1; font-size: 0.8rem; margin-right: 0.5rem;"></i>
                 </a>
-            </li>
+                
+                <a href="#" class="sidebar-logout-btn" onclick="event.preventDefault(); confirmLogout();">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Log out</span>
+                </a>
+            </div>
 
             <!-- Form Logout -->
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

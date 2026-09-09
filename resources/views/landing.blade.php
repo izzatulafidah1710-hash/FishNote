@@ -209,12 +209,26 @@
 
                     <!-- Action Buttons -->
                     <div class="flex items-center space-x-3 border-l border-slate-200 pl-6">
-                        <a href="{{ route('login') }}" class="px-6 py-2 border-2 border-brand-600 text-brand-600 font-bold text-sm hover:bg-brand-50 rounded-full transition duration-200">
-                            Masuk
-                        </a>
-                        <a href="{{ route('register') }}" class="px-6 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm rounded-full shadow-lg shadow-brand-600/25 hover:shadow-brand-600/40 hover:-translate-y-0.5 transition duration-200 flex items-center gap-2">
-                            <span>Daftar Gratis</span>
-                        </a>
+                        @guest
+                            <a href="{{ route('login') }}" class="px-6 py-2 border-2 border-brand-600 text-brand-600 font-bold text-sm hover:bg-brand-50 rounded-full transition duration-200">
+                                Masuk
+                            </a>
+                            <a href="{{ route('register') }}" class="px-6 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm rounded-full shadow-lg shadow-brand-600/25 hover:shadow-brand-600/40 hover:-translate-y-0.5 transition duration-200 flex items-center gap-2">
+                                <span>Daftar Gratis</span>
+                            </a>
+                        @else
+                            <div class="flex items-center gap-3">
+                                <div class="flex items-center gap-2 text-sm font-medium text-slate-700 bg-slate-50 px-3 py-1.5 rounded-full border border-slate-200">
+                                    <div class="w-6 h-6 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-xs">
+                                        {{ substr(Auth::user()->name, 0, 1) }}
+                                    </div>
+                                    <span class="hidden lg:inline-block font-bold">{{ explode(' ', Auth::user()->name)[0] }}</span>
+                                </div>
+                                <a href="{{ Auth::user()->role === 'admin' ? route('admin.dashboard') : route('user.dashboard') }}" class="px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm rounded-full shadow-md hover:-translate-y-0.5 transition duration-200 flex items-center gap-2">
+                                    <i class="fa-solid fa-gauge-high"></i> Dashboard
+                                </a>
+                            </div>
+                        @endguest
                     </div>
                 </div>
 
@@ -241,8 +255,23 @@
             <a href="{{ route('about') }}" class="liquid-nav-link w-full text-left justify-start">Tentang Kami</a>
             <a href="#kontak" class="liquid-nav-link w-full text-left justify-start">Kontak</a>
             <div class="pt-3 border-t border-slate-100 flex flex-col space-y-2">
-                <a href="{{ route('login') }}" class="w-full text-center py-2.5 font-bold text-brand-600 border border-brand-600/30 rounded-xl">Masuk</a>
-                <a href="{{ route('register') }}" class="w-full text-center py-2.5 font-bold text-white bg-brand-600 rounded-xl shadow-md">Daftar Gratis</a>
+                @guest
+                    <a href="{{ route('login') }}" class="w-full text-center py-2.5 font-bold text-brand-600 border border-brand-600/30 rounded-xl">Masuk</a>
+                    <a href="{{ route('register') }}" class="w-full text-center py-2.5 font-bold text-white bg-brand-600 rounded-xl shadow-md">Daftar Gratis</a>
+                @else
+                    <div class="flex items-center gap-3 px-3 py-3 bg-slate-50 rounded-xl border border-slate-100 mb-2">
+                        <div class="w-10 h-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg">
+                            {{ substr(Auth::user()->name, 0, 1) }}
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-bold text-slate-800 text-sm">{{ Auth::user()->name }}</span>
+                            <span class="text-xs text-slate-500">{{ Auth::user()->email }}</span>
+                        </div>
+                    </div>
+                    <a href="{{ Auth::user()->role === 'admin' ? route('admin.dashboard') : route('user.dashboard') }}" class="w-full text-center py-2.5 font-bold text-white bg-brand-600 rounded-xl shadow-md">
+                        <i class="fa-solid fa-gauge-high mr-2"></i> Kembali ke Dashboard
+                    </a>
+                @endguest
             </div>
         </div>
     </nav>

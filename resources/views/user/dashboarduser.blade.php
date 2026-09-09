@@ -12,6 +12,9 @@
             <p class="text-muted small mb-0">Selamat datang kembali, <strong class="text-dark">{{ Auth::user()->name }}</strong> 👋</p>
         </div>
         <div class="d-flex align-items-center mt-3 mt-md-0">
+            <a href="{{ route('landing') }}" class="btn btn-outline-primary font-weight-bold px-3 py-2 shadow-sm rounded-lg mr-2" style="font-size: 0.85rem;">
+                <i class="fas fa-home mr-1.5"></i> Ke Beranda
+            </a>
             <div class="d-none d-sm-flex align-items-center mr-3">
                 <span class="badge badge-pill badge-light border px-3 py-2 text-dark font-weight-bold mr-2">
                     <i class="fas fa-calendar-alt text-primary mr-1"></i> {{ \Carbon\Carbon::now()->isoFormat('D MMMM Y') }}

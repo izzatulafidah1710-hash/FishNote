@@ -179,6 +179,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
         'update' => 'infoakun.update',
         'destroy' => 'infoakun.destroy',
     ]);
+
+    // Notifications
+    Route::get('/notifications/{id}/read', [App\Http\Controllers\User\NotificationController::class, 'read'])->name('notifications.read');
+    Route::get('/notifications/read-all', [App\Http\Controllers\User\NotificationController::class, 'readAll'])->name('notifications.readAll');
 });
 
 // Non-prefixed alias untuk infoakun (jika view tanpa admin. prefix)
@@ -214,8 +218,14 @@ Route::prefix('user')->name('user.')->middleware(['auth', 'peternak'])->group(fu
     Route::get('/laporan/print', [LaporanController::class, 'print'])->name('laporan.print');
     Route::get('/laporan/export-pdf', [LaporanController::class, 'exportPdf'])->name('laporan.export-pdf');
 
-    // Riwayat
+    // Riwayat Pencatatan
     Route::get('/riwayat', [RiwayatController::class, 'index'])->name('riwayat.index');
+
+    // Notifications
+    Route::get('/notifications/{id}/read', [App\Http\Controllers\User\NotificationController::class, 'read'])->name('notifications.read');
+    Route::get('/notifications/read-all', [App\Http\Controllers\User\NotificationController::class, 'readAll'])->name('notifications.readAll');
+
+    // Riwayat
     Route::get('/riwayat/export', [RiwayatController::class, 'export'])->name('riwayat.export');
 
     // Profile
@@ -232,3 +242,9 @@ Route::get('/clear-cache', function() {
     Artisan::call('route:clear');
     return "Cache cleared successfully! Silakan kembali ke halaman utama dan refresh.";
 });
+
+Route::get('/create-storage-link', function() {
+    Artisan::call('storage:link');
+    return "Storage link berhasil dibuat! Silakan kembali ke website Anda dan refresh untuk melihat gambar.";
+});
+
