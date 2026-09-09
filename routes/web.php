@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\PromosiPublicController;
 use App\Http\Controllers\Auth\AuthController;
@@ -224,3 +225,10 @@ Route::prefix('user')->name('user.')->middleware(['auth', 'peternak'])->group(fu
     Route::put('/profile/password', [UserProfile::class, 'updatePassword'])->name('profile.password');
 });
  
+Route::get('/clear-cache', function() {
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('view:clear');
+    Artisan::call('route:clear');
+    return "Cache cleared successfully! Silakan kembali ke halaman utama dan refresh.";
+});
