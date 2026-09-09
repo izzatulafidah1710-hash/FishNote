@@ -1,6 +1,6 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboardadmin">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('admin.dashboard') }}">
                 <div class="sidebar-brand-icon">
                     <img src="{{ asset('images/logo.png') }}" width="80" class="img-fluid">
                 </div>
@@ -11,8 +11,8 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item {{ request()->is('dashboardadmin') ? 'active' : '' }}">
-                <a class="nav-link" href="/dashboardadmin">
+            <li class="nav-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.dashboard') }}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Dashboard Admin</span></a>
             </li>

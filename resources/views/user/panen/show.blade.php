@@ -166,10 +166,10 @@
                                 <a href="{{ route('user.panen.edit', $panen->id) }}" class="btn btn-warning btn-block">
                                     <i class="fas fa-edit"></i> Edit Data Panen
                                 </a>
-                                <form action="{{ route('user.panen.destroy', $panen->id) }}" method="POST" class="mt-2">
+                                <form action="{{ route('user.panen.destroy', $panen->id) }}" method="POST" class="mt-2 delete-form" data-confirm-message="Yakin ingin menghapus data panen ini?">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-block" onclick="return confirm('Yakin ingin menghapus data panen ini?')">
+                                    <button type="submit" class="btn btn-danger btn-block">
                                         <i class="fas fa-trash"></i> Hapus Data Panen
                                     </button>
                                 </form>

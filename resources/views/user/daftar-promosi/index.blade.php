@@ -119,9 +119,9 @@
                     <div class="d-flex mb-2">
                         <a href="{{ route('user.promosi.show', $item->id) }}" class="btn btn-light btn-sm text-primary border flex-fill mr-1 font-weight-bold">Detail</a>
                         <a href="{{ route('user.promosi.edit', $item->id) }}" class="btn btn-light btn-sm text-warning border flex-fill mr-1 font-weight-bold">Edit</a>
-                        <form action="{{ route('user.promosi.destroy', $item->id) }}" method="POST" class="d-inline">
+                        <form action="{{ route('user.promosi.destroy', $item->id) }}" method="POST" class="d-inline delete-form" data-confirm-message="Yakin hapus promosi ini?">
                             @csrf @method('DELETE')
-                            <button type="submit" class="btn btn-light btn-sm text-danger border font-weight-bold" onclick="return confirm('Yakin hapus promosi ini?')">Hapus</button>
+                            <button type="submit" class="btn btn-light btn-sm text-danger border font-weight-bold">Hapus</button>
                         </form>
                     </div>
                     <form action="{{ route('user.daftar-promosi.toggle-status', $item->id) }}" method="POST">

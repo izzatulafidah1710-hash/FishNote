@@ -231,9 +231,7 @@
                     <a href="{{ route('user.promosi.edit', $promosi->id) }}" class="btn btn-warning btn-block btn-sm mb-2">
                         <i class="fas fa-edit"></i> Edit Promosi
                     </a>
-                    <form action="{{ route('user.promosi.destroy', $promosi->id) }}" 
-                          method="POST" 
-                          onsubmit="return confirm('Yakin ingin menghapus promosi ini?')">
+                    <form action="{{ route('user.promosi.destroy', $promosi->id) }}" method="POST" class="d-inline-block delete-form" data-confirm-message="Yakin ingin menghapus promosi ini?">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger btn-block btn-sm mb-2">

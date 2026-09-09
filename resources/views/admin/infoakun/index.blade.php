@@ -82,12 +82,12 @@
                                 <a href="{{ route('admin.infoakun.edit', $row->id) }}" class="btn btn-sm btn-light text-warning border font-weight-bold mr-1" title="Edit">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <form action="{{ route('admin.infoakun.destroy', $row->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Hapus data akun ini?')">
+                                <button type="button" class="btn btn-sm btn-light text-danger border font-weight-bold" onclick="confirmDelete({{ $row->id }}, '{{ $row->name }}')" title="Hapus">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                                <form id="delete-form-{{ $row->id }}" action="{{ route('admin.infoakun.destroy', $row->id) }}" method="POST" style="display: none;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-light text-danger border font-weight-bold" title="Hapus">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
                                 </form>
                             </td>
                         </tr>
@@ -110,4 +110,25 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script>
+function confirmDelete(id, name) {
+    Swal.fire({
+        title: 'Hapus Info Akun?',
+        text: 'Apakah Anda yakin ingin menghapus data akun "' + name + '"? Data yang dihapus tidak dapat dikembalikan!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#e3342f',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: '<i class="fas fa-trash mr-1"></i> Ya, Hapus',
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById('delete-form-' + id).submit();
+        }
+    });
+}
+</script>
+@endpush
 @endsection

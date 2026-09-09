@@ -182,7 +182,7 @@
                             <td class="text-center">
                                 <a href="{{ route('user.panen.show', $item->id) }}" class="btn btn-sm btn-light text-primary border font-weight-bold mr-1">Detail</a>
                                 <a href="{{ route('user.panen.edit', $item->id) }}" class="btn btn-sm btn-light text-warning border font-weight-bold mr-1">Edit</a>
-                                <form action="{{ route('user.panen.destroy', $item->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin hapus data panen ini?')">
+                                <form action="{{ route('user.panen.destroy', $item->id) }}" method="POST" class="d-inline delete-form" data-confirm-message="Yakin hapus data panen ini?">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-light text-danger border font-weight-bold">Hapus</button>

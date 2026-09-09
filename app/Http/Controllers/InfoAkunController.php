@@ -39,7 +39,7 @@ class InfoAkunController extends Controller
             'avatar' => $avatar,
         ]);
 
-        return redirect()->route('infoakun.index')->with('success', 'Data berhasil ditambahkan');
+        return redirect()->route('admin.infoakun.index')->with('success', 'Data berhasil ditambahkan');
     }
 
     public function edit($id)
@@ -70,7 +70,7 @@ class InfoAkunController extends Controller
             'status' => $request->status,
         ]);
 
-        return redirect()->route('infoakun.index')->with('success', 'Data berhasil diupdate');
+        return redirect()->route('admin.infoakun.index')->with('success', 'Data berhasil diupdate');
     }
 
     public function destroy($id)
@@ -78,6 +78,6 @@ class InfoAkunController extends Controller
         $info = InfoAkun::findOrFail($id);
         $info->delete();
 
-        return redirect()->route('infoakun.index')->with('success', 'Data berhasil dihapus');
+        return redirect()->route('admin.infoakun.index')->with('success', 'Data berhasil dihapus');
     }
 }

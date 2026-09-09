@@ -255,9 +255,20 @@
 @push('scripts')
 <script>
 function confirmDelete(id) {
-    if (confirm('Apakah Anda yakin ingin menghapus catatan aktivitas ini?')) {
-        document.getElementById('delete-form-' + id).submit();
-    }
+    Swal.fire({
+        title: 'Hapus Log Aktivitas?',
+        text: 'Apakah Anda yakin ingin menghapus catatan aktivitas ini?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#e3342f',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: '<i class="fas fa-trash mr-1"></i> Ya, Hapus',
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById('delete-form-' + id).submit();
+        }
+    });
 }
 </script>
 @endpush

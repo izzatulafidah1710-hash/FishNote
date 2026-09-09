@@ -159,9 +159,20 @@
 @push('scripts')
 <script>
 function confirmDelete(id, judul) {
-    if (confirm('Apakah Anda yakin ingin menghapus promosi "' + judul + '"?\n\nData yang dihapus tidak dapat dikembalikan!')) {
-        document.getElementById('delete-form-' + id).submit();
-    }
+    Swal.fire({
+        title: 'Hapus Promosi?',
+        text: 'Apakah Anda yakin ingin menghapus promosi "' + judul + '"? Data yang dihapus tidak dapat dikembalikan!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#e3342f',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: '<i class="fas fa-trash mr-1"></i> Ya, Hapus',
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById('delete-form-' + id).submit();
+        }
+    });
 }
 </script>
 @endpush

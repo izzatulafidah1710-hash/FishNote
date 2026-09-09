@@ -211,6 +211,34 @@
     <!-- Page level custom scripts -->
     {{-- <script src="{{ asset('template/js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('template/js/demo/chart-pie-demo.js') }}"></script> --}}
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const deleteForms = document.querySelectorAll('.delete-form');
+            deleteForms.forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const message = form.dataset.confirmMessage || 'Apakah Anda yakin ingin menghapus data ini?';
+                    
+                    Swal.fire({
+                        title: 'Konfirmasi Hapus',
+                        text: message,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#e3342f',
+                        cancelButtonColor: '#6c757d',
+                        confirmButtonText: '<i class="fas fa-trash mr-1"></i> Ya, Hapus',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 
     @stack('scripts')
 

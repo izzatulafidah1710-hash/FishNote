@@ -170,7 +170,7 @@
                                         <i class="fas fa-edit"></i> Edit Pencatatan
                                     </a>
                                     <form action="{{ route('user.pencatatan.destroy', $pencatatan->id) }}" method="POST"
-                                        class="mt-2" onsubmit="return confirm('Yakin ingin menghapus pencatatan ini?')">
+                                        class="mt-2 delete-form" data-confirm-message="Yakin ingin menghapus pencatatan ini?">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-block">

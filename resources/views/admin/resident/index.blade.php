@@ -217,9 +217,20 @@
 @push('scripts')
 <script>
 function confirmDelete(id, name) {
-    if (confirm('Apakah Anda yakin ingin menghapus data peternak "' + name + '"?\n\nSemua data terkait akan terhapus!')) {
-        document.getElementById('delete-form-' + id).submit();
-    }
+    Swal.fire({
+        title: 'Hapus Data Peternak?',
+        text: 'Apakah Anda yakin ingin menghapus data peternak "' + name + '"? Semua data terkait akan terhapus secara permanen!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#e3342f',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: '<i class="fas fa-trash mr-1"></i> Ya, Hapus',
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById('delete-form-' + id).submit();
+        }
+    });
 }
 </script>
 @endpush
